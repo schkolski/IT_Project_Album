@@ -1,0 +1,116 @@
+﻿body {
+    padding-top: 60px;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+    overflow-y: scroll;
+}
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    background-color: #f5f5f5;
+}
+
+.container .text-muted {
+    margin: 20px 0;
+}
+
+.footer > .container {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+/* Change bootstrap breakpoint */
+
+@media (max-width: 991px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin: 7.5px -15px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .navbar-text {
+        float: none;
+        margin: 15px 0;
+    }
+    /* since 3.1.0 */
+    .navbar-collapse.collapse.in { 
+        display: block!important;
+    }
+    .collapsing {
+        overflow: hidden!important;
+    }
+}
+
+/* Change breakpoint end */
+
+.offer {
+    margin-top:10px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    background-color: #eee;
+    padding:10px;
+}
+
+.borderSolid {
+    border: 2px solid #000;
+}
+
+.row {
+    margin-left:0px;
+    margin-right: 0px;
+}
+
+.paddingTopBottom {
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+#advancedSearchContainer {
+    display: none;
+    margin-bottom: 20px;
+}
+
+#newOfferContainer {
+    display: none;
+    margin-bottom: 10px;
+}
+
+.widthTextBox {
+    display: block;
+    width: 100%;
+    height: 100px;
+}
+
+.alignBottomRight {
+    position:absolute;
+    bottom:0;
+}
