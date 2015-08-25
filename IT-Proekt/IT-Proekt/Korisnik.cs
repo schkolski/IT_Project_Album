@@ -7,6 +7,15 @@ namespace IT_Proekt
 {
     public class Korisnik
     {
+        public Korisnik(string name, string username, DateTime bday, int sex, int type, double thrustLevel)
+        {
+            Name = name;
+            Username = username;
+            Birthday = bday;
+            Sex = sex;
+            Type = type;
+            ThrustLevel = thrustLevel;
+        }
         public int Type {get; set;}
 
         public string Name {get; set;}

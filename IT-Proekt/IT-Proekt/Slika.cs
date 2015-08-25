@@ -8,6 +8,10 @@ namespace IT_Proekt
     public class Slika
     {
         public int Broj { get; set; }
-        // TODO: dodadi album_id i picture_id attrib
+
+        public int AlbumID { get; set; }
+
+        public int PictureID { get; set; }
+        // TODO: Mozi ovie attr treba da bidat objekti od Album 
     }
 }
