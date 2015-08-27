@@ -172,11 +172,36 @@ namespace IT_Proekt
         }
 
         //  TODO: implement
-        public int addSlikaMem()
+        public int addSlikaMem(byte[] image)
         {
             // TODO: add img into db
             // RETURN: Image database ID
             int ID = -1;
+            SqlConnection con = getConnection();
+            string result = "OK";
+            try
+            {
+                con.Open();
+                string query = "INSERT INTO Slika_mem " +
+                    "(picture) VALUES (@img)";
+
+                SqlCommand command = new SqlCommand(query, con);
+                command.Prepare();
+                command.Parameters.AddWithValue("@img", image);
+
+                ID = command.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Console.WriteLine(result);
+            }
+
             // Add some code...
             return ID;
         }
@@ -301,7 +326,7 @@ namespace IT_Proekt
         }
 
         public bool updateKorisnik(string oldUsername, string oldPassword,
-            string newUsername, string newPassword, string newName,
+            string newPassword, string newName,
             string newEmail, DateTime newBirthDay, int newSex) 
         {
             // type e nepromenliv
@@ -312,7 +337,6 @@ namespace IT_Proekt
             {
                 con.Open();
                 string query = "UPDATE Korisnik " +
-                               "SET username=@newUsername " +
                                "SET passwd=AES_ENCRYPT(@newPassword, SHA1(@newUsername)) " +
                                "SET name=@newName " +
                                "SET email=@newEmail " +
@@ -323,7 +347,6 @@ namespace IT_Proekt
 
                 SqlCommand command = new SqlCommand(query, con);
                 command.Prepare();
-                command.Parameters.AddWithValue("@newUsername", newUsername);
                 command.Parameters.AddWithValue("@oldUsername", oldUsername);
                 command.Parameters.AddWithValue("@newPassword", newPassword);
                 command.Parameters.AddWithValue("@oldPassword", oldPassword);

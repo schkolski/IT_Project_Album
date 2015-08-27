@@ -7,6 +7,12 @@ namespace IT_Proekt
 {
     public class Slika
     {
+        public Slika(int broj, int album_id, int picture_id)
+        {
+            Broj = broj;
+            AlbumID = album_id;
+            PictureID = picture_id;
+        }
         public int Broj { get; set; }
 
         public int AlbumID { get; set; }

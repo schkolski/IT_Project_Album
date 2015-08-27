@@ -145,7 +145,8 @@
                             </div>            
                             <div class="row" style="padding-top:10px; margin-bottom:10px;">
                                 <div class="col-xs-12">
-                                    <input id="imageUpload" type="file" runat="server"/>
+                                    <!--<input id="imageUpload" type="file" runat="server"/>-->
+                                    <asp:FileUpload id="FileUpload1" type="file" runat="server"/>
                                 </div>
                             </div>                
                             <div class="row">
@@ -153,7 +154,7 @@
                                     <asp:Image ID="imagePreview" runat="server" height="150px" Width="100%"/>   
                                 </div>
                                 <div class="col-xs-5" style="height:150px">
-                                    <asp:Button ID="btnImageUpload" runat="server" CssClass="btn btn-default alignBottomRight" Text="Upload" />
+                                    <asp:Button ID="btnImageUpload" runat="server" CssClass="btn btn-default alignBottomRight" Text="Upload" OnClick="btnImageUpload_Click" />
                                 </div>
                             </div>  
                         </div>
