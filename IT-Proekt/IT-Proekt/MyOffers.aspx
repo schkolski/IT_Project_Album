@@ -4,8 +4,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
     
         <title>My Offers</title>
         <link href="Content/bootstrap.min.css" rel="stylesheet" />
@@ -22,7 +22,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         </button>
-                        <asp:LinkButton CssClass="navbar-brand" href="#" runat="server" Text="ИТ Проект"></asp:LinkButton>
+                        <asp:LinkButton CssClass="navbar-brand" runat="server" Text="ИТ Проект"></asp:LinkButton>
                     </div>
 
                     <div id="navbar" class="navbar-collapse collapse">
@@ -135,54 +135,84 @@
                     </div>
                 </div>
 
+                <asp:ScriptManager runat="server" ID="scriptManager"></asp:ScriptManager>
+
                 <div id="newOfferContainer" class="container offer">  <!-- Функционира само над 768px -->
-                    <div class="row">
-                        <div class="col-sm-6">
+                    <asp:UpdatePanel runat="server">
+                        <ContentTemplate>                        
                             <div class="row">
-                                <div class="col-sm-12 ">
-                                    <asp:TextBox ID="txbNewOfferName" runat="server" placeholder="Внеси име на понуда..." Width="40%"></asp:TextBox>
-                                </div>   
-                            </div>            
-                            <div class="row" style="padding-top:10px; margin-bottom:10px;">
-                                <div class="col-xs-12">
-                                    <!--<input id="imageUpload" type="file" runat="server"/>-->
-                                    <asp:FileUpload id="FileUpload1" type="file" runat="server"/>
+                                <div class="col-sm-6">
+                                    <div class="row">
+                                        <div class="col-sm-6 ">
+                                            <asp:TextBox ID="txbNewOfferAlbum" runat="server" placeholder="Внеси име на албум..." width="70%"></asp:TextBox>
+                                        </div>   
+                                        <div class="col-sm-6">
+                                            <asp:TextBox ID="txbNewOfferID" runat="server" placeholder="Внеси ID на слика..." width="70%"></asp:TextBox>
+                                        </div>
+                                    </div>   
+                            
+                                    <div class="row" style="padding-top:15px">
+                                        <div class="col-xs-6">
+                                            <asp:Image ID="imgNewOfferPreview" runat="server" height="130px" Width="100%"/>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="row">
+                                                <h4>Опции:</h4>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-8" style="padding-left:0px">
+                                                    <p>Замена</p>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <asp:CheckBox runat="server" ID="chkNewOfferExchange" Checked="false" />
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-8" style="padding-left:0px">
+                                                    <p>Број на слики</p>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <asp:TextBox runat="server" ID="txbNewOfferNumber" Width="30px">1</asp:TextBox>
+                                                </div>
+                                            </div>
+                                        </div>      
+                                    </div>  
+                                    <div class="row" style="padding-top:15px">
+                                        <div class="col-sm-12">
+                                            <asp:Button ID="btnImagePreview" runat="server" CssClass="btn btn-default" Text="Preview" /> 
+                                        </div>
+                                    </div>  
                                 </div>
-                            </div>                
-                            <div class="row">
-                                <div class="col-xs-7">
-                                    <asp:Image ID="imagePreview" runat="server" height="150px" Width="100%"/>   
+                                <div class="col-sm-6">
+                                    <div class="row">
+                                        <div class="col-sm-9">
+                                            <asp:TextBox id="txbNewOfferAlbumYear" runat="server" placeholder="Внеси година..." Width="40%"></asp:TextBox>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <asp:Button ID="btnNewOfferClear" runat="server" CssClass="btn btn-danger" Text="Clear" OnClick="btnOfferClear_Click" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <h4>Опис:</h4>
+                                            <asp:TextBox runat="server" ID="txbNewOfferDescription" CssClass="widthTextBox" TextMode="MultiLine"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <div class="row " style="padding-top:10px">
+                                        <div class="col-sm-2 " >
+                                            <p>Цена:</p>
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <asp:TextBox runat="server" ID="txbNewOfferPrice" style="width:50px;"></asp:TextBox>
+                                        </div>
+                                        <div class="col-sm-3 " >
+                                            <asp:Button runat="server" id="btnNewOfferSubmit" CssClass="btn btn-success" Text="Потврди"/>
+                                        </div>                                    
+                                    </div>
                                 </div>
-                                <div class="col-xs-5" style="height:150px">
-                                    <asp:Button ID="btnImageUpload" runat="server" CssClass="btn btn-default alignBottomRight" Text="Upload" OnClick="btnImageUpload_Click" />
-                                </div>
-                            </div>  
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="row">
-                                <div class="col-sm-3 col-sm-offset-9">
-                                    <asp:Button ID="btnNewOfferRemove" runat="server" CssClass="btn btn-danger" Text="Remove" />
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <p>Опис</p>
-                                    <asp:TextBox runat="server" ID="txbNewOfferDescription" CssClass="widthTextBox"></asp:TextBox>
-                                </div>                                
-                            </div>
-                            <div class="row " style="padding-top:10px">
-                                <div class="col-sm-2 " >
-                                    <p>Цена:</p>
-                                </div>
-                                <div class="col-sm-7">
-                                    <asp:TextBox runat="server" ID="txbNewOfferPrice" style="width:50px;"></asp:TextBox>
-                                </div>
-                                <div class="col-sm-3 " >
-                                    <asp:Button runat="server" id="btnNewOfferSubmit" CssClass="btn btn-success" Text="Потврди"/>
-                                </div>                                    
-                            </div>
-                        </div>
-                    </div>                                        
+                            </div>           
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
                 </div>
 
                 <div id="OfferContainer" class="container offer">  <!-- Функционира само над 768px -->
@@ -200,7 +230,7 @@
                                     <asp:Button ID="btnOfferRefresh" runat="server" CssClass="btn btn-info" Text="Refresh" />
                                 </div>
                                 <div class="col-sm-3 col-sm-offset-6">
-                                    <asp:Button ID="btnOfferRemove" runat="server" CssClass="btn btn-danger" Text="Remove" />
+                                    <asp:Button ID="btnOfferRemove" runat="server" CssClass="btn btn-danger" Text="Remove"/>
                                 </div>
                             </div>
                             <div class="row" style="padding-top:10px">
