@@ -12,7 +12,9 @@ namespace IT_Proekt
     {
         public SqlConnection getConnection()
         {
+
             string connectionString = ConfigurationManager.ConnectionStrings["dbConnection"].ConnectionString;
+            System.Diagnostics.Debug.WriteLine("con string : " + connectionString);
             return new SqlConnection(connectionString);
         }
         public bool addKorisnik(string username, string password, string name,
@@ -24,10 +26,10 @@ namespace IT_Proekt
             {
                 con.Open();
                 // TODO: Ovde mozi treba trustlevel? ILi default se vnesuva ako nema niso?
-                // done. 
-                string query = "INSERT INTO Korisnik (type, name, username, passwd, birthday, sex, datum_na_reg)" +
-                        " VALUES (@type, @name, @username, @email, AES_ENCRYPT(@passwd, SHA1(@username)), @birthday, @sex, @datum_na_reg)";
-
+                //TODO: ADD email????
+                string query = "INSERT INTO Korisnik (type, name, username,email, passwd, birthday, sex,datum_na_reg)" +
+                        " VALUES (@type, @name, @username, @email,HASHBYTES('SHA1',@passwd), @birthday, @sex,@datum_na_reg)";
+                //   HASHBYTES('SHA1',@passwd)
                 SqlCommand command = new SqlCommand(query, con);
                 command.Prepare();
                 command.Parameters.AddWithValue("@type", type);
@@ -53,7 +55,7 @@ namespace IT_Proekt
             {
                 con.Close();
                 // Log the result
-                Console.WriteLine(result);
+                System.Diagnostics.Debug.WriteLine(result);
             }
             return true;
 
@@ -337,13 +339,13 @@ namespace IT_Proekt
             {
                 con.Open();
                 string query = "UPDATE Korisnik " +
-                               "SET passwd=AES_ENCRYPT(@newPassword, SHA1(@newUsername)) " +
+                               "SET passwd=HASHBYTES('SHA1',@newPassword) " +
                                "SET name=@newName " +
                                "SET email=@newEmail " +
                                "SET birthday=@newBirthDay " +
                                "SET sex=@newSex " +
                                "WHERE username=@oldUsername " +
-                               "AND password=AES_ENCRYPT(@oldPassword, SHA1(@oldUsername))";
+                               "AND password=HASHBYTES('SHA1',@oldPassword)";
 
                 SqlCommand command = new SqlCommand(query, con);
                 command.Prepare();
@@ -447,6 +449,7 @@ namespace IT_Proekt
 
         public bool checkKorisnik(string username, string passwd) 
         {
+            System.Diagnostics.Debug.WriteLine("da vleguva");
             SqlConnection con = getConnection();
             string result = "OK";
             try
@@ -456,15 +459,15 @@ namespace IT_Proekt
                 string query = "SELECT TOP 1 username " +
                                "FROM Korisnik " +
                                "WHERE username=@username " +
-                               "AND passwd=AES_ENCRYPT(@passwd, SHA1(@username))";
+                               "AND passwd=HASHBYTES('SHA1',@passwd)";
 
                 SqlCommand command = new SqlCommand(query, con);
                 command.Prepare();
                 command.Parameters.AddWithValue("@username", username);
                 command.Parameters.AddWithValue("@passwd", passwd);
-
-                int userCount = (int)command.ExecuteScalar();
-                return userCount > 0;
+                System.Diagnostics.Debug.WriteLine(command.ExecuteScalar().ToString());
+                bool userCount = command.ExecuteScalar()!=null;
+                return userCount;
             }
             catch (Exception e)
             {
@@ -474,7 +477,7 @@ namespace IT_Proekt
             {
                 con.Close();
                 // Log the result
-                Console.WriteLine(result);
+               System.Diagnostics.Debug.WriteLine(result+" ova");
             }
             return false;
         }
