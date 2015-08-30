@@ -10,7 +10,7 @@
 namespace IT_Proekt {
     
     
-    public partial class _Default {
+    public partial class Album1 {
         
         /// <summary>
         /// form1 control.
@@ -22,174 +22,165 @@ namespace IT_Proekt {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// tbUsernamelog control.
+        /// scriptManager control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbUsernamelog;
+        protected global::System.Web.UI.ScriptManager scriptManager;
         
         /// <summary>
-        /// tbPasslog control.
+        /// txbChooseAlbumName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbPasslog;
+        protected global::System.Web.UI.WebControls.TextBox txbChooseAlbumName;
         
         /// <summary>
-        /// Login control.
+        /// txbChooseAlbumYear control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Login;
+        protected global::System.Web.UI.WebControls.TextBox txbChooseAlbumYear;
         
         /// <summary>
-        /// tbName control.
+        /// btnChooseAlbum control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbName;
+        protected global::System.Web.UI.WebControls.Button btnChooseAlbum;
         
         /// <summary>
-        /// tbUserReg control.
+        /// lblAlbumElementID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbUserReg;
+        protected global::System.Web.UI.WebControls.Label lblAlbumElementID;
         
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// lblAlbumElementName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.Label lblAlbumElementName;
         
         /// <summary>
-        /// RequiredFieldValidator2 control.
+        /// lblAlbumElementGodina control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+        protected global::System.Web.UI.WebControls.Label lblAlbumElementGodina;
         
         /// <summary>
-        /// tbEmail control.
+        /// imgAlbumElementPreview control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbEmail;
+        protected global::System.Web.UI.WebControls.Image imgAlbumElementPreview;
         
         /// <summary>
-        /// RequiredFieldValidator3 control.
+        /// chkAlbumElementExchange control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+        protected global::System.Web.UI.WebControls.CheckBox chkAlbumElementExchange;
         
         /// <summary>
-        /// tbPassReg control.
+        /// txbAlbumElementNumber control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbPassReg;
+        protected global::System.Web.UI.WebControls.TextBox txbAlbumElementNumber;
         
         /// <summary>
-        /// CompareValidator1 control.
+        /// btnAlbumElementAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator CompareValidator1;
+        protected global::System.Web.UI.WebControls.Button btnAlbumElementAdd;
         
         /// <summary>
-        /// tbPass control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbPass;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// ddMonth control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddMonth;
+        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// ddDay control.
+        /// Label3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddDay;
+        protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
-        /// ddYear control.
+        /// Image1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddYear;
+        protected global::System.Web.UI.WebControls.Image Image1;
         
         /// <summary>
-        /// panael control.
+        /// CheckBox1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel panael;
+        protected global::System.Web.UI.WebControls.CheckBox CheckBox1;
         
         /// <summary>
-        /// rbMale control.
+        /// TextBox1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbMale;
+        protected global::System.Web.UI.WebControls.TextBox TextBox1;
         
         /// <summary>
-        /// rbFemale control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbFemale;
-        
-        /// <summary>
-        /// btSignUp control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btSignUp;
+        protected global::System.Web.UI.WebControls.Button Button1;
     }
 }

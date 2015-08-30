@@ -10,7 +10,7 @@
 namespace IT_Proekt {
     
     
-    public partial class MyOffers {
+    public partial class WebForm1 {
         
         /// <summary>
         /// form1 control.
@@ -202,85 +202,49 @@ namespace IT_Proekt {
         protected global::System.Web.UI.WebControls.Button btnAdvancedSearch;
         
         /// <summary>
-        /// scriptManager control.
+        /// txbNewOfferName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager scriptManager;
+        protected global::System.Web.UI.WebControls.TextBox txbNewOfferName;
         
         /// <summary>
-        /// txbNewOfferAlbum control.
+        /// imageUpload control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbNewOfferAlbum;
+        protected global::System.Web.UI.HtmlControls.HtmlInputFile imageUpload;
         
         /// <summary>
-        /// txbNewOfferID control.
+        /// imagePreview control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbNewOfferID;
+        protected global::System.Web.UI.WebControls.Image imagePreview;
         
         /// <summary>
-        /// imgNewOfferPreview control.
+        /// btnImageUpload control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgNewOfferPreview;
+        protected global::System.Web.UI.WebControls.Button btnImageUpload;
         
         /// <summary>
-        /// chkNewOfferExchange control.
+        /// btnNewOfferRemove control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkNewOfferExchange;
-        
-        /// <summary>
-        /// txbNewOfferNumber control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbNewOfferNumber;
-        
-        /// <summary>
-        /// btnImagePreview control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnImagePreview;
-        
-        /// <summary>
-        /// txbNewOfferAlbumYear control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbNewOfferAlbumYear;
-        
-        /// <summary>
-        /// btnNewOfferClear control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNewOfferClear;
+        protected global::System.Web.UI.WebControls.Button btnNewOfferRemove;
         
         /// <summary>
         /// txbNewOfferDescription control.
@@ -325,7 +289,7 @@ namespace IT_Proekt {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnOfferRefresh;
+        protected global::System.Web.UI.WebControls.LinkButton btnOfferRefresh;
         
         /// <summary>
         /// btnOfferRemove control.
@@ -334,7 +298,7 @@ namespace IT_Proekt {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnOfferRemove;
+        protected global::System.Web.UI.WebControls.LinkButton btnOfferRemove;
         
         /// <summary>
         /// lblOfferDescription control.
@@ -361,6 +325,6 @@ namespace IT_Proekt {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button3;
+        protected global::System.Web.UI.WebControls.LinkButton Button3;
     }
 }
