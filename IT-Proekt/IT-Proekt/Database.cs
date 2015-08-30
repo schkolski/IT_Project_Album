@@ -10,11 +10,16 @@ namespace IT_Proekt
 
     public class Database
     {
+        public void Log(string methodName, string msg)
+        {
+            System.Diagnostics.Debug.WriteLine(methodName + " : " + msg);
+        }
+       
         public SqlConnection getConnection()
         {
 
             string connectionString = ConfigurationManager.ConnectionStrings["dbConnection"].ConnectionString;
-            System.Diagnostics.Debug.WriteLine("con string : " + connectionString);
+            
             return new SqlConnection(connectionString);
         }
         public bool addKorisnik(string username, string password, string name,
@@ -55,7 +60,7 @@ namespace IT_Proekt
             {
                 con.Close();
                 // Log the result
-                System.Diagnostics.Debug.WriteLine(result);
+                Log("addKorisnik", result);
             }
             return true;
 
@@ -97,7 +102,7 @@ namespace IT_Proekt
             {
                 con.Close();
                 // Log the result
-                Console.WriteLine(result);
+                Log("addOffer", result);
             }
             return true;
         }
@@ -131,7 +136,7 @@ namespace IT_Proekt
             {
                 con.Close();
                 // Log the result
-                Console.WriteLine(result);
+                Log("addAlbum", result);
             }
             return true;
         }
@@ -168,7 +173,7 @@ namespace IT_Proekt
             {
                 con.Close();
                 // Log the result
-                Console.WriteLine(result);
+                Log("addSlika", result);
             }
             return true;
         }
@@ -201,7 +206,7 @@ namespace IT_Proekt
             {
                 con.Close();
                 // Log the result
-                Console.WriteLine(result);
+                Log("addSlikaMem", result);
             }
 
             // Add some code...
@@ -241,7 +246,7 @@ namespace IT_Proekt
             {
                 con.Close();
                 // Log the result
-                Console.WriteLine(result);
+                Log("addPoseduvaRelation", result);
             }
             return true;
         }
@@ -274,7 +279,7 @@ namespace IT_Proekt
             {
                 con.Close();
                 // Log the result
-                Console.WriteLine(result);
+                Log("refreshOffer", result);
             }
             return true;
         }
@@ -322,7 +327,7 @@ namespace IT_Proekt
             {
                 con.Close();
                 // Log the result
-                Console.WriteLine(result);
+                Log("updateOffer", result);
             }
             return true;
         }
@@ -369,7 +374,7 @@ namespace IT_Proekt
             {
                 con.Close();
                 // Log the result
-                Console.WriteLine(result);
+                Log("refreshKorisnik", result);
             }
             return true;
         }
@@ -406,7 +411,7 @@ namespace IT_Proekt
             {
                 con.Close();
                 // Log the result
-                Console.WriteLine(result);
+                Log("updateQuantity", result);
             }
             return true;
         }
@@ -442,14 +447,13 @@ namespace IT_Proekt
             {
                 con.Close();
                 // Log the result
-                Console.WriteLine(result);
+                Log("updateSlika", result);
             }
             return true;
         }
 
         public bool checkKorisnik(string username, string passwd) 
         {
-            System.Diagnostics.Debug.WriteLine("da vleguva");
             SqlConnection con = getConnection();
             string result = "OK";
             try
@@ -477,7 +481,7 @@ namespace IT_Proekt
             {
                 con.Close();
                 // Log the result
-               System.Diagnostics.Debug.WriteLine(result+" ova");
+                Log("checkKorisnik", result);
             }
             return false;
         }
@@ -522,14 +526,14 @@ namespace IT_Proekt
                     {
                         con.Close();
                         // Log the result
-                        Console.WriteLine(result);
+                        Log("addAlbum", result);
                     }
                     return true;
                 }
-                Console.WriteLine("Cannot delete all from Ponuda and Poseduva for username='" + username+"'");
+                Log("deleteKorisnik", "Cannot delete all from Ponuda and Poseduva for username='" + username + "'");
                 return false;
             }
-            Console.WriteLine("Wrong username or password");
+            Log("deleteKorisnik", "Wrong username or password");
             return false;
         }
 
@@ -571,11 +575,11 @@ namespace IT_Proekt
                 {
                     con.Close();
                     // Log the result
-                    Console.WriteLine(result);
+                    Log("deleteAlbum", result);
                 }
                 return true;
             }
-            Console.WriteLine("Cannot delete all from Ponuda and Poseduva for album_id='" + id + "'");
+            Log("deleteAlbum", "Cannot delete all from Ponuda and Poseduva for album_id='" + id + "'");
             return false;
         }
 
@@ -610,11 +614,11 @@ namespace IT_Proekt
                 {
                     con.Close();
                     // Log the result
-                    Console.WriteLine(result);
+                    Log("deleteSlika", result);
                 }
                 return true;
             }
-            Console.WriteLine("Cannot delete all from Ponuda and Poseduva for slika-broj='" + broj + "'");
+            Log("deleteSlika", "Cannot delete all from Ponuda and Poseduva for slika-broj='" + broj + "'");
             return false;
         }
 
@@ -646,7 +650,7 @@ namespace IT_Proekt
             {
                 con.Close();
                 // Log the result
-                Console.WriteLine(result);
+                Log("deleteSlikaMem", result);
             }
             return true;
         }
@@ -678,7 +682,7 @@ namespace IT_Proekt
             {
                 con.Close();
                 // Log the result
-                Console.WriteLine(result);
+                Log("removeAllOffersByAlbumId", result);
             }
             return true;
         }
@@ -709,7 +713,7 @@ namespace IT_Proekt
             {
                 con.Close();
                 // Log the result
-                Console.WriteLine(result);
+                Log("removeAllOffersByUsername", result);
             }
             return true;
         }
@@ -740,7 +744,7 @@ namespace IT_Proekt
             {
                 con.Close();
                 // Log the result
-                Console.WriteLine(result);
+                Log("removeAllOffersByBroj", result);
             }
             return true;
         }
@@ -771,7 +775,7 @@ namespace IT_Proekt
             {
                 con.Close();
                 // Log the result
-                Console.WriteLine(result);
+                Log("removeAllPoseduvaByAlbumId", result);
             }
             return true;
         }
@@ -802,7 +806,7 @@ namespace IT_Proekt
             {
                 con.Close();
                 // Log the result
-                Console.WriteLine(result);
+                Log("removeAllPoseduvaByUsername", result);
             }
             return true;
         }
@@ -833,7 +837,7 @@ namespace IT_Proekt
             {
                 con.Close();
                 // Log the result
-                Console.WriteLine(result);
+                Log("removeAllPoseduvaByBroj", result);
             }
             return true;
         }
@@ -866,7 +870,7 @@ namespace IT_Proekt
             {
                 con.Close();
                 // Log the result
-                Console.WriteLine(result);
+                Log("removeAllSlikaByAlbumId", result);
             }
             return true;
         }
