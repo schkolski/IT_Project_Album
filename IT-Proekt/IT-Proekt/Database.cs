@@ -14,12 +14,11 @@ namespace IT_Proekt
         {
             System.Diagnostics.Debug.WriteLine(methodName + " : " + msg);
         }
-       
         public SqlConnection getConnection()
         {
 
             string connectionString = ConfigurationManager.ConnectionStrings["dbConnection"].ConnectionString;
-            
+
             return new SqlConnection(connectionString);
         }
         public bool addKorisnik(string username, string password, string name,
@@ -45,11 +44,11 @@ namespace IT_Proekt
                 command.Parameters.AddWithValue("@birthday", birthDay);
                 command.Parameters.AddWithValue("@sex", sex);
                 command.Parameters.AddWithValue("@datum_na_reg", DateTime.Now);
-                
+
 
 
                 command.ExecuteNonQuery();
-               
+
             }
             catch (Exception e)
             {
@@ -144,7 +143,7 @@ namespace IT_Proekt
         public bool addSlika(int broj, int albumid, int picture_id)
         {
             // Ova se izvrshuva privatno pri dodavanje na slikicka
-            
+
             SqlConnection con = getConnection();
             string result = "OK";
             try
@@ -212,11 +211,11 @@ namespace IT_Proekt
             // Add some code...
             return ID;
         }
-        
+
         private bool addPoseduvaRelation(string username, int albumid, int brslika, int quantity)
         {
             // Ova se izvrshuva privatno pri dodavanje na slikicka
-            
+
             SqlConnection con = getConnection();
             string result = "OK";
             try
@@ -250,9 +249,10 @@ namespace IT_Proekt
             }
             return true;
         }
-        
-        public bool refreshOffer(int id){
-            
+
+        public bool refreshOffer(int id)
+        {
+
             SqlConnection con = getConnection();
             string result = "OK";
             try
@@ -334,7 +334,7 @@ namespace IT_Proekt
 
         public bool updateKorisnik(string oldUsername, string oldPassword,
             string newPassword, string newName,
-            string newEmail, DateTime newBirthDay, int newSex) 
+            string newEmail, DateTime newBirthDay, int newSex)
         {
             // type e nepromenliv
             // Datumot na registracija e nepromenliv
@@ -416,7 +416,7 @@ namespace IT_Proekt
             return true;
         }
 
-        public bool updateSlika(int broj, int album_id, int oldSlikaId, int newSlikaId) 
+        public bool updateSlika(int broj, int album_id, int oldSlikaId, int newSlikaId)
         {
             SqlConnection con = getConnection();
             string result = "OK";
@@ -452,14 +452,14 @@ namespace IT_Proekt
             return true;
         }
 
-        public bool checkKorisnik(string username, string passwd) 
+        public bool checkKorisnik(string username, string passwd)
         {
             SqlConnection con = getConnection();
             string result = "OK";
             try
             {
                 con.Open();
-                
+
                 string query = "SELECT TOP 1 username " +
                                "FROM Korisnik " +
                                "WHERE username=@username " +
@@ -470,7 +470,7 @@ namespace IT_Proekt
                 command.Parameters.AddWithValue("@username", username);
                 command.Parameters.AddWithValue("@passwd", passwd);
                 System.Diagnostics.Debug.WriteLine(command.ExecuteScalar().ToString());
-                bool userCount = command.ExecuteScalar()!=null;
+                bool userCount = command.ExecuteScalar() != null;
                 return userCount;
             }
             catch (Exception e)
@@ -495,7 +495,8 @@ namespace IT_Proekt
             //        3. Finally remove Korisnik
             bool check = checkKorisnik(username, passwd);
 
-            if (check) { 
+            if (check)
+            {
                 bool ponuda = removeAllOffersByUsername(username);
                 bool poseduva = removeAllPoseduvaByUsername(username);
 
@@ -583,12 +584,13 @@ namespace IT_Proekt
             return false;
         }
 
-        private bool deleteSlika(int broj) 
+        private bool deleteSlika(int broj)
         {
             bool ponuda = removeAllOffersByBroj(broj);
             bool poseduva = removeAllPoseduvaByBroj(broj);
 
-            if (ponuda && poseduva) { 
+            if (ponuda && poseduva)
+            {
                 SqlConnection con = getConnection();
                 string result = "OK";
                 try
@@ -630,7 +632,7 @@ namespace IT_Proekt
             try
             {
                 con.Open();
-                
+
                 string query = "DELETE FROM Slika_mem " +
                                "WHERE id=@id";
 
@@ -874,6 +876,6 @@ namespace IT_Proekt
             }
             return true;
         }
-        
+
     }
 }
