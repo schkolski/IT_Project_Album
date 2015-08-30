@@ -24,7 +24,7 @@ namespace IT_Proekt
             {
                 con.Open();
                 // TODO: Ovde mozi treba trustlevel? ILi default se vnesuva ako nema niso?
-                //TODO: ADD email????
+                // done. 
                 string query = "INSERT INTO Korisnik (type, name, username, passwd, birthday, sex, datum_na_reg)" +
                         " VALUES (@type, @name, @username, @email, AES_ENCRYPT(@passwd, SHA1(@username)), @birthday, @sex, @datum_na_reg)";
 
