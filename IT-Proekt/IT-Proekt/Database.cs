@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -21,6 +22,260 @@ namespace IT_Proekt
 
             return new SqlConnection(connectionString);
         }
+
+        public List<Album> getAllAlbums()
+        {
+            SqlConnection con = getConnection();
+            string result = "OK";
+            List<Album> albums = null;
+            try
+            {
+                con.Open();
+                string query = "SELECT id, name, year_published FROM Album";
+                SqlCommand command = new SqlCommand(query, con);
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+                DataSet data = new DataSet();
+                dataAdapter.Fill(data);
+
+                albums = new List<Album>();
+                foreach (DataRow row in data.Tables[0].Rows)
+                {
+                    Album album = new Album(
+                        Int32.Parse(row["id"].ToString()),
+                        row["name"].ToString(),
+                        Int32.Parse(row["year_published"].ToString())
+                    );
+                    albums.Add(album);
+                }
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Log("getAllAlbums", result);
+            }
+            return albums;
+        }
+        public List<Slika> getAllPicturesByBroj(int broj)
+        {
+            SqlConnection con = getConnection();
+            string result = "OK";
+            List<Slika> pictures = null;
+            try
+            {
+                con.Open();
+                string query = "SELECT  album_id, picture_id FROM Slika " +
+                                "WHERE broj=@broj";
+                SqlCommand command = new SqlCommand(query, con);
+                command.Parameters.AddWithValue("@broj", broj);
+
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+                DataSet data = new DataSet();
+                dataAdapter.Fill(data);
+
+                pictures = new List<Slika>();
+                foreach (DataRow row in data.Tables[0].Rows)
+                {
+                    Slika picture = new Slika(
+                        broj,
+                        Int32.Parse(row["album_id"].ToString()),
+                        Int32.Parse(row["picture_id"].ToString())
+                    );
+                    pictures.Add(picture);
+                }
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Log("getAllPicturesByBroj", result);
+            }
+            return pictures;
+        }
+        public List<Slika> getAllPicturesByAlbumID(int album_id)
+        {
+            SqlConnection con = getConnection();
+            string result = "OK";
+            List<Slika> pictures = null;
+            try
+            {
+                con.Open();
+                string query = "SELECT  broj, picture_id FROM Slika " +
+                                "WHERE album_id=@album_id";
+                SqlCommand command = new SqlCommand(query, con);
+                command.Parameters.AddWithValue("@album_id", album_id);
+
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+                DataSet data = new DataSet();
+                dataAdapter.Fill(data);
+
+                pictures = new List<Slika>();
+                foreach (DataRow row in data.Tables[0].Rows)
+                {
+                    Slika picture = new Slika(
+                        Int32.Parse(row["broj"].ToString()),
+                        album_id,
+                        Int32.Parse(row["picture_id"].ToString())
+                    );
+                    pictures.Add(picture);
+                }
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Log("getAllPicturesByAlbumID", result);
+            }
+            return pictures;
+        }
+        public List<Ponuda> getAllOffers()
+        {
+            SqlConnection con = getConnection();
+            string result = "OK";
+            List<Ponuda> offers = null;
+            try
+            {
+                con.Open();
+                string query = "SELECT id, offer_description, price, name, " +
+                                    "album_id, broj_slika, exchange, username, datum " +
+                               "FROM Ponuda";
+
+                SqlCommand command = new SqlCommand(query, con);
+
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+                DataSet data = new DataSet();
+                dataAdapter.Fill(data);
+
+                offers = new List<Ponuda>();
+                foreach (DataRow row in data.Tables[0].Rows)
+                {
+                    Ponuda offer = new Ponuda(
+                        Int32.Parse(row["id"].ToString()),
+                        row["offer_description"].ToString(),
+                        Int32.Parse(row["price"].ToString()),
+                        row["name"].ToString(),
+                        Int32.Parse(row["album_id"].ToString()),
+                        Int32.Parse(row["broj_slika"].ToString()),
+                        row["username"].ToString(),
+                        Int32.Parse(row["exchange"].ToString()),
+                        DateTime.Parse(row["datum"].ToString())
+                    );
+                    offers.Add(offer);
+                }
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Log("getAllOffers", result);
+            }
+            return offers;
+        }
+        public List<Ponuda> getAllOffersByUsername(string username)
+        {
+            SqlConnection con = getConnection();
+            string result = "OK";
+            List<Ponuda> offers = null;
+            try
+            {
+                con.Open();
+                string query = "SELECT id, offer_description, price, name, " +
+                                    "album_id, broj_slika, exchange, username, datum " +
+                               "FROM Ponuda " +
+                               "WHERE username=@username";
+
+                SqlCommand command = new SqlCommand(query, con);
+                command.Parameters.AddWithValue("@username", username);
+
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+                DataSet data = new DataSet();
+                dataAdapter.Fill(data);
+
+                offers = new List<Ponuda>();
+                foreach (DataRow row in data.Tables[0].Rows)
+                {
+                    Ponuda offer = new Ponuda(
+                        Int32.Parse(row["id"].ToString()),
+                        row["offer_description"].ToString(),
+                        Int32.Parse(row["price"].ToString()),
+                        row["name"].ToString(),
+                        Int32.Parse(row["album_id"].ToString()),
+                        Int32.Parse(row["broj_slika"].ToString()),
+                        row["username"].ToString(),
+                        Int32.Parse(row["exchange"].ToString()),
+                        DateTime.Parse(row["datum"].ToString())
+                    );
+                    offers.Add(offer);
+                }
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Log("getAllOffersByUsername", result);
+            }
+            return offers;
+        }
+        public int getQuantity(string username, int album_id, int broj_slika)
+        {
+            SqlConnection con = getConnection();
+            string result = "OK";
+            int quantity = 0;
+            try
+            {
+                con.Open();
+                string query = "SELECT quantity " +
+                               "FROM Poseduva " +
+                               "WHERE username=@username AND " +
+                                   "album_id=@album_id AND " +
+                                   "broj_slika=@broj_slika";
+
+                SqlCommand command = new SqlCommand(query, con);
+                command.Parameters.AddWithValue("@username", username);
+                command.Parameters.AddWithValue("@album_id", album_id);
+                command.Parameters.AddWithValue("@broj_slika", broj_slika);
+
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    quantity = reader.GetInt32(0);
+                }
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Log("getQuantity", result);
+            }
+            return quantity;
+        }
+
         public bool addKorisnik(string username, string password, string name,
             string email, int type, DateTime birthDay, int sex)
         {
@@ -469,7 +724,7 @@ namespace IT_Proekt
                 command.Prepare();
                 command.Parameters.AddWithValue("@username", username);
                 command.Parameters.AddWithValue("@passwd", passwd);
-                System.Diagnostics.Debug.WriteLine(command.ExecuteScalar().ToString());
+
                 bool userCount = command.ExecuteScalar() != null;
                 return userCount;
             }
@@ -482,6 +737,38 @@ namespace IT_Proekt
                 con.Close();
                 // Log the result
                 Log("checkKorisnik", result);
+            }
+            return false;
+        }
+
+        public bool checkIfExistsKorisnik(string username)
+        {
+            SqlConnection con = getConnection();
+            string result = "OK";
+            try
+            {
+                con.Open();
+
+                string query = "SELECT TOP 1 username " +
+                               "FROM Korisnik " +
+                               "WHERE username=@username";
+
+                SqlCommand command = new SqlCommand(query, con);
+                command.Prepare();
+                command.Parameters.AddWithValue("@username", username);
+
+                bool userCount = command.ExecuteScalar() != null;
+                return userCount;
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Log("checkIfExistsKorisnik", result);
             }
             return false;
         }
