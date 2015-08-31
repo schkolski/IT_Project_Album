@@ -30,6 +30,16 @@ namespace IT_Proekt
             
         }
 
+        protected void btnOfferRefresh_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnNewOfferSubmit_Click(object sender, EventArgs e)
+        {
+
+        }
+
                 
             
             

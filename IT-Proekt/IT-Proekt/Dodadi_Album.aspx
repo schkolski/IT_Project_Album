@@ -7,7 +7,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     
-        <title>My Offers</title>
+        <title>Add Album</title>
         <link href="Content/bootstrap.min.css" rel="stylesheet" />
         <link href="Content/homePage.css" rel="stylesheet" />
     </head> 

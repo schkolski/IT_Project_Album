@@ -206,7 +206,7 @@
                                             <asp:TextBox runat="server" ID="txbNewOfferPrice" style="width:50px;"></asp:TextBox>
                                         </div>
                                         <div class="col-sm-3 " >
-                                            <asp:Button runat="server" id="btnNewOfferSubmit" CssClass="btn btn-success" Text="Потврди"/>
+                                            <asp:Button runat="server" id="btnNewOfferSubmit" CssClass="btn btn-success" Text="Потврди" OnClick="btnNewOfferSubmit_Click"/>
                                         </div>                                    
                                     </div>
                                 </div>
@@ -227,7 +227,7 @@
                         <div class="col-sm-6">
                             <div class="row">
                                 <div class="col-sm-3 ">
-                                    <asp:Button ID="btnOfferRefresh" runat="server" CssClass="btn btn-info" Text="Refresh" />
+                                    <asp:Button ID="btnOfferRefresh" runat="server" CssClass="btn btn-info" Text="Refresh" OnClick="btnOfferRefresh_Click" />
                                 </div>
                                 <div class="col-sm-3 col-sm-offset-6">
                                     <asp:Button ID="btnOfferRemove" runat="server" CssClass="btn btn-danger" Text="Remove"/>

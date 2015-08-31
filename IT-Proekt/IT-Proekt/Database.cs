@@ -824,7 +824,37 @@ namespace IT_Proekt
             Log("deleteKorisnik", "Wrong username or password");
             return false;
         }
+        public bool deleteOffer(int id)
+        {
+                    SqlConnection con = getConnection();
+                    string result = "OK";
+                    try
+                    {
+                        con.Open();
 
+                        string query = "DELETE FROM Ponuda " +
+                                       "WHERE id=@id";
+
+                        SqlCommand command = new SqlCommand(query, con);
+                        command.Prepare();
+                        command.Parameters.AddWithValue("@id", id);
+
+                        command.ExecuteNonQuery();
+
+                    }
+                    catch (Exception e)
+                    {
+                        result = e.Message;
+                        return false;
+                    }
+                    finally
+                    {
+                        con.Close();
+                        // Log the result
+                        Log("deleteOffer", result);
+                    }
+                    return true;
+        }
         public bool deleteAlbum(int id)
         {
             // TODO: where album_id = id; // DONE and CHECKED but TRIPLE CHECK THIS!!!
