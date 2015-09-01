@@ -19,5 +19,12 @@ namespace IT_Proekt
                 }
             }
         }
+        protected void LogOut_Click(Object sender, EventArgs e)
+        {
+            Session.Clear();
+            Session.RemoveAll();
+            Session.Abandon();
+            Response.Redirect("Default.aspx");
+        }
     }
 }

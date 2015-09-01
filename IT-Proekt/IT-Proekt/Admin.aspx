@@ -27,9 +27,9 @@
 
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li><asp:LinkButton href="#Doma" runat="server" Text="Дома"></asp:LinkButton></li>
+                            <li><asp:LinkButton href="#Doma" runat="server" Text="Kорисници"></asp:LinkButton></li>
                             <li><asp:LinkButton href="#Dodadi_Album" runat="server" Text="Додади Албум"></asp:LinkButton></li>
-                            <li class="active"><asp:LinkButton href="#MyOffers" runat="server" Text="Мои Понуди" ></asp:LinkButton></li>                                 
+                            <li class="active"><asp:LinkButton href="#MyOffers" runat="server" Text="Понуди" ></asp:LinkButton></li>                                 
                             <li><asp:LinkButton href="#Stats" runat="server" Text="Статистики"></asp:LinkButton></li>           
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
@@ -198,9 +198,7 @@
                                 <!--<div class="col-sm-3 ">
                                     <asp:LinkButton ID="btnOfferRefresh" runat="server" CssClass="btn btn-info" Text="Refresh" > <img src="/img/correct.png"/></asp:LinkButton>
                                 </div>!-->
-                                <div class="col-sm-3 col-sm-offset-6">
-                                    <asp:LinkButton ID="btnOfferRemove" runat="server" CssClass="btn btn-danger"><img src="/img/wrong.png"/></asp:LinkButton>
-                                </div>
+                                
                             </div>
                             <div class="row" style="padding-top:10px">
                                 <div class="col-sm-12">
@@ -216,10 +214,15 @@
                                 </div>
                                 <div class="col-sm-7">
                                     <asp:Label ID="lblOfferPrice" runat="server">10$</asp:Label>
+                                </div>                                  
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3 col-sm-offset-6">
+                                    <asp:LinkButton ID="btnOfferRemove" runat="server" CssClass="btn btn-danger"><img src="/img/wrong.png"/></asp:LinkButton>
                                 </div>
                                 <div class="col-sm-3 " >
                                     <asp:LinkButton runat="server" id="Button3" CssClass="btn btn-success"><img src="/img/rsz_correct.png" /></asp:LinkButton>
-                                </div>                                    
+                                </div>  
                             </div>
                         </div>
                     </div>                                        

@@ -10,6 +10,35 @@
         <title>Home Page</title>
         <link href="Content/bootstrap.min.css" rel="stylesheet" />
         <link href="Content/homePage.css" rel="stylesheet" />
+        <style>
+            #strani li{
+                 display: inline;
+            }
+            .pageNav {
+                margin: 30px 0 0 0;
+                padding: 30px 20px;
+                clear: both;
+                font-size: 24px;
+                font-weight: bold;
+                overflow: hidden;
+                color: #d9d9d9;
+            }
+
+            .page-numbers
+            {
+                padding: 0 10px;
+                height: 46px;
+                line-height: 46px;
+                cursor: pointer;
+                display: block;
+                float: left;
+                margin: 0;
+                color: #d9d9d9;
+                text-align: center;
+                text-decoration: none;
+            }
+
+        </style>
     </head> 
     <body>
         <form id="form1" runat="server">
@@ -34,7 +63,7 @@
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li><asp:LinkButton href="#MyInfo" runat="server" Text="Мои Информации"></asp:LinkButton></li>
-                            <li><asp:LinkButton href="#LogOut" runat="server" Text="Одлогирај се"></asp:LinkButton></li>
+                            <li><asp:LinkButton ID="LogOut" runat="server" Text="Одлогирај се" OnClick="LogOut_Click"/></li>
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div>
@@ -168,7 +197,176 @@
                             </div>
                         </div>
                     </div>                                        
-                </div>     
+                </div>   
+                <div id="OfferContainer" class="container offer">  <!-- Функционира само над 768px -->
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class="col-sm-12" style="font-size:20px">
+                                    <asp:Label ID="Label1" runat="server">Име на понуда</asp:Label>
+                                </div>   
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="row" style="font-size:20px">
+                                <div class="col-sm-3 ">
+                                    <asp:Label ID="Label2" runat="server" >Понудил</asp:Label>
+                                </div>
+                                <div class="col-sm-3 col-sm-offset-6">
+                                    <asp:Label ID="Label3" runat="server">Trust Level</asp:Label>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top:10px">
+                                <div class="col-sm-12">
+                                    <p>Опис</p>
+                                    <asp:Label ID="Label4" runat="server">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    </asp:Label>
+                                </div>                                
+                            </div>
+                            <div class="row " style="padding-top:10px">
+                                <div class="col-sm-2 " >
+                                    <p>Цена:</p>
+                                </div>
+                                <div class="col-sm-7">
+                                    <asp:Label ID="Label5" runat="server">10$</asp:Label>
+                                </div>
+                                <div class="col-sm-3 " >
+                                    <asp:Button runat="server" id="Button1" CssClass="btn btn-success" Text="Купи"/>
+                                </div>                                    
+                            </div>
+                        </div>
+                    </div>                                        
+                </div>   
+                <div id="OfferContainer" class="container offer">  <!-- Функционира само над 768px -->
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class="col-sm-12" style="font-size:20px">
+                                    <asp:Label ID="Label6" runat="server">Име на понуда</asp:Label>
+                                </div>   
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="row" style="font-size:20px">
+                                <div class="col-sm-3 ">
+                                    <asp:Label ID="Label7" runat="server" >Понудил</asp:Label>
+                                </div>
+                                <div class="col-sm-3 col-sm-offset-6">
+                                    <asp:Label ID="Label8" runat="server">Trust Level</asp:Label>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top:10px">
+                                <div class="col-sm-12">
+                                    <p>Опис</p>
+                                    <asp:Label ID="Label9" runat="server">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    </asp:Label>
+                                </div>                                
+                            </div>
+                            <div class="row " style="padding-top:10px">
+                                <div class="col-sm-2 " >
+                                    <p>Цена:</p>
+                                </div>
+                                <div class="col-sm-7">
+                                    <asp:Label ID="Label10" runat="server">10$</asp:Label>
+                                </div>
+                                <div class="col-sm-3 " >
+                                    <asp:Button runat="server" id="Button2" CssClass="btn btn-success" Text="Купи"/>
+                                </div>                                    
+                            </div>
+                        </div>
+                    </div>                                        
+                </div>   
+                <div id="OfferContainer" class="container offer">  <!-- Функционира само над 768px -->
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class="col-sm-12" style="font-size:20px">
+                                    <asp:Label ID="Label11" runat="server">Име на понуда</asp:Label>
+                                </div>   
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="row" style="font-size:20px">
+                                <div class="col-sm-3 ">
+                                    <asp:Label ID="Label12" runat="server" >Понудил</asp:Label>
+                                </div>
+                                <div class="col-sm-3 col-sm-offset-6">
+                                    <asp:Label ID="Label13" runat="server">Trust Level</asp:Label>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top:10px">
+                                <div class="col-sm-12">
+                                    <p>Опис</p>
+                                    <asp:Label ID="Label14" runat="server">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    </asp:Label>
+                                </div>                                
+                            </div>
+                            <div class="row " style="padding-top:10px">
+                                <div class="col-sm-2 " >
+                                    <p>Цена:</p>
+                                </div>
+                                <div class="col-sm-7">
+                                    <asp:Label ID="Label15" runat="server">10$</asp:Label>
+                                </div>
+                                <div class="col-sm-3 " >
+                                    <asp:Button runat="server" id="Button3" CssClass="btn btn-success" Text="Купи"/>
+                                </div>                                    
+                            </div>
+                        </div>
+                    </div>                                        
+                </div>   
+                <div id="OfferContainer" class="container offer">  <!-- Функционира само над 768px -->
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class="col-sm-12" style="font-size:20px">
+                                    <asp:Label ID="Label16" runat="server">Име на понуда</asp:Label>
+                                </div>   
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="row" style="font-size:20px">
+                                <div class="col-sm-3 ">
+                                    <asp:Label ID="Label17" runat="server" >Понудил</asp:Label>
+                                </div>
+                                <div class="col-sm-3 col-sm-offset-6">
+                                    <asp:Label ID="Label18" runat="server">Trust Level</asp:Label>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top:10px">
+                                <div class="col-sm-12">
+                                    <p>Опис</p>
+                                    <asp:Label ID="Label19" runat="server">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    </asp:Label>
+                                </div>                                
+                            </div>
+                            <div class="row " style="padding-top:10px">
+                                <div class="col-sm-2 " >
+                                    <p>Цена:</p>
+                                </div>
+                                <div class="col-sm-7">
+                                    <asp:Label ID="Label20" runat="server">10$</asp:Label>
+                                </div>
+                                <div class="col-sm-3 " >
+                                    <asp:Button runat="server" id="Button4" CssClass="btn btn-success" Text="Купи"/>
+                                </div>                                    
+                            </div>
+                        </div>
+                    </div>                                        
+                </div>   
+                <div class="pageNav">
+			            <span class="page-numbers current">1</span>
+                        <a class="page-numbers" href="HomePage/page/2">2</a>
+                        <a class="page-numbers" href="HomePage/page/3">3</a>
+                        <span class="page-numbers dots">…</span>
+                        <a class="page-numbers" href="HomePage/page/5">5</a>
+                        <a class="next page-numbers" href="HomePage/page/2">&gt;</a>
+               </div>
+
            </div>
 
             <footer class="footer">

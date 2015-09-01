@@ -292,15 +292,6 @@ namespace IT_Proekt {
         protected global::System.Web.UI.WebControls.LinkButton btnOfferRefresh;
         
         /// <summary>
-        /// btnOfferRemove control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnOfferRemove;
-        
-        /// <summary>
         /// lblOfferDescription control.
         /// </summary>
         /// <remarks>
@@ -317,6 +308,15 @@ namespace IT_Proekt {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblOfferPrice;
+        
+        /// <summary>
+        /// btnOfferRemove control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnOfferRemove;
         
         /// <summary>
         /// Button3 control.

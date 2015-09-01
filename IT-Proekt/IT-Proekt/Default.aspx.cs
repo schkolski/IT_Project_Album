@@ -57,6 +57,7 @@ namespace IT_Proekt
                 Session["UserName"] = tbUserReg.Text;
                 Session["Email"] = tbEmail.Text;
                 Response.Redirect("HomePage.aspx");
+                /// ako  e admin redirect na adminPage ; treba vo baza funkcija za proverka dali e admin
             }
             else
             {
