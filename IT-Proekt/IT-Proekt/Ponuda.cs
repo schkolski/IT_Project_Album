@@ -7,10 +7,8 @@ namespace IT_Proekt
 {
     public class Ponuda
     {
-        public Ponuda(int id, string desc, int price, string name, int album_id,
-            int br_slika, string username, int exchange, DateTime datum )
+        public Ponuda(string desc, int price, string name, int album_id, int br_slika, string username, int exchange)
         {
-            ID = id;
             Desc = desc;
             Price = price;
             Name = name;
@@ -18,9 +16,7 @@ namespace IT_Proekt
             BrojSlika = br_slika;
             Username = username;
             Exchange = exchange;
-            Datum = datum;
         }
-        public int ID { get; set; }
         public string Desc { get; set; }
         public int Price { get; set; }
 
@@ -33,6 +29,5 @@ namespace IT_Proekt
         public string Username { get; set; }
 
         public int Exchange { get; set; }
-        public DateTime Datum { get; set; }
     }
 }

@@ -16,10 +16,6 @@ namespace IT_Proekt
             Type = type;
             ThrustLevel = thrustLevel;
         }
-        public Korisnik(string username)
-        {
-            Username = username;
-        }
         public int Type {get; set;}
 
         public string Name {get; set;}

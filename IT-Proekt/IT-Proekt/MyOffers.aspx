@@ -48,7 +48,7 @@
                                 <asp:TextBox id="txtSearch" runat="server" CssClass="form-control" placeholder="Пребарај слики, албуми..."></asp:TextBox>
                                 <span class="input-group-btn">
                                 <asp:Button ID="btnSearch" runat="server" Text="Барај" CssClass="btn btn-default"></asp:Button>
-                                </span>
+                                </span> 
                             </div><!-- /input-group -->
                         </div>
                         <div class="col-md-1 hidden-sm hidden-xs">
@@ -134,9 +134,21 @@
                         <button class="btn btn-primary" type="button" id="btnNewOffer">Нова Понуда</button>
                     </div>
                 </div>
-
+                                
                 <asp:ScriptManager runat="server" ID="scriptManager"></asp:ScriptManager>
 
+                <asp:UpdatePanel runat="server" ID="pnlErrorInput" UpdateMode="Conditional">
+                    <ContentTemplate>
+                        <div id="errorInputContainer">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <asp:Label runat="server" ID="lblErrorInput" Text="" ForeColor="Red"></asp:Label>
+                                </div>
+                            </div>
+                        </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+                
                 <div id="newOfferContainer" class="container offer">  <!-- Функционира само над 768px -->
                     <asp:UpdatePanel runat="server">
                         <ContentTemplate>                        
@@ -227,7 +239,7 @@
                         <div class="col-sm-6">
                             <div class="row">
                                 <div class="col-sm-3 ">
-                                    <asp:Button ID="btnOfferRefresh" runat="server" CssClass="btn btn-info" Text="Refresh" OnClick="btnOfferRefresh_Click" />
+                                    <asp:Button ID="btnOfferRefresh" runat="server" CssClass="btn btn-info" Text="Refresh" />
                                 </div>
                                 <div class="col-sm-3 col-sm-offset-6">
                                     <asp:Button ID="btnOfferRemove" runat="server" CssClass="btn btn-danger" Text="Remove"/>
@@ -236,7 +248,7 @@
                             <div class="row" style="padding-top:10px">
                                 <div class="col-sm-12">
                                     <p>Опис</p>
-                                    <asp:Label ID="lblOfferDescription" runat="server">
+                                    <asp:Label ID="lblOfferDescription" CssClass="widthTextBox" runat="server">
                                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                                     </asp:Label>
                                 </div>                                
@@ -270,6 +282,7 @@
 
     
     <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
     <script src="Scripts/bootstrap.min.js"></script>    
     <script src="Scripts/HomePage.js"></script>
 </html>

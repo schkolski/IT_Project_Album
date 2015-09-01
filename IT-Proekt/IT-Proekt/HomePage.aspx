@@ -10,16 +10,6 @@
         <title>Home Page</title>
         <link href="Content/bootstrap.min.css" rel="stylesheet" />
         <link href="Content/homePage.css" rel="stylesheet" />
-        <script type="text/javascript" src="Scripts/jquery-1.10.2.min.js"></script>
-        <script>
-            $(document).ready(function () {
-                $("#OfferContainer").hover(function () {
-                    $("#primer").css("display", "block");
-                }, function () {
-                    $("#primer").css("display", "none");
-                })
-            })
-        </script>
     </head> 
     <body>
         <form id="form1" runat="server">
@@ -140,7 +130,7 @@
                 </div>
 
                 <div id="OfferContainer" class="container offer">  <!-- Функционира само над 768px -->
-                    <div class="row" id="primer1">
+                    <div class="row">
                         <div class="col-sm-6">
                             <div class="row">
                                 <div class="col-sm-12" style="font-size:20px">
@@ -157,7 +147,7 @@
                                     <asp:Label ID="lblOfferTrustLevel" runat="server">Trust Level</asp:Label>
                                 </div>
                             </div>
-                            <div class="row" style="padding-top:10px;display:none;"id="primer">
+                            <div class="row" style="padding-top:10px">
                                 <div class="col-sm-12">
                                     <p>Опис</p>
                                     <asp:Label ID="lblOfferDescription" runat="server">

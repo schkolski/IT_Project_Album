@@ -11,12 +11,7 @@ namespace IT_Proekt
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
-            {
-                if (Session["UserName"] == null || Session["Email"] == null) {
-                    Response.Redirect("Default.aspx");
-                }
-            }
+
         }
     }
 }

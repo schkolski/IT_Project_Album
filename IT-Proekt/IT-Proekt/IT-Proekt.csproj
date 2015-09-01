@@ -19,7 +19,6 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
-    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -162,14 +161,12 @@
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
-    <Content Include="Admin.aspx" />
     <Content Include="Album.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\homePage.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="Dodadi_Album.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="HomePage.aspx" />
     <Content Include="MyOffers.aspx" />
@@ -179,11 +176,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Account\Web.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-<<<<<<< HEAD
-    <Content Include="Profile.aspx" />
-=======
-    <Content Include="ProfilePage.aspx" />
->>>>>>> origin
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\HomePage.js" />
@@ -219,9 +211,7 @@
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
@@ -339,13 +329,6 @@
     <Compile Include="Account\VerifyPhoneNumber.aspx.designer.cs">
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin.aspx.cs">
-      <DependentUpon>Admin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin.aspx.designer.cs">
-      <DependentUpon>Admin.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Album.aspx.cs">
       <DependentUpon>Album.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -380,13 +363,6 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Dodadi_Album.aspx.cs">
-      <DependentUpon>Dodadi_Album.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Dodadi_Album.aspx.designer.cs">
-      <DependentUpon>Dodadi_Album.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -407,22 +383,6 @@
       <DependentUpon>MyOffers.aspx</DependentUpon>
     </Compile>
     <Compile Include="Ponuda.cs" />
-<<<<<<< HEAD
-    <Compile Include="Profile.aspx.cs">
-      <DependentUpon>Profile.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Profile.aspx.designer.cs">
-      <DependentUpon>Profile.aspx</DependentUpon>
-=======
-    <Compile Include="ProfilePage.aspx.cs">
-      <DependentUpon>ProfilePage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ProfilePage.aspx.designer.cs">
-      <DependentUpon>ProfilePage.aspx</DependentUpon>
->>>>>>> origin
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
