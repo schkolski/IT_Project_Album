@@ -157,6 +157,15 @@ namespace IT_Proekt {
         protected global::System.Web.UI.WebControls.DropDownList ddYear;
         
         /// <summary>
+        /// rvDatum control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator rvDatum;
+        
+        /// <summary>
         /// panael control.
         /// </summary>
         /// <remarks>

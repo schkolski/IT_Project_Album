@@ -103,22 +103,22 @@ namespace IT_Proekt {
         protected global::System.Web.UI.WebControls.Button changePass;
         
         /// <summary>
-        /// tbPassword control.
+        /// pass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbPassword;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText pass;
         
         /// <summary>
-        /// tbRePass control.
+        /// repass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbRePass;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText repass;
         
         /// <summary>
         /// Promeni control.

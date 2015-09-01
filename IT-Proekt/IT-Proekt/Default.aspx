@@ -21,6 +21,25 @@
              float:left;
             }
         </style>
+        <script runat="server">
+            void ValidateText(object source, ServerValidateEventArgs args)
+            {
+                Console.WriteLine("Vlegov");
+                int day = 0;
+                int year = 0;
+                Int32.TryParse(ddDay.SelectedValue.ToString(),out day);
+                Int32.TryParse(ddYear.SelectedValue.ToString(), out year);
+                int month = ddMonth.SelectedIndex;
+                Response.Write(day+" "+month+" "+year);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert("+day+" "+month+")", true);
+                if(day>=1 && day <= 31 && year>=1900 && year<=2015 && month>=1 && month <= 12)
+                {
+                    Response.Write("yes");
+                    args.IsValid = true;
+                }
+                args.IsValid = false;
+            }
+    </script>
         
     </head> 
     <body>
@@ -75,14 +94,20 @@
                         <div class="col-xs-6">
                             <asp:TextBox runat="server" placeholder="Username" CssClass="form-control" ID="tbUserReg"></asp:TextBox>
                         </div>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbName" ErrorMessage="Vnesete ime" ValidationGroup="1" CssClass="display-next"></asp:RequiredFieldValidator>
                     </div>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="tbUserReg" ErrorMessage="Vnesete Username" ValidationGroup="1" CssClass="display-next"></asp:RequiredFieldValidator>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbName" ErrorMessage="Vnesete ime" ValidationGroup="1" CssClass="display-next" ForeColor="Red"></asp:RequiredFieldValidator>
+                        </div>
+                        <div class="col-xs-6">
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="tbUserReg" ErrorMessage="Vnesete Username" ValidationGroup="1" CssClass="display-next" ForeColor="Red"></asp:RequiredFieldValidator>
+                        </div>
+                    </div>                    
                     <br />
                     <div class="row">
                         <div class="col-xs-12">
                             <asp:TextBox runat="server" placeholder="E-mail" CssClass="form-control" ID="tbEmail"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="tbEmail" ErrorMessage="Vnesete Email" ValidationGroup="1" CssClass="display-next"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="tbEmail" ErrorMessage="Vnesete Email" ValidationGroup="1" CssClass="display-next" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <br />
@@ -92,7 +117,7 @@
                         </div>
                     </div>
                 <br />
-                <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="tbPassReg" ControlToValidate="tbPass" ErrorMessage="Passwordot ne se poklopuva" ValidationGroup="1" CssClass="display-next"></asp:CompareValidator>
+                <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="tbPass" ControlToValidate="tbPassReg" ErrorMessage="Passwordot ne se poklopuva" ValidationGroup="1" CssClass="display-next" ForeColor="Red"></asp:CompareValidator>
                 <div class="row">
                         <div class="col-xs-12">
                             <asp:TextBox runat="server" placeholder="Re-Password" CssClass="form-control" ID="tbPass"></asp:TextBox>
@@ -112,11 +137,14 @@
                             <asp:DropDownList runat="server" ID="ddYear"></asp:DropDownList>
                         </div>
                     </div>
+                    <div class="row">
+                        <asp:CustomValidator ID="rvDatum" runat="server" ErrorMessage="Vnesete datum" OnServerValidate="ValidateText" ControlToValidate="ddYear" ValidationGroup="1"></asp:CustomValidator>
+                    </div>
                         <br />
                     <div class="row">
                         <div class="col-xs-12">
                             <asp:Panel runat="server" ID="panael">
-                                <asp:RadioButton runat="server" Text="Male" ID="rbMale" ValidationGroup="1" GroupName="1"/>
+                                <asp:RadioButton runat="server" Text="Male" ID="rbMale" ValidationGroup="1" GroupName="1" Checked="True"/>
                                 <asp:RadioButton runat="server" Text="Female" ID="rbFemale" ValidationGroup="1" GroupName="1"/>
                             </asp:Panel>
                         </div>

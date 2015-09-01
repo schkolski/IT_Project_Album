@@ -69,11 +69,15 @@ namespace IT_Proekt
         protected void SignUp_Click(object sender, EventArgs e)
         {
             baza = new Database();
-            int year = Int32.Parse(ddYear.SelectedValue.ToString());
+            int day = 0;
+            int year = 0;
+            Int32.TryParse(ddYear.SelectedValue.ToString(), out year);
             int month = ddMonth.SelectedIndex + 1;
-            int day = ddDay.SelectedIndex + 1;
-            DateTime db = new DateTime(year, month, day);
-            bool flag = baza.checkKorisnik(tbUserReg.Text, tbPassReg.Text);
+            Int32.TryParse(ddDay.SelectedValue.ToString(), out day);
+            
+            if (day != 0 && year != 0 && ddMonth.SelectedIndex >= 1) {
+                DateTime db = new DateTime(year, month, day);
+                bool flag = baza.checkKorisnik(tbUserReg.Text, tbPassReg.Text);
             if (flag == false)
             {
                 System.Diagnostics.Debug.WriteLine("da proveruvam");
@@ -81,6 +85,7 @@ namespace IT_Proekt
             }
             else
                 System.Diagnostics.Debug.WriteLine("veke e registrian");
+            }
         }
         public void AllUsers(ArrayList korisnici)
         {

@@ -1,7 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ProfilePage.aspx.cs" Inherits="IT_Proekt.ProfilePage" %>
 
-<!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta charset="utf-8">
@@ -14,7 +12,7 @@
         <script>
             $(document).ready(function () {
                 $("#changePass").click(function () {
-                    $(".skrij").toggle(true);
+                    $(".skrij").toggle();
                 })
             });
         </script>
@@ -92,9 +90,9 @@
                     <br />
                     <div class="row">
                         <div class="col-xs-12" id="primer">
-                            <asp:Button runat="server" Text="Change Password" ID="changePass" OnClick="changePass_Click"/>
-                            <asp:TextBox runat="server" placeholder="Password" ID="tbPassword" CssClass="skrij" Visible="false"></asp:TextBox>
-                            <asp:TextBox runat="server" placeholder="RePassword" ID="tbRePass" CssClass="skrij" Visible="false"></asp:TextBox>
+                            <asp:Button runat="server" Text="Change Password" ID="changePass"/>
+                            <input type="text" class="skrij" id="pass" runat="server" />
+                            <input type="text" class="skrij" id="repass" runat="server" />
                         </div>
                     </div>
                     <div class="row" style="float:right">
