@@ -1,5 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Album.aspx.cs" Inherits="IT_Proekt.Album1" %>
 
+<%@ Register TagPrefix="my" TagName="albumElement" Src="albumElement.ascx" %>
+<%@ Register TagPrefix="myHalf" TagName="albumElementHalf" Src="albumElementHalf.ascx" %>
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -174,10 +177,14 @@
                                  
                         </ContentTemplate>
                     </asp:UpdatePanel>
-                </div> <!-- end albumContainer -->
+                </div> <!-- end albumContainer -->              
 
-                
-                           
+                <asp:Repeater runat="server" ID="repeaterAlbum">
+                    <ItemTemplate>
+
+                    </ItemTemplate>
+                </asp:Repeater>
+
            </div>
 
             <footer class="footer">
