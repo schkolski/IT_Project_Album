@@ -17,6 +17,20 @@ namespace IT_Proekt
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            fillMyOffers(); //dinamichno dodaj offers
+        }
+
+        protected void fillMyOffers()
+        {
+            Database db = new Database();
+            for (int i = 1; i < 10; i++) //example usage
+            {
+                myOffer offer = (myOffer)LoadControl("myOffer.ascx");
+                offer.Name = i + " AlbumExample 2015";
+                offer.Description = "Example Description";
+                offer.Price = 10;
+                repeaterMyOffers.Controls.Add(offer);
+            }
 
         }
 

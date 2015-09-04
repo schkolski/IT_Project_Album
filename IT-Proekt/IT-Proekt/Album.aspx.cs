@@ -34,14 +34,14 @@ namespace IT_Proekt
             example1.AlbumID = 1;
             example1.Year = 2015;
             example1.SlikaID2 = 2;
-            repeaterAlbum.Controls.Add(example1); //example 1
+            repeaterAlbum.Controls.Add(example1); //example 1 - One row. Has 2 album elements.
 
             albumElementHalf example2 = (albumElementHalf)LoadControl("albumElementHalf.ascx");
             example2.SlikaID = 3;
             example2.AlbumName = "ExampleAlbum";
             example2.AlbumID = 1;
             example2.Year = 2015;
-            repeaterAlbum.Controls.Add(example2); //example 2
+            repeaterAlbum.Controls.Add(example2); //example 2 - one half row. Has 1 album element.
         }
         
     }

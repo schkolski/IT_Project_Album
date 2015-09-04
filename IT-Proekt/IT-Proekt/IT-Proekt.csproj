@@ -174,7 +174,9 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="HomePage.aspx" />
+    <Content Include="myOffer.ascx" />
     <Content Include="MyOffers.aspx" />
+    <Content Include="offer.ascx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -409,12 +411,26 @@
     </Compile>
     <Compile Include="Korisnik.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="myOffer.ascx.cs">
+      <DependentUpon>myOffer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="myOffer.ascx.designer.cs">
+      <DependentUpon>myOffer.ascx</DependentUpon>
+    </Compile>
     <Compile Include="MyOffers.aspx.cs">
       <DependentUpon>MyOffers.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="MyOffers.aspx.designer.cs">
       <DependentUpon>MyOffers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="offer.ascx.cs">
+      <DependentUpon>offer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="offer.ascx.designer.cs">
+      <DependentUpon>offer.ascx</DependentUpon>
     </Compile>
     <Compile Include="Ponuda.cs" />
     <Compile Include="ProfilePage.aspx.cs">

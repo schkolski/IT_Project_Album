@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MyOffers.aspx.cs" Inherits="IT_Proekt.MyOffers" %>
 
+<%@ Register TagPrefix="myOffer" TagName="myOffer" Src="myOffer.ascx" %>
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -266,7 +268,13 @@
                             </div>
                         </div>
                     </div>                                        
-                </div>     
+                </div><!-- end offerContainer -->
+
+                <asp:Repeater runat="server" ID="repeaterMyOffers">
+                    <ItemTemplate>
+
+                    </ItemTemplate>
+                </asp:Repeater>
                            
            </div>
 

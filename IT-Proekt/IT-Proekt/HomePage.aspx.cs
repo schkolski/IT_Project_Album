@@ -17,7 +17,24 @@ namespace IT_Proekt
                 {
                     Response.Redirect("Default.aspx");
                 }
+                fillOffers(); //dinamichno dodaj offers
             }
+        }
+
+        protected void fillOffers()
+        {
+            Database db = new Database();
+            for (int i = 1; i < 10; i++) //example usage
+            {
+                offer offer = (offer)LoadControl("offer.ascx");
+                offer.Name = i+" AlbumExample 2015";
+                offer.Owner = "ExampleUser";
+                offer.Trust = 5;
+                offer.Description = "Example Description";
+                offer.Price = 10;
+                repeaterHomepage.Controls.Add(offer);
+            }
+            
         }
         protected void LogOut_Click(Object sender, EventArgs e)
         {
