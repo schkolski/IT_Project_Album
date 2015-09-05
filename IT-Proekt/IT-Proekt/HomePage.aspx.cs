@@ -13,7 +13,7 @@ namespace IT_Proekt
         {
             if (!Page.IsPostBack)
             {
-                if (Session["UserName"] == null || Session["Email"] == null)
+                if (Session["UserName"] == null)
                 {
                     Response.Redirect("Default.aspx");
                 }

@@ -54,8 +54,8 @@ namespace IT_Proekt
             bool flag = baza.checkKorisnik(tbUsernamelog.Text, tbPasslog.Text);
             if (flag == true)
             {
-                Session["UserName"] = tbUserReg.Text;
-                Session["Email"] = tbEmail.Text;
+                System.Diagnostics.Debug.WriteLine("REDIREKT");
+                Session["UserName"] = tbUsernamelog.Text.ToString();
                 Response.Redirect("HomePage.aspx");
                 /// ako  e admin redirect na adminPage ; treba vo baza funkcija za proverka dali e admin
             }

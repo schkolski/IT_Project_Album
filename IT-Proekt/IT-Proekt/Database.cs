@@ -18,11 +18,50 @@ namespace IT_Proekt
         public SqlConnection getConnection()
         {
 
-            string connectionString = ConfigurationManager.ConnectionStrings["dbConnection_Aleksandar"].ConnectionString;
+            string connectionString = ConfigurationManager.ConnectionStrings["dbConnection"].ConnectionString;
 
             return new SqlConnection(connectionString);
         }
+        public Korisnik getUserInfoByUsername(string username)
+        {
+            SqlConnection con = getConnection();
+            string result = "OK"; 
+            Korisnik k = null;
+            //string name, string username, DateTime bday, int sex, int type, double thrustLevel)
+            try
+            {
+                con.Open();
+                string query = "SELECT type, name, email, birthday, sex, trust_level "+
+                    "FROM Korisnik WHERE username=@username";
+                SqlCommand command = new SqlCommand(query, con);
+                command.Parameters.AddWithValue("@username", username);
 
+                SqlDataReader reader = command.ExecuteReader();
+                
+                if(reader.Read()){
+                   k = new Korisnik(
+                        reader["name"].ToString(),
+                        username,
+                        reader["email"].ToString(),
+                        DateTime.Parse(reader["birthday"].ToString()),
+                        Int32.Parse(reader["sex"].ToString()),
+                        Int32.Parse(reader["type"].ToString()),
+                        Double.Parse(reader["trust_level"].ToString())
+                    );
+                }
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Log("getUserInfoByUsername", result);
+            }
+            return k;
+        }
         public List<Album> getAllAlbums()
         {
             SqlConnection con = getConnection();
@@ -549,13 +588,13 @@ namespace IT_Proekt
                 con.Open();
                 string query = "UPDATE Ponuda " +
                                "SET offer_description=@offerDesc, " +
-                               "SET price=@price, " +
-                               "SET name=@name, " +
-                               "SET album_id=@album_id, " +
-                               "SET broj_slika=@broj_slika, " +
-                               "SET exchange=@exchange, " +
-                               "SET username=@username, " +
-                               "SET datum=@datum, " +
+                               " price=@price, " +
+                               " name=@name, " +
+                               " album_id=@album_id, " +
+                               " broj_slika=@broj_slika, " +
+                               " exchange=@exchange, " +
+                               " username=@username, " +
+                               " datum=@datum " +
                                "WHERE id=@id";
 
                 SqlCommand command = new SqlCommand(query, con);
@@ -586,13 +625,13 @@ namespace IT_Proekt
             }
             return true;
         }
-
-        public bool updateKorisnik(string oldUsername, string oldPassword,
-            string newPassword, string newName,
-            string newEmail, DateTime newBirthDay, int newSex)
+        public bool changePassword(string username, string oldPassword, string newPassword)
         {
-            // type e nepromenliv
-            // Datumot na registracija e nepromenliv
+            if (!checkKorisnik(username, oldPassword)) 
+            {
+                Log("changePassword->checkKorisnik", "Wrong old password");
+                return false;
+            }
             SqlConnection con = getConnection();
             string result = "OK";
             try
@@ -600,18 +639,60 @@ namespace IT_Proekt
                 con.Open();
                 string query = "UPDATE Korisnik " +
                                "SET passwd=HASHBYTES('SHA1',@newPassword) " +
-                               "SET name=@newName " +
-                               "SET email=@newEmail " +
-                               "SET birthday=@newBirthDay " +
-                               "SET sex=@newSex " +
-                               "WHERE username=@oldUsername " +
-                               "AND password=HASHBYTES('SHA1',@oldPassword)";
+                               "WHERE username=@username " +
+                               "AND passwd=HASHBYTES('SHA1',@oldPassword)";
 
                 SqlCommand command = new SqlCommand(query, con);
                 command.Prepare();
-                command.Parameters.AddWithValue("@oldUsername", oldUsername);
+                command.Parameters.AddWithValue("@username", username);
                 command.Parameters.AddWithValue("@newPassword", newPassword);
                 command.Parameters.AddWithValue("@oldPassword", oldPassword);
+
+                command.ExecuteNonQuery();
+
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+                return false;
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Log("changePassword", result);
+            }
+            return true;
+        }
+        public bool updateKorisnik(string username, string newName,
+            string newEmail, DateTime newBirthDay, int newSex)
+        {
+            Log("DATUM:", newBirthDay.ToString());
+            // type e nepromenliv
+            // Datumot na registracija e nepromenliv
+
+            Log("USERNAME:", username);
+            Log("NEW_NAME:", newName);
+            Log("NEW_EMAIL:", newEmail);
+            Log("NEW_bDAY:", newBirthDay.ToShortDateString());
+            Log("NEW_SEX:", newSex.ToString());
+
+
+            SqlConnection con = getConnection();
+            string result = "OK";
+            try
+            {
+                con.Open();
+                string query = "UPDATE Korisnik " +
+                               "SET name=@newName, " +
+                               " email=@newEmail, " +
+                               " birthday=@newBirthDay, " +
+                               " sex=@newSex " +
+                               "WHERE username=@username ";
+                
+                SqlCommand command = new SqlCommand(query, con);
+                command.Prepare();
+                command.Parameters.AddWithValue("@username", username);
                 command.Parameters.AddWithValue("@newName", newName);
                 command.Parameters.AddWithValue("@newEmail", newEmail);
                 command.Parameters.AddWithValue("@newBirthDay", newBirthDay);
@@ -629,7 +710,7 @@ namespace IT_Proekt
             {
                 con.Close();
                 // Log the result
-                Log("refreshKorisnik", result);
+                Log("updateKorisnik", result);
             }
             return true;
         }
