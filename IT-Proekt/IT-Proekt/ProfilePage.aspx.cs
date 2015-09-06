@@ -58,6 +58,13 @@ namespace IT_Proekt
             db.updateKorisnik(Session["UserName"].ToString(),
                 tbName.Text, tbEmail.Text, DateTime.Parse(bDay.Text), sex);
         }
+        protected void LogOut_Click(Object sender, EventArgs e)
+        {
+            Session.Clear();
+            Session.RemoveAll();
+            Session.Abandon();
+            Response.Redirect("Default.aspx");
+        }
 
     }
 }

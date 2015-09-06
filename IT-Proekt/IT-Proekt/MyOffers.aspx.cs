@@ -18,6 +18,10 @@ namespace IT_Proekt
         protected void Page_Load(object sender, EventArgs e)
         {
             fillMyOffers(); //dinamichno dodaj offers
+            if (Session["UserName"] == null)
+            {
+                Response.Redirect("Default.aspx");
+            }
         }
 
         protected void fillMyOffers()
@@ -328,6 +332,13 @@ namespace IT_Proekt
             }
 
             return dtID;
+        }
+        protected void LogOut_Click(Object sender, EventArgs e)
+        {
+            Session.Clear();
+            Session.RemoveAll();
+            Session.Abandon();
+            Response.Redirect("Default.aspx");
         }
 
     }

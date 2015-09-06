@@ -53,19 +53,19 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="active">
-                            <asp:LinkButton href="#Doma" runat="server" Text="Дома"></asp:LinkButton></li>
+                            <asp:LinkButton href="HomePage.aspx" runat="server" Text="Дома"></asp:LinkButton></li>
                         <li>
-                            <asp:LinkButton href="#Album" runat="server" Text="Албум"></asp:LinkButton></li>
+                            <asp:LinkButton href="Album.aspx" runat="server" Text="Албум"></asp:LinkButton></li>
                         <li>
-                            <asp:LinkButton href="#MyOffers" runat="server" Text="Мои Понуди"></asp:LinkButton></li>
+                            <asp:LinkButton href="MyOffers.aspx" runat="server" Text="Мои Понуди"></asp:LinkButton></li>
                         <li>
                             <asp:LinkButton href="#Stats" runat="server" Text="Статистики"></asp:LinkButton></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <asp:LinkButton href="#MyInfo" runat="server" Text="Мои Информации"></asp:LinkButton></li>
+                            <asp:LinkButton href="ProfilePage.aspx" runat="server" Text="Мои Информации"></asp:LinkButton></li>
                         <li>
-                            <asp:LinkButton href="#LogOut" runat="server" Text="Одлогирај се"></asp:LinkButton></li>
+                            <asp:LinkButton id="LogOut"  runat="server" Text="Одлогирај се" OnClick="LogOut_Click"></asp:LinkButton></li>
                     </ul>
                 </div>
                 <!--/.nav-collapse -->
