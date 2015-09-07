@@ -19,12 +19,17 @@ namespace IT_Proekt
         {
             if (!Page.IsPostBack)
             {
+
                 ddMonth.DataSource = meseci;
                 ddMonth.DataBind();
                 ddDay.DataSource = fillDays(denovi);
                 ddDay.DataBind();
                 ddYear.DataSource = fillYear(godini);
                 ddYear.DataBind();
+                if(Session["UserName"] != null)
+                {
+                    Response.Redirect("HomePage.aspx");
+                }
             }
         }
         public ArrayList fillYear(ArrayList year)
@@ -52,12 +57,25 @@ namespace IT_Proekt
             System.Diagnostics.Debug.WriteLine("Yes");
             baza = new Database();
             bool flag = baza.checkKorisnik(tbUsernamelog.Text, tbPasslog.Text);
+
             if (flag == true)
             {
+                Korisnik ab = baza.getUserInfoByUsername(tbUsernamelog.Text);
+                if (ab.Type == 0)
+                {
+                    // ova e adminot redirect na adminPage
+                    Session["UserName"] = tbUsernamelog.Text.ToString();
+                    Session["Admin"] = "Admin";
+                    Response.Redirect("Admin.aspx");
+                }
+                else
+                {
                 System.Diagnostics.Debug.WriteLine("REDIREKT");
                 Session["UserName"] = tbUsernamelog.Text.ToString();
                 Response.Redirect("HomePage.aspx");
                 /// ako  e admin redirect na adminPage ; treba vo baza funkcija za proverka dali e admin
+                /// 
+                }
             }
             else
             {

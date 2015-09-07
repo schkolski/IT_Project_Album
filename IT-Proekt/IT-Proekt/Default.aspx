@@ -66,7 +66,7 @@
                             !-->
                         <ul class="nav navbar-nav navbar-right" style="margin-top:10px;">
                             <li style="padding:5px;"><asp:TextBox runat="server" ID="tbUsernamelog" placeholder="Username"></asp:TextBox></li>
-                            <li style="padding:5px;"><asp:TextBox runat="server" ID="tbPasslog" placeholder="Password"></asp:TextBox></li>
+                            <li style="padding:5px;"><asp:TextBox runat="server" ID="tbPasslog" placeholder="Password" TextMode="Password"></asp:TextBox></li>
                             <li style="padding:5px;"><asp:Button href="#LogOut" runat="server" Text="Log in" CssClass="proba" ID="Login" OnClick="LogIn_Click" /></li>
                         </ul>
                           
@@ -113,14 +113,14 @@
                     <br />
                 <div class="row">
                         <div class="col-xs-12">
-                            <asp:TextBox runat="server" placeholder="Password" CssClass="form-control" ID="tbPassReg"></asp:TextBox>
+                            <asp:TextBox runat="server" placeholder="Password" CssClass="form-control" ID="tbPassReg" TextMode="Password"></asp:TextBox>
                         </div>
                     </div>
                 <br />
                 <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="tbPass" ControlToValidate="tbPassReg" ErrorMessage="Passwordot ne se poklopuva" ValidationGroup="1" CssClass="display-next" ForeColor="Red"></asp:CompareValidator>
                 <div class="row">
                         <div class="col-xs-12">
-                            <asp:TextBox runat="server" placeholder="Re-Password" CssClass="form-control" ID="tbPass"></asp:TextBox>
+                            <asp:TextBox runat="server" placeholder="Re-Password" CssClass="form-control" ID="tbPass" TextMode="Password"></asp:TextBox>
                         </div>
                     </div>
                     

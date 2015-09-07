@@ -12,9 +12,18 @@ namespace IT_Proekt
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Database db = new Database();
+            if (!Page.IsPostBack)
+            {
+                if (Session["UserName"] == null)
+                {
+                    Response.Redirect("Default.aspx");
+                }
+
+            }
+                    Database db = new Database();
             List<Slika> sliki = db.getAllPicturesByAlbumID(1);
 
+            
             //so iskomentiraniot kod se polni stranata so n broj na skili
 
             //if (sliki != null)
@@ -43,6 +52,14 @@ namespace IT_Proekt
             example2.Year = 2015;
             repeaterAlbum.Controls.Add(example2); //example 2 - one half row. Has 1 album element.
         }
-        
+        protected void LogOut_Click(Object sender, EventArgs e)
+        {
+            Session.Clear();
+            Session.RemoveAll();
+            Session.Abandon();
+            Response.Redirect("Default.aspx");
+        }
+
+
     }
 }
