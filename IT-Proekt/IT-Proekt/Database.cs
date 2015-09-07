@@ -400,7 +400,7 @@ namespace IT_Proekt
             return true;
         }
 
-        public bool addAlbum(string name, int pubYear)
+        public bool addAlbum(string name, int pubYear, int broj_na_sliki)
         {
             SqlConnection con = getConnection();
             string result = "OK";
@@ -408,13 +408,14 @@ namespace IT_Proekt
             {
                 con.Open();
                 string query = "INSERT INTO Album " +
-                    "(name, year_published)" +
-                        " VALUES (@name, @pub_year)";
+                    "(name, year_published, broj_na_sliki)" +
+                        " VALUES (@name, @pub_year, @broj_na_sliki)";
 
                 SqlCommand command = new SqlCommand(query, con);
                 command.Prepare();
                 command.Parameters.AddWithValue("@name", name);
                 command.Parameters.AddWithValue("@pub_year", pubYear);
+                command.Parameters.AddWithValue("@broj_na_sliki", broj_na_sliki);
 
 
                 command.ExecuteNonQuery();

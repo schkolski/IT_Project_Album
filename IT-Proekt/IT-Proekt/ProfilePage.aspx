@@ -9,13 +9,7 @@
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="Content/homePage.css" rel="stylesheet" />
     <script type="text/javascript" src="Scripts/jquery-1.10.2.min.js"></script>
-    <!--<script>
-            $(document).ready(function () {
-                $("#changePass").click(function () {
-                    $(".skrij").toggle();
-                })
-            });
-        </script>-->
+    
     <script src="Scripts/js/bootstrap-datepicker.js"></script>
     <script src="Scripts/css/datepicker.css"></script>
     

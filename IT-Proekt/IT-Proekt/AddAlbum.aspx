@@ -56,7 +56,7 @@
               <br />
               <div class="row">
                    <div class="col-lg-6">
-                       <label style="position:center;"><input id="user_lic" type="number" min="5" max="100" step="5" value ="5"/></label>
+                       <label style="position:center;"><asp:TextBox id="user_lic" TextMode="Number" runat="server" min="0" max="20" step="1"/></label>
                    </div>
               </div>
             <div class="row">

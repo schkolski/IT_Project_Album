@@ -20,7 +20,21 @@ namespace IT_Proekt
             db = new Database();
             int year = 0;
             Int32.TryParse(tbYear.Text, out year);
-            db.addAlbum(tbTitle.Text, year);
+            
+            bool res = db.addAlbum(tbTitle.Text, year, Int32.Parse(user_lic.Text));
+
+            if (res)
+            {
+                // TODO: Show successful message
+            }
+            clearForm();
+        }
+
+        private void clearForm()
+        {
+            tbYear.Text = "";
+            user_lic.Text = "";
+            tbTitle.Text = "";
         }
     }
 }
