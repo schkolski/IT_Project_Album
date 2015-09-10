@@ -18,7 +18,7 @@ namespace IT_Proekt
         public SqlConnection getConnection()
         {
 
-            string connectionString = ConfigurationManager.ConnectionStrings["dbConnection_Mico"].ConnectionString;
+            string connectionString = ConfigurationManager.ConnectionStrings["dbConnection"].ConnectionString;
 
             return new SqlConnection(connectionString);
         }
@@ -400,15 +400,16 @@ namespace IT_Proekt
             return true;
         }
 
-        public bool addAlbum(string name, int pubYear, int broj_na_sliki)
+        public int addAlbum(string name, int pubYear, int broj_na_sliki)
         {
             SqlConnection con = getConnection();
             string result = "OK";
+            int res = -1;
             try
             {
                 con.Open();
                 string query = "INSERT INTO Album " +
-                    "(name, year_published, broj_na_sliki)" +
+                    "(name, year_published, broj_na_sliki) OUTPUT INSERTED.id" +
                         " VALUES (@name, @pub_year, @broj_na_sliki)";
 
                 SqlCommand command = new SqlCommand(query, con);
@@ -420,40 +421,46 @@ namespace IT_Proekt
 
                 command.ExecuteNonQuery();
 
+                object returnObj = command.ExecuteScalar();
+
+                if (returnObj != null)
+                {
+                    int.TryParse(returnObj.ToString(), out res);
+                    Log("addAlbumRES", res.ToString());
+                    return res;
+                }
+
             }
             catch (Exception e)
             {
                 result = e.Message;
-                return false;
             }
             finally
             {
                 con.Close();
                 // Log the result
-                Log("addAlbum", result);
+                Log("addAlbum", result + " " + res.ToString());
             }
-            return true;
+            return res;
         }
 
-        public bool addSlika(int broj, int albumid, int picture_id)
+        public bool addSlika(int broj, int albumid, string name, string url)
         {
-            // Ova se izvrshuva privatno pri dodavanje na slikicka
-
             SqlConnection con = getConnection();
             string result = "OK";
             try
             {
                 con.Open();
                 string query = "INSERT INTO Slika " +
-                    "(broj, album_id, picture_id)" +
-                        " VALUES (@broj, @album_id, @picture_id)";
+                    "(broj, album_id, url, name)" +
+                        " VALUES (@broj, @album_id, @url, @name)";
 
                 SqlCommand command = new SqlCommand(query, con);
                 command.Prepare();
                 command.Parameters.AddWithValue("@broj", broj);
                 command.Parameters.AddWithValue("@album_id", albumid);
-                command.Parameters.AddWithValue("@picture_id", picture_id);
-
+                command.Parameters.AddWithValue("@url", url);
+                command.Parameters.AddWithValue("@name", name);
 
                 command.ExecuteNonQuery();
 
@@ -470,41 +477,6 @@ namespace IT_Proekt
                 Log("addSlika", result);
             }
             return true;
-        }
-
-        //  TODO: implement
-        public int addSlikaMem(byte[] image)
-        {
-            // TODO: add img into db
-            // RETURN: Image database ID
-            int ID = -1;
-            SqlConnection con = getConnection();
-            string result = "OK";
-            try
-            {
-                con.Open();
-                string query = "INSERT INTO Slika_mem " +
-                    "(picture) VALUES (@img)";
-
-                SqlCommand command = new SqlCommand(query, con);
-                command.Prepare();
-                command.Parameters.AddWithValue("@img", image);
-
-                ID = command.ExecuteNonQuery();
-            }
-            catch (Exception e)
-            {
-                result = e.Message;
-            }
-            finally
-            {
-                con.Close();
-                // Log the result
-                Log("addSlikaMem", result);
-            }
-
-            // Add some code...
-            return ID;
         }
 
         private bool addPoseduvaRelation(string username, int albumid, int brslika, int quantity)

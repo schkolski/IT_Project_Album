@@ -20,7 +20,7 @@ namespace IT_Proekt
                 }
 
             }
-                    Database db = new Database();
+            Database db = new Database();
             List<Slika> sliki = db.getAllPicturesByAlbumID(1);
 
             

@@ -31,8 +31,8 @@ namespace IT_Proekt
                     fuPicture.SaveAs(path + fuPicture.FileName);
                     string img_name = "~/images/" + fuPicture.FileName;
 
-                    string q = "INSERT INTO Pictures(src, id) VALUES('" + img_name +
-                        "', '" + tbIdInput.Text.Trim() + "')";
+                    string q = "INSERT INTO Pictures(src, id, src1) VALUES('" + img_name +
+                        "', '" + tbIdInput.Text.Trim() + "', " + "'" + img_name + "')";
 
                     string connectionString = ConfigurationManager.ConnectionStrings["dbConnection"].ConnectionString;
 
@@ -63,9 +63,9 @@ namespace IT_Proekt
 
             // fuPicture.SaveAs(path + fuPicture.FileName);
 
-            string img_name = "~/images/";// +fuPicture.FileName;
+            string img_name = "";// +fuPicture.FileName;
 
-            string q = "SELECT src FROM Pictures WHERE id='" + tbId.Text.Trim() + "'";
+            string q = "SELECT src1 FROM Pictures WHERE id='" + tbId.Text.Trim() + "'";
 
             string connectionString = ConfigurationManager.ConnectionStrings["dbConnection"].ConnectionString;
 
@@ -76,7 +76,7 @@ namespace IT_Proekt
             SqlDataReader r = cmd.ExecuteReader();
             if (r.Read())
             {
-                img_name += r["src"] as String;
+                img_name += r["src1"] as String;
             }
             con.Close();
             img2.ImageUrl = img_name;

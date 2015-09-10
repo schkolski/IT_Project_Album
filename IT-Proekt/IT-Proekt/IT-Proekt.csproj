@@ -163,10 +163,12 @@
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
     <Content Include="AddAlbum.aspx" />
+    <Content Include="AddPictureElement.ascx" />
     <Content Include="Admin.aspx" />
     <Content Include="Album.aspx" />
     <Content Include="albumElement.ascx" />
     <Content Include="albumElementHalf.ascx" />
+    <Content Include="album_pictures.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -345,6 +347,13 @@
     <Compile Include="AddAlbum.aspx.designer.cs">
       <DependentUpon>AddAlbum.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AddPictureElement.ascx.cs">
+      <DependentUpon>AddPictureElement.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddPictureElement.ascx.designer.cs">
+      <DependentUpon>AddPictureElement.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Admin.aspx.cs">
       <DependentUpon>Admin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -373,6 +382,13 @@
     </Compile>
     <Compile Include="albumElementHalf.ascx.designer.cs">
       <DependentUpon>albumElementHalf.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="album_pictures.aspx.cs">
+      <DependentUpon>album_pictures.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="album_pictures.aspx.designer.cs">
+      <DependentUpon>album_pictures.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
@@ -475,6 +491,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="DynamicData\FieldTemplates\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
