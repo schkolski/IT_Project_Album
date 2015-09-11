@@ -25,29 +25,30 @@ namespace IT_Proekt
         public Korisnik getUserInfoByUsername(string username)
         {
             SqlConnection con = getConnection();
-            string result = "OK"; 
+            string result = "OK";
             Korisnik k = null;
             //string name, string username, DateTime bday, int sex, int type, double thrustLevel)
             try
             {
                 con.Open();
-                string query = "SELECT type, name, email, birthday, sex, trust_level "+
+                string query = "SELECT type, name, email, birthday, sex, trust_level " +
                     "FROM Korisnik WHERE username=@username";
                 SqlCommand command = new SqlCommand(query, con);
                 command.Parameters.AddWithValue("@username", username);
 
                 SqlDataReader reader = command.ExecuteReader();
-                
-                if(reader.Read()){
-                   k = new Korisnik(
-                        reader["name"].ToString(),
-                        username,
-                        reader["email"].ToString(),
-                        DateTime.Parse(reader["birthday"].ToString()),
-                        Int32.Parse(reader["sex"].ToString()),
-                        Int32.Parse(reader["type"].ToString()),
-                        Double.Parse(reader["trust_level"].ToString())
-                    );
+
+                if (reader.Read())
+                {
+                    k = new Korisnik(
+                         reader["name"].ToString(),
+                         username,
+                         reader["email"].ToString(),
+                         DateTime.Parse(reader["birthday"].ToString()),
+                         Int32.Parse(reader["sex"].ToString()),
+                         Int32.Parse(reader["type"].ToString()),
+                         Double.Parse(reader["trust_level"].ToString())
+                     );
                 }
             }
             catch (Exception e)
@@ -98,6 +99,46 @@ namespace IT_Proekt
                 Log("getAllAlbums", result);
             }
             return albums;
+        }
+        public Album getAlbumByNameAndYear(string name, int year)
+        {
+            SqlConnection con = getConnection();
+            string result = "OK";
+            Album album = null;
+            try
+            {
+                con.Open();
+                string query = "SELECT id, name, year_published FROM Album WHERE name=@name AND year_published=@year";
+
+                SqlCommand command = new SqlCommand(query, con);
+                command.Parameters.AddWithValue("@name", name);
+                command.Parameters.AddWithValue("@year", year);
+
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    album = new Album(
+                         Int32.Parse(reader["id"].ToString()),
+                         name,
+                         year
+                     );
+                }
+
+                return album;
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Log("getAllAlbums", result);
+            }
+            return album;
         }
         public List<Slika> getAllPicturesByBroj(int broj)
         {
@@ -361,7 +402,7 @@ namespace IT_Proekt
         }
 
         public bool addOffer(string offerDesc, int price, string name, int albumid,
-            int brslika, int exchange, String username, DateTime datum)
+            int brslika, int exchange, String username, DateTime datum, int quantity)
         {
             SqlConnection con = getConnection();
             string result = "OK";
@@ -395,6 +436,10 @@ namespace IT_Proekt
             {
                 con.Close();
                 // Log the result
+                if (result.Equals("OK"))
+                {
+                    addPoseduvaRelation(username, albumid, brslika, quantity);
+                }
                 Log("addOffer", result);
             }
             return true;
@@ -417,9 +462,6 @@ namespace IT_Proekt
                 command.Parameters.AddWithValue("@name", name);
                 command.Parameters.AddWithValue("@pub_year", pubYear);
                 command.Parameters.AddWithValue("@broj_na_sliki", broj_na_sliki);
-
-
-                command.ExecuteNonQuery();
 
                 object returnObj = command.ExecuteScalar();
 
@@ -600,7 +642,7 @@ namespace IT_Proekt
         }
         public bool changePassword(string username, string oldPassword, string newPassword)
         {
-            if (!checkKorisnik(username, oldPassword)) 
+            if (!checkKorisnik(username, oldPassword))
             {
                 Log("changePassword->checkKorisnik", "Wrong old password");
                 return false;
@@ -662,7 +704,7 @@ namespace IT_Proekt
                                " birthday=@newBirthDay, " +
                                " sex=@newSex " +
                                "WHERE username=@username ";
-                
+
                 SqlCommand command = new SqlCommand(query, con);
                 command.Prepare();
                 command.Parameters.AddWithValue("@username", username);
@@ -826,7 +868,69 @@ namespace IT_Proekt
             }
             return false;
         }
+        public bool checkIfAlbumExists(string name, int year)
+        {
+            SqlConnection con = getConnection();
+            string result = "OK";
+            try
+            {
+                con.Open();
 
+                string query = "SELECT TOP 1 id " +
+                               "FROM Album " +
+                               "WHERE name=@name AND year_published=@year";
+
+                SqlCommand command = new SqlCommand(query, con);
+                command.Prepare();
+                command.Parameters.AddWithValue("@name", name);
+                command.Parameters.AddWithValue("@year", year);
+
+                bool albumCount = command.ExecuteScalar() != null;
+                return albumCount;
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Log("checkIfAlbumExists", result);
+            }
+            return false;
+        }
+        public bool checkIfPictureExists(int albumID, int pictureID)
+        {
+            SqlConnection con = getConnection();
+            string result = "OK";
+            try
+            {
+                con.Open();
+
+                string query = "SELECT TOP 1 name " +
+                               "FROM Slika " +
+                               "WHERE broj=@picture_id AND album_id=@album_id";
+
+                SqlCommand command = new SqlCommand(query, con);
+                command.Prepare();
+                command.Parameters.AddWithValue("@picture_id", pictureID);
+                command.Parameters.AddWithValue("@album_id", albumID);
+
+                return command.ExecuteScalar() != null;
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Log("checkIfPictureExists", result);
+            }
+            return false;
+        }
         public bool deleteKorisnik(string username, string passwd)
         {
             // DONE and CHECKED but TRIPLE CHECK THIS!!!

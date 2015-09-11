@@ -17,23 +17,34 @@ namespace IT_Proekt
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            fillMyOffers(); //dinamichno dodaj offers
             if (Session["UserName"] == null)
             {
                 Response.Redirect("Default.aspx");
             }
+            else
+            {
+                fillMyOffers(Session["UserName"].ToString()); // dinamichno dodaj offers
+            }
         }
 
-        protected void fillMyOffers()
+        protected void fillMyOffers(string username)
         {
             Database db = new Database();
-            for (int i = 1; i < 10; i++) //example usage
+            List<Ponuda> ponudi = db.getAllOffersByUsername(username);
+
+
+            for (int i = 0; i < ponudi.Count; i++) //example usage
             {
+                Ponuda p = ponudi[i];
+                
                 myOffer offer = (myOffer)LoadControl("myOffer.ascx");
-                offer.Name = i + " AlbumExample 2015";
-                offer.Description = "Example Description";
-                offer.Price = 10;
+                offer.Name = p.Name;
+                offer.Description = p.Desc;
+                offer.Price = p.Price;
                 repeaterMyOffers.Controls.Add(offer);
+                //TODO: fill offer with picture 
+                //  somethink like this:
+                //img.ImgUrl = db.getPictureUrl(p.AlbumID, p.BrojSlika);
             }
 
         }
@@ -42,26 +53,22 @@ namespace IT_Proekt
         {
             if (validateOffer())
             {
-                int exchange;
-                if(chkNewOfferExchange.Checked){
-                    exchange=1;
-                } else {
-                    exchange=0;
-                }
+                Database db = new Database();
+                Album album = db.getAlbumByNameAndYear(txbNewOfferAlbum.Text.Trim(),
+                    Int32.Parse(txbNewOfferAlbumYear.Text.Trim()));
+                string offerDesc = txbNewOfferDescription.Text.Trim();
+                int price = Int32.Parse(txbNewOfferPrice.Text.Trim());
+                string name = txbNewOfferAlbum.Text;
+                int albumid = album.ID;
+                int brslika = Int32.Parse(txbNewOfferID.Text.Trim());
+                int exchange = chkNewOfferExchange.Checked ? 1 : 0;
+                String username = Session["UserName"].ToString();
+                DateTime datum = DateTime.Now;
+                int quantity = Int32.Parse(txbNewOfferNumber.Text.Trim());
+                bool executeQuery = db.addOffer(offerDesc, price, name, albumid,
+                    brslika, exchange, username, datum, quantity);
 
-                DataTable dtAlbumID = getAlbumID(txbNewOfferAlbum.Text, txbNewOfferAlbumYear.Text);
-                DataTable dtSlikaID = getSlikaID(txbNewOfferID.Text, txbNewOfferAlbum.Text, txbNewOfferAlbumYear.Text);
-                
-                string offerDescription = txbNewOfferDescription.Text;
-                int price = Int32.Parse(txbNewOfferPrice.Text);
-                string name = txbNewOfferID.Text + " " + txbNewOfferAlbum.Text + " " + txbNewOfferAlbumYear.Text;
-                int albumID = Int32.Parse(dtAlbumID.Rows[0]["id"].ToString());
-                int slikaID = Int32.Parse(dtSlikaID.Rows[0]["broj"].ToString());
-                DateTime date = DateTime.Now;
-
-                bool executeQuery = new Database().addOffer(offerDescription,price,name,albumID,
-                                                            slikaID,exchange,"user_example",date);
-
+                System.Diagnostics.Debug.WriteLine("executeQuery AddNEWOFFER:" + executeQuery.ToString());
                 if (executeQuery)
                 {
                     lblErrorInput.Text = "Успешно додадена нова понуда.";
@@ -73,8 +80,11 @@ namespace IT_Proekt
                 {
                     lblErrorInput.Text = "Понудата не е додадена успешно.";
                 }
-
-                
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("Paga na validacija...");
+                lblErrorInput.Text = "Грешка во валидација";
             }
         }
 
@@ -97,65 +107,52 @@ namespace IT_Proekt
 
         private bool validateOffer() //treba da se dodade proverka na tipot na vlezot(int, string...)
         {
-            //get data
-            DataTable dtAlbumName=getAlbumName(txbNewOfferAlbum.Text);
-            DataTable dtAlbumID = getAlbumID(txbNewOfferAlbum.Text,txbNewOfferAlbumYear.Text);
-            DataTable dtID = getSlikaID(txbNewOfferID.Text, txbNewOfferAlbum.Text, txbNewOfferAlbumYear.Text);    
+            // Validate:
+            //  *Album:
+            //  - albumName
+            //  - albumYear
+            // *Picture
+            //  - pictureID and albumID
+            // *hasDescription
+            // *hasPrice or cheched Exchange
+            // *hasQuantity >= 1
+            string albumName = txbNewOfferAlbum.Text.Trim();
+            int albumYear = Int32.Parse(txbNewOfferAlbumYear.Text.Trim());
+            int pictureID = Int32.Parse(txbNewOfferID.Text.Trim());
 
-            //check data and display error message
+            System.Diagnostics.Debug.WriteLine(
+                String.Format("AlbumName:{0} AlbumYear:{1} PictureID:{2}",
+                albumName, albumYear, pictureID));
 
-            bool nameError = dtAlbumName.Rows.Count < 1;
-            bool yearError = dtAlbumID.Rows.Count < 1;
-            bool idError = dtID.Rows.Count < 1;
-            bool emptyInput = isInputEmpty();
-
-            if (nameError || yearError || idError || emptyInput)
-            {
-                if (nameError)
-                {
-                    lblErrorInput.Text = "Внесовте погрешни податоци.";
-                    txbNewOfferAlbum.ForeColor = Color.Red;
-                }
-                else
-                {
-                    txbNewOfferAlbum.ForeColor = Color.Black;
-                }
-
-                if (yearError)
-                {
-                    lblErrorInput.Text = "Внесовте погрешни податоци.";
-                    txbNewOfferAlbumYear.ForeColor = Color.Red;
-                }
-                else
-                {
-                    txbNewOfferAlbumYear.ForeColor = Color.Black;
-                }
-
-                if (idError)
-                {
-                    lblErrorInput.Text = "Внесовте погрешни податоци.";
-                    txbNewOfferID.ForeColor = Color.Red;
-                }
-                else
-                {
-                    txbNewOfferID.ForeColor = Color.Black;
-                }
-
-                pnlErrorInput.Update();
-
-                //if input empty, add red background
-                emptyInputErrorMessage();
-
-                return false;
-            }
-            else
-            {
-                lblErrorInput.Text = "";
-                pnlErrorInput.Update();
-                return true;
-            }
-            
+            bool valAlbum = validateAlbum(albumName, albumYear);
+            bool valImg = validatePicture(albumName, albumYear, pictureID);
+            bool valDesc = validateDescription();
+            bool valPrice = validatePrice();
+            bool valQuant = validateQuantity();
+            System.Diagnostics.Debug.WriteLine(
+                           String.Format("valAlbum:{0} valImg:{1} valDesc:{2} valPrice:{3} valQuant:{4} CH:{5}",
+                           valAlbum.ToString(), valImg.ToString(), valDesc.ToString(), valPrice.ToString(),
+                           valQuant.ToString(), chkNewOfferExchange.Checked.ToString()));
+            return valAlbum && valImg && valDesc && (valPrice || chkNewOfferExchange.Checked) && valQuant;
         }
+        private bool validateAlbum(string name, int year) 
+        { 
+            Database db = new Database(); 
+            return db.checkIfAlbumExists(name, year);
+        }
+        private bool validatePicture(string albumName, int albumYear, int pictureID) 
+        {
+            Database db = new Database();
+            Album album = db.getAlbumByNameAndYear(albumName, albumYear);
+            System.Diagnostics.Debug.WriteLine(
+                String.Format("AlbumName:{0},  AlbumYear:{1}, AlbumID:{2}, PictureID:{3}",
+                    album.Name.ToString(), album.Year.ToString(), album.ID.ToString(), pictureID.ToString()
+                ));
+            return db.checkIfPictureExists(album.ID, pictureID); 
+        }
+        private bool validateDescription() { return (txbNewOfferDescription.Text.Trim()).Length > 0; }
+        private bool validatePrice() { return (txbNewOfferPrice.Text.Trim()).Length > 0; }
+        private bool validateQuantity() { return Int32.Parse((txbNewOfferNumber.Text.Trim())) > 0; }
 
         private bool isInputEmpty()
         {
@@ -227,112 +224,6 @@ namespace IT_Proekt
             pnlErrorInput.Update();
         }
 
-        private DataTable getAlbumName(string name)
-        {
-            Database db = new Database();
-            SqlConnection cn = db.getConnection();
-
-            DataTable dtName = new DataTable();
-            SqlCommand cmdName = new SqlCommand();
-            cmdName.Connection = cn;
-            cmdName.CommandType = CommandType.Text;
-            cmdName.CommandText = "select name from Album where name=@name";
-
-            cmdName.Parameters.AddWithValue("@name", txbNewOfferAlbum.Text);
-
-            //get data
-            try
-            {
-                cn.Open();
-                SqlDataAdapter daName = new SqlDataAdapter();
-
-                daName.SelectCommand = cmdName;
-                daName.Fill(dtName);
-            }
-            catch
-            {
-
-            }
-            finally
-            {
-                cn.Close();
-            }
-
-            return dtName;
-        }
-
-        private DataTable getAlbumID(string name, string year)
-        {
-            Database db = new Database();
-            SqlConnection cn = db.getConnection();
-            DataTable dtAlbumID = new DataTable();
-
-            SqlCommand cmdAlbumID = new SqlCommand();
-            cmdAlbumID.Connection = cn;
-            cmdAlbumID.CommandType = CommandType.Text;
-            cmdAlbumID.CommandText = "select id from Album where name=@name and year_published=@year";
-
-            cmdAlbumID.Parameters.AddWithValue("@name", txbNewOfferAlbum.Text);
-            cmdAlbumID.Parameters.AddWithValue("@year", txbNewOfferAlbumYear.Text);
-
-            //get data
-            try
-            {
-                cn.Open();
-                SqlDataAdapter daAlbumID = new SqlDataAdapter();
-
-                daAlbumID.SelectCommand = cmdAlbumID;
-                daAlbumID.Fill(dtAlbumID);
-            }
-            catch
-            {
-
-            }
-            finally
-            {
-                cn.Close();
-            }
-
-            return dtAlbumID;
-        }
-
-        private DataTable getSlikaID(string id, string name, string year)
-        {
-            Database db = new Database();
-            SqlConnection cn = db.getConnection();
-            DataTable dtID = new DataTable();
-
-            SqlCommand cmdID = new SqlCommand();
-            cmdID.Connection = cn;
-            cmdID.CommandType = CommandType.Text;
-            cmdID.CommandText = "select broj " +
-                                 "from Slika, (select id from Album where name=@name and year_published=@year) as album " +
-                                 "where picture_id=@id and album_id=album.id";
-
-            cmdID.Parameters.AddWithValue("@id", txbNewOfferID.Text);
-            cmdID.Parameters.AddWithValue("@name", txbNewOfferAlbum.Text);
-            cmdID.Parameters.AddWithValue("@year", txbNewOfferAlbumYear.Text);
-
-            //get data
-            try
-            {
-                cn.Open();
-                SqlDataAdapter daID = new SqlDataAdapter();
-
-                daID.SelectCommand = cmdID;
-                daID.Fill(dtID);
-            }
-            catch
-            {
-
-            }
-            finally
-            {
-                cn.Close();
-            }
-
-            return dtID;
-        }
         protected void LogOut_Click(Object sender, EventArgs e)
         {
             Session.Clear();
