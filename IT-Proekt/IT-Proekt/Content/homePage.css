@@ -114,3 +114,7 @@ body {
     position:absolute;
     bottom:0;
 }
+
+.displayNone{
+    display: none;
+}

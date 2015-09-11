@@ -33,18 +33,40 @@ namespace IT_Proekt
             List<Ponuda> ponudi = db.getAllOffersByUsername(username);
 
 
-            for (int i = 0; i < ponudi.Count; i++) //example usage
+            for (int i = 0; i < ponudi.Count; i+=2) //example usage
             {
-                Ponuda p = ponudi[i];
+                if (ponudi.Count % 2 == 1 && i + 1 == ponudi.Count) //dokolku treba da se loadiraat neparen
+                {                                                   //broj ponudi, poslednata ponuda e
+                    Ponuda p = ponudi[i];                           //myOfferHalf.ascx
+                    myOfferHalf offer = (myOfferHalf)LoadControl("myOfferHalf.ascx");
+                    offer.Name = p.Name;
+                    offer.Description = p.Desc;
+                    offer.Price = p.Price;
+                    offer.Offer1ID = p.ID;
+                    repeaterMyOffers.Controls.Add(offer);
+                }
+                else
+                {
+                    Ponuda p1 = ponudi[i];
+                    Ponuda p2 = ponudi[i + 1];
+
+                    myOffer offer = (myOffer)LoadControl("myOffer.ascx");
+                    offer.Name1 = p1.Name;
+                    offer.Description1 = p1.Desc;
+                    offer.Price1 = p1.Price;
+                    offer.Offer1ID = p1.ID;
+
+                    offer.Name2 = p2.Name;
+                    offer.Description2 = p2.Desc;
+                    offer.Price2 = p2.Price;
+                    offer.Offer2ID = p2.ID;
+
+                    repeaterMyOffers.Controls.Add(offer);
+                    //TODO: fill offer with picture 
+                    //  somethink like this:
+                    //img.ImgUrl = db.getPictureUrl(p.AlbumID, p.BrojSlika);
+                }
                 
-                myOffer offer = (myOffer)LoadControl("myOffer.ascx");
-                offer.Name = p.Name;
-                offer.Description = p.Desc;
-                offer.Price = p.Price;
-                repeaterMyOffers.Controls.Add(offer);
-                //TODO: fill offer with picture 
-                //  somethink like this:
-                //img.ImgUrl = db.getPictureUrl(p.AlbumID, p.BrojSlika);
             }
 
         }

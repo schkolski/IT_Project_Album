@@ -177,6 +177,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="HomePage.aspx" />
     <Content Include="myOffer.ascx" />
+    <Content Include="myOfferHalf.ascx" />
     <Content Include="MyOffers.aspx" />
     <Content Include="offer.ascx" />
     <Content Include="packages.config" />
@@ -434,6 +435,13 @@
     </Compile>
     <Compile Include="myOffer.ascx.designer.cs">
       <DependentUpon>myOffer.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="myOfferHalf.ascx.cs">
+      <DependentUpon>myOfferHalf.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="myOfferHalf.ascx.designer.cs">
+      <DependentUpon>myOfferHalf.ascx</DependentUpon>
     </Compile>
     <Compile Include="MyOffers.aspx.cs">
       <DependentUpon>MyOffers.aspx</DependentUpon>

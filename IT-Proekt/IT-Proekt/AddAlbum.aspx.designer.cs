@@ -13,13 +13,31 @@ namespace IT_Proekt {
     public partial class AddAlbum {
         
         /// <summary>
+        /// form1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        
+        /// <summary>
+        /// LogOut control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LogOut;
+        
+        /// <summary>
         /// fInsertAlbum control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm fInsertAlbum;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl fInsertAlbum;
         
         /// <summary>
         /// tbYear control.
@@ -82,7 +100,7 @@ namespace IT_Proekt {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm fAddPicture;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl fAddPicture;
         
         /// <summary>
         /// imgPrev control.

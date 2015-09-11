@@ -337,58 +337,112 @@ namespace IT_Proekt {
         protected global::System.Web.UI.WebControls.Button btnNewOfferSubmit;
         
         /// <summary>
-        /// lblOfferName control.
+        /// lblOfferName1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOfferName;
+        protected global::System.Web.UI.WebControls.Label lblOfferName1;
         
         /// <summary>
-        /// btnOfferRefresh control.
+        /// btnOfferRemove1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnOfferRefresh;
+        protected global::System.Web.UI.WebControls.Button btnOfferRemove1;
         
         /// <summary>
-        /// btnOfferRemove control.
+        /// imgOfferPreview1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnOfferRemove;
+        protected global::System.Web.UI.WebControls.Image imgOfferPreview1;
         
         /// <summary>
-        /// lblOfferDescription control.
+        /// lblOfferDescription1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOfferDescription;
+        protected global::System.Web.UI.WebControls.Label lblOfferDescription1;
         
         /// <summary>
-        /// lblOfferPrice control.
+        /// lblOfferPrice1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOfferPrice;
+        protected global::System.Web.UI.WebControls.Label lblOfferPrice1;
         
         /// <summary>
-        /// Button3 control.
+        /// btnOfferBuy1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button3;
+        protected global::System.Web.UI.WebControls.Button btnOfferBuy1;
+        
+        /// <summary>
+        /// lblOfferName2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblOfferName2;
+        
+        /// <summary>
+        /// btnOfferRemove2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnOfferRemove2;
+        
+        /// <summary>
+        /// imgOfferPreview2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgOfferPreview2;
+        
+        /// <summary>
+        /// lblOfferDescription2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblOfferDescription2;
+        
+        /// <summary>
+        /// lblOfferPrice2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblOfferPrice2;
+        
+        /// <summary>
+        /// btnOfferBuy2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnOfferBuy2;
         
         /// <summary>
         /// repeaterMyOffers control.

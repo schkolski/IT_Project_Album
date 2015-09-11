@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MyOffers.aspx.cs" Inherits="IT_Proekt.MyOffers" %>
 
 <%@ Register TagPrefix="myOffer" TagName="myOffer" Src="myOffer.ascx" %>
+<%@ Register TagPrefix="myOfferHalf" TagName="myOfferHalf" Src="myOfferHalf.ascx" %>
 
 <!DOCTYPE html>
 
@@ -150,7 +151,7 @@
                         </div>
                     </ContentTemplate>
                 </asp:UpdatePanel>
-                
+
                 <div id="newOfferContainer" class="container offer">  <!-- Функционира само над 768px -->
                     <asp:UpdatePanel runat="server">
                         <ContentTemplate>                        
@@ -228,47 +229,100 @@
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </div>
+                
+                <div id="OfferContainer" class="">  <!-- Функционира само над 500px -->
+                    <asp:UpdatePanel runat="server">
+                        <ContentTemplate>
+                            <div class="row">
+                
+                                <div class="col-sm-6" id="offerElementContainer1">
+                                    <div class="offer" style="margin-right:7px">
+                                        <div class="row">
+                                            <div class="col-xs-9">
+                                                <asp:Label runat="server" ID="lblOfferName1" Text="OfferName"></asp:Label>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <asp:Button ID="btnOfferRemove1" runat="server" CssClass="btn btn-danger" Text="Remove"/>
+                                            </div>
+                                        </div>  
+                                    
+                                        <div class="row" style="padding-top:15px">
+                                            <div class="col-xs-6">
+                                                <asp:Image ID="imgOfferPreview1" runat="server" height="200px" Width="155px"/>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <div class="row">
+                                                    <h4>Опис</h4>
+                                                </div>            
+                                                <div class="row">
+                                                    <div class="col-xs-12" style="padding-left:0px; height:120px">
+                                                        <asp:Label ID="lblOfferDescription1" CssClass="widthTextBox" runat="server">
+                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                                                        </asp:Label>
+                                                    </div>
+                                                </div>                
+                                                <div class="row" style="padding-bottom:10px">
+                                                    <div class="col-xs-3" style="padding-left:0px; padding-top:8px">
+                                                        <p>Цена:</p>
+                                                    </div>
+                                                    <div class="col-xs-3" style="padding-top:8px">
+                                                        <asp:Label ID="lblOfferPrice1" runat="server">10$</asp:Label>
+                                                    </div>
+                                                    <div class="col-xs-6">
+                                                        <asp:Button runat="server" id="btnOfferBuy1" CssClass="btn btn-success" Text="Потврди"/> 
+                                                    </div>
+                                                </div>
+                                            </div>      
+                                        </div>                                          
+                                    </div>
+                                </div> <!-- end offerElementContainer1 -->
 
-                <div id="OfferContainer" class="container offer">  <!-- Функционира само над 768px -->
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="row">
-                                <div class="col-sm-12" style="font-size:20px">
-                                    <asp:Label ID="lblOfferName" runat="server">Име на понуда</asp:Label>
-                                </div>   
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="row">
-                                <div class="col-sm-3 ">
-                                    <asp:Button ID="btnOfferRefresh" runat="server" CssClass="btn btn-info" Text="Refresh" />
-                                </div>
-                                <div class="col-sm-3 col-sm-offset-6">
-                                    <asp:Button ID="btnOfferRemove" runat="server" CssClass="btn btn-danger" Text="Remove"/>
-                                </div>
-                            </div>
-                            <div class="row" style="padding-top:10px">
-                                <div class="col-sm-12">
-                                    <p>Опис</p>
-                                    <asp:Label ID="lblOfferDescription" CssClass="widthTextBox" runat="server">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                    </asp:Label>
-                                </div>                                
-                            </div>
-                            <div class="row " style="padding-top:10px">
-                                <div class="col-sm-2 " >
-                                    <p>Цена:</p>
-                                </div>
-                                <div class="col-sm-7">
-                                    <asp:Label ID="lblOfferPrice" runat="server">10$</asp:Label>
-                                </div>
-                                <div class="col-sm-3 " >
-                                    <asp:Button runat="server" id="Button3" CssClass="btn btn-success" Text="Потврди"/>
-                                </div>                                    
-                            </div>
-                        </div>
-                    </div>                                        
-                </div><!-- end offerContainer -->
+                                <div class="col-sm-6" id="offerElementContainer2">
+                                   <div class="offer" style="margin-right:7px">
+                                       <div class="row">
+                                           <div class="col-xs-9">
+                                               <asp:Label runat="server" ID="lblOfferName2" Text="OfferName"></asp:Label>
+                                           </div>
+                                           <div class="col-xs-3">
+                                               <asp:Button ID="btnOfferRemove2" runat="server" CssClass="btn btn-danger" Text="Remove"/>
+                                           </div>
+                                       </div>  
+                                    
+                                       <div class="row" style="padding-top:15px">
+                                           <div class="col-xs-6">
+                                               <asp:Image ID="imgOfferPreview2" runat="server" height="200px" Width="155px"/>
+                                           </div>
+                                           <div class="col-xs-6">
+                                               <div class="row">
+                                                   <h4>Опис</h4>
+                                               </div>            
+                                               <div class="row">
+                                                   <div class="col-xs-12" style="padding-left:0px; height:120px">
+                                                       <asp:Label ID="lblOfferDescription2" CssClass="widthTextBox" runat="server">
+                                                           Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                                                       </asp:Label>
+                                                   </div>
+                                               </div>                
+                                               <div class="row" style="padding-bottom:10px">
+                                                   <div class="col-xs-3" style="padding-left:0px; padding-top:8px">
+                                                       <p>Цена:</p>
+                                                   </div>
+                                                   <div class="col-xs-3" style="padding-top:8px">
+                                                       <asp:Label ID="lblOfferPrice2" runat="server">10$</asp:Label>
+                                                   </div>
+                                                   <div class="col-xs-6">
+                                                       <asp:Button runat="server" id="btnOfferBuy2" CssClass="btn btn-success" Text="Потврди"/> 
+                                                   </div>
+                                               </div>
+                                           </div>      
+                                       </div>                                          
+                                   </div>
+                                </div> <!-- end offerElementContainer2 -->
+
+                            </div>     
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </div><!--end offerContainer-->
 
                 <asp:Repeater runat="server" ID="repeaterMyOffers">
                     <ItemTemplate>
