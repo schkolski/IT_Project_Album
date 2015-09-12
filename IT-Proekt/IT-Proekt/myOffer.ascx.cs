@@ -13,25 +13,47 @@ namespace IT_Proekt
         {
             lblOfferName1.Text = name1;
             lblOfferDescription1.Text = description1;
-            lblOfferPrice1.Text = price1.ToString();
+            
             lblOffer1ID.Text = offer1ID.ToString();
+            imgOfferPreview1.ImageUrl = imgUrl_1;
+            if (price1 <= 0)
+            {
+                lblOfferPrice1.Text = "Замена";
+            }
+            else
+            {
+                lblOfferPrice1.Text = price1.ToString();
+            }
 
             lblOfferName2.Text = name2;
             lblOfferDescription2.Text = description2;
-            lblOfferPrice2.Text = price2.ToString();
             lblOffer2ID.Text = offer2ID.ToString();
+            imgOfferPreview2.ImageUrl = imgUrl_2;
+
+            if (price2 <= 0)
+            {
+                lblOfferPrice2.Text = "Замена";
+            }
+            else
+            {
+                lblOfferPrice2.Text = price2.ToString();
+            }
         }
 
         private string name1;
         private string description1;
         private int price1;
         private int offer1ID;
-
+        public string imgUrl_1 { get; set; }
+        public int albumID_1 { get; set; }
+        public int albumID_2 { get; set; }
         private string name2;
         private string description2;
         private int price2;
         private int offer2ID;
-
+        public string imgUrl_2 { get; set; }
+        public int pictureID_1 { get; set; }
+        public int pictureID_2 { get; set; }
         public string Name1
         {
             get { return name1; }
@@ -73,6 +95,39 @@ namespace IT_Proekt
         {
             get { return offer2ID; }
             set { offer2ID = value; }
+        }
+
+        protected void btnOfferRemove1_Click(object sender, EventArgs e)
+        {
+            string username = Session["UserName"].ToString();
+            bool res = removeOffer(username, albumID_1, pictureID_1);
+
+            // TODO: Response msg's 
+            // TODO: Review this new feature...
+            if(res)
+                refreshPage();
+
+
+        }
+        private void refreshPage()
+        {
+            Response.Redirect("~/MyOffers.aspx");
+        }
+        protected void btnOfferRemove2_Click(object sender, EventArgs e)
+        {
+            string username = Session["UserName"].ToString();
+            bool res = removeOffer(username, albumID_2, pictureID_2);
+
+            // TODO: Response msg's 
+            // TODO: Review this new feature...
+            if (res)
+                refreshPage();
+        }
+
+        private bool removeOffer(string username, int albumID, int pictureID)
+        {
+            Database db = new Database();
+            return db.removeOffer(username, albumID, pictureID);
         }
     }
 }

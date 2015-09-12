@@ -13,15 +13,25 @@ namespace IT_Proekt
         {
             lblOfferName1.Text = name;
             lblOfferDescription1.Text = description;
-            lblOfferPrice1.Text = price.ToString();
+            if (price <= 0)
+            {
+                lblOfferPrice1.Text = "Замена";
+            }
+            else 
+            { 
+                lblOfferPrice1.Text = price.ToString();
+            }
             lblOffer1ID.Text = offer1ID.ToString();
+            imgOfferPreview1.ImageUrl = imgUrl;
         }
 
         private string name;
         private string description;
         private int price;
         private int offer1ID;
-
+        public int pictureID { get; set; }
+        public int albumID { get; set; }
+        public string imgUrl { get; set; }
         public string Name
         {
             get { return name; }
@@ -41,6 +51,26 @@ namespace IT_Proekt
         {
             get { return offer1ID; }
             set { offer1ID = value; }
+        }
+
+        protected void btnOfferRemove1_Click(object sender, EventArgs e)
+        {
+            string username = Session["UserName"].ToString();
+
+
+            Database db = new Database();
+            bool res = db.removeOffer(username, albumID, pictureID);
+
+            if (res)
+            {
+                // TODO: poraki za uspeshno izbrishana ponuda
+                // TODO: Review this new feature...
+                refreshPage();
+            }
+        }
+        private void refreshPage()
+        {
+            Response.Redirect("~/MyOffers.aspx");
         }
     }
 }

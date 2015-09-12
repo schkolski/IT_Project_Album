@@ -13,7 +13,7 @@
                                 <asp:Label runat="server" ID="lblOfferName1" Text="OfferName"></asp:Label>
                             </div>
                             <div class="col-xs-3">
-                                <asp:Button ID="btnOfferRemove1" runat="server" CssClass="btn btn-danger" Text="Remove"/>
+                                <asp:Button ID="btnOfferRemove1" runat="server" CssClass="btn btn-danger" Text="Remove" OnClick="btnOfferRemove1_Click" AutoPostBack="True"/>
                             </div>
                         </div>  
                                     
@@ -38,9 +38,6 @@
                                     </div>
                                     <div class="col-xs-3" style="padding-top:8px">
                                         <asp:Label ID="lblOfferPrice1" runat="server">10$</asp:Label>
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <asp:Button runat="server" id="btnOfferBuy1" CssClass="btn btn-success" Text="Потврди"/> 
                                     </div>
                                 </div>
                             </div>      

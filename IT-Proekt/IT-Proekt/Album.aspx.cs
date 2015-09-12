@@ -21,9 +21,9 @@ namespace IT_Proekt
 
             }
             Database db = new Database();
-            List<Slika> sliki = db.getAllPicturesByAlbumID(1);
+            //List<Slika> sliki = db.getAllPicturesByAlbumID(1);
 
-            
+
             //so iskomentiraniot kod se polni stranata so n broj na skili
 
             //if (sliki != null)

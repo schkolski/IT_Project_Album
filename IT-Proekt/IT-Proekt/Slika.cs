@@ -7,17 +7,19 @@ namespace IT_Proekt
 {
     public class Slika
     {
-        public Slika(int broj, int album_id, int picture_id)
+        public Slika(int broj, int album_id, string url, string name)
         {
             Broj = broj;
             AlbumID = album_id;
-            PictureID = picture_id;
+            Url = url;
+            Name = name;
         }
+        public string Name { get; set; }
         public int Broj { get; set; }
 
         public int AlbumID { get; set; }
 
-        public int PictureID { get; set; }
+        public string Url { get; set; }
         // TODO: Mozi ovie attr treba da bidat objekti od Album 
     }
 }

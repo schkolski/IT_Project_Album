@@ -18,7 +18,7 @@ namespace IT_Proekt
         public SqlConnection getConnection()
         {
 
-            string connectionString = ConfigurationManager.ConnectionStrings["dbConnection_Aleksandar"].ConnectionString;
+            string connectionString = ConfigurationManager.ConnectionStrings["dbConnection"].ConnectionString;
 
             return new SqlConnection(connectionString);
         }
@@ -140,32 +140,31 @@ namespace IT_Proekt
             }
             return album;
         }
-        public List<Slika> getAllPicturesByBroj(int broj)
+
+
+        public Slika getPicture(int albumID, int pictureID)
         {
             SqlConnection con = getConnection();
             string result = "OK";
-            List<Slika> pictures = null;
+            Slika picture = null;
             try
             {
                 con.Open();
-                string query = "SELECT  album_id, picture_id FROM Slika " +
-                                "WHERE broj=@broj";
+                string query = "SELECT name, url FROM Slika " +
+                                "WHERE broj=@broj AND album_id=@album_id";
                 SqlCommand command = new SqlCommand(query, con);
-                command.Parameters.AddWithValue("@broj", broj);
+                command.Parameters.AddWithValue("@broj", pictureID);
+                command.Parameters.AddWithValue("@album_id", albumID);
 
-                SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
-                DataSet data = new DataSet();
-                dataAdapter.Fill(data);
+                SqlDataReader reader = command.ExecuteReader();
 
-                pictures = new List<Slika>();
-                foreach (DataRow row in data.Tables[0].Rows)
+                if (reader.Read())
                 {
-                    Slika picture = new Slika(
-                        broj,
-                        Int32.Parse(row["album_id"].ToString()),
-                        Int32.Parse(row["picture_id"].ToString())
-                    );
-                    pictures.Add(picture);
+                    picture = new Slika(pictureID, albumID,
+                        reader["url"] as String,
+                        reader["name"] as String);
+
+                    return picture;
                 }
             }
             catch (Exception e)
@@ -176,50 +175,50 @@ namespace IT_Proekt
             {
                 con.Close();
                 // Log the result
-                Log("getAllPicturesByBroj", result);
+                Log("getPicture", result);
             }
-            return pictures;
+            return picture;
         }
-        public List<Slika> getAllPicturesByAlbumID(int album_id)
-        {
-            SqlConnection con = getConnection();
-            string result = "OK";
-            List<Slika> pictures = null;
-            try
-            {
-                con.Open();
-                string query = "SELECT  broj, picture_id FROM Slika " +
-                                "WHERE album_id=@album_id";
-                SqlCommand command = new SqlCommand(query, con);
-                command.Parameters.AddWithValue("@album_id", album_id);
+        //public List<Slika> getAllPicturesByAlbumID(int album_id)
+        //{
+        //    SqlConnection con = getConnection();
+        //    string result = "OK";
+        //    List<Slika> pictures = null;
+        //    try
+        //    {
+        //        con.Open();
+        //        string query = "SELECT  broj, picture_id FROM Slika " +
+        //                        "WHERE album_id=@album_id";
+        //        SqlCommand command = new SqlCommand(query, con);
+        //        command.Parameters.AddWithValue("@album_id", album_id);
 
-                SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
-                DataSet data = new DataSet();
-                dataAdapter.Fill(data);
+        //        SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+        //        DataSet data = new DataSet();
+        //        dataAdapter.Fill(data);
 
-                pictures = new List<Slika>();
-                foreach (DataRow row in data.Tables[0].Rows)
-                {
-                    Slika picture = new Slika(
-                        Int32.Parse(row["broj"].ToString()),
-                        album_id,
-                        Int32.Parse(row["picture_id"].ToString())
-                    );
-                    pictures.Add(picture);
-                }
-            }
-            catch (Exception e)
-            {
-                result = e.Message;
-            }
-            finally
-            {
-                con.Close();
-                // Log the result
-                Log("getAllPicturesByAlbumID", result);
-            }
-            return pictures;
-        }
+        //        pictures = new List<Slika>();
+        //        foreach (DataRow row in data.Tables[0].Rows)
+        //        {
+        //            Slika picture = new Slika(
+        //                Int32.Parse(row["broj"].ToString()),
+        //                album_id,
+        //                Int32.Parse(row["picture_id"].ToString())
+        //            );
+        //            pictures.Add(picture);
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        result = e.Message;
+        //    }
+        //    finally
+        //    {
+        //        con.Close();
+        //        // Log the result
+        //        Log("getAllPicturesByAlbumID", result);
+        //    }
+        //    return pictures;
+        //}
         public List<Ponuda> getAllOffers()
         {
             SqlConnection con = getConnection();
@@ -1029,6 +1028,52 @@ namespace IT_Proekt
             return false;
         }
 
+        public bool removeOffer(string username, int albumID, int pictureID)
+        {
+            SqlConnection con = getConnection();
+            string result = "OK";
+            try
+            {
+                con.Open();
+
+                string query1 = "DELETE FROM Ponuda " +
+                                "WHERE username=@username AND "+
+                                "album_id=@album_id AND broj_slika=@picture_id";
+                string query2 = "DELETE FROM Poseduva " +
+                                "WHERE username=@username AND " +
+                                "album_id=@album_id AND broj_slika=@picture_id";
+
+                SqlCommand cmd = con.CreateCommand();
+                SqlTransaction transaction = con.BeginTransaction("Deleting an Offer");
+
+                cmd.Connection = con;
+                cmd.Transaction = transaction;
+
+                cmd.CommandText = query1;
+                cmd.Parameters.AddWithValue("@username", username);
+                cmd.Parameters.AddWithValue("@album_id", albumID);
+                cmd.Parameters.AddWithValue("@picture_id", pictureID);
+                cmd.ExecuteNonQuery();
+                cmd.CommandText = query2;
+                cmd.ExecuteNonQuery();
+
+                transaction.Commit();
+                Log("removeOffer", "Successfully removed an Offer");
+
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+                return false;
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Log("removeOffer", result);
+            }
+            return true;
+        }
         private bool deleteSlika(int broj)
         {
             bool ponuda = removeAllOffersByBroj(broj);
