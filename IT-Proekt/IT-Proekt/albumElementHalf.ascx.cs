@@ -14,13 +14,14 @@ namespace IT_Proekt
             lblAlbumElementID.Text = slikaID.ToString();
             lblAlbumElementName.Text = albumName;
             lblAlbumElementGodina.Text = year.ToString();
+            imgAlbumElementPreview.ImageUrl = imgUrl;
         }   
 
         private int slikaID;
         private string albumName;
         private int year;
         private int albumID;
-
+        public string imgUrl { get; set; }
         public int SlikaID
         {
             get { return slikaID; }

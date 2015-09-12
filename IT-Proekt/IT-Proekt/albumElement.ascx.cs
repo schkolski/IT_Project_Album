@@ -15,10 +15,12 @@ namespace IT_Proekt
             lblAlbumElementID1.Text = slikaID1.ToString();
             lblAlbumElementName1.Text = albumName;
             lblAlbumElementGodina1.Text = year.ToString();
+            imgAlbumElementPreview1.ImageUrl = imgUrl_1;
 
             lblAlbumElementID2.Text = slikaID2.ToString();
             lblAlbumElementName2.Text = albumName;
             lblAlbumElementYear2.Text = year.ToString();
+            imgAlbumElementPreview2.ImageUrl = imgUrl_2;
         }
 
         private int slikaID1;
@@ -26,7 +28,8 @@ namespace IT_Proekt
         private int year;
         private int albumID;
         private int slikaID2;
-        
+        public string imgUrl_1 { get; set; }
+        public string imgUrl_2 { get; set; }
         public int SlikaID1
         {
             get { return slikaID1; }
@@ -53,6 +56,16 @@ namespace IT_Proekt
         {
             get { return slikaID2; }
             set { slikaID2 = value; }
+        }
+
+        protected void btnAlbumElementAdd1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnAlbumElementAdd2_Click(object sender, EventArgs e)
+        {
+
         }
         
     }

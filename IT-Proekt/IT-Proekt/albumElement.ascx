@@ -40,7 +40,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6 col-sm-offset-6" style="padding-top:15px">
-                                        <asp:Button ID="btnAlbumElementAdd1" runat="server" CssClass="btn btn-success" Text="Додај" /> 
+                                        <asp:Button ID="btnAlbumElementAdd1" runat="server" CssClass="btn btn-success" Text="Додај" OnClick="btnAlbumElementAdd1_Click"/> 
                                     </div>
                                 </div>
                             </div>      
@@ -83,7 +83,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6 col-sm-offset-6" style="padding-top:15px">
-                                        <asp:Button ID="btnAlbumElementAdd2" runat="server" CssClass="btn btn-success" Text="Додај" /> 
+                                        <asp:Button ID="btnAlbumElementAdd2" runat="server" CssClass="btn btn-success" Text="Додај" OnClick="btnAlbumElementAdd2_Click"/> 
                                     </div>
                                 </div>
                             </div>      

@@ -18,39 +18,19 @@ namespace IT_Proekt
                 {
                     Response.Redirect("Default.aspx");
                 }
-
             }
-            Database db = new Database();
-            //List<Slika> sliki = db.getAllPicturesByAlbumID(1);
+            else
+            {
+                //txbChooseAlbumName.Text = "";
+                //txbChooseAlbumYear.Text = "";
+                //if (ViewState["albumName"] != null)
+                //    txbChooseAlbumName.Text = ViewState["albumName"].ToString();
 
+                //if (ViewState["albumYear"] != null)
+                //    txbChooseAlbumYear.Text = ViewState["albumYear"].ToString();
+                // showAlbumStickers();
+            }
 
-            //so iskomentiraniot kod se polni stranata so n broj na skili
-
-            //if (sliki != null)
-            //{
-            //    int n = sliki.Count;
-            //    for (int i = 0; i < n / 2; i++)
-            //   {
-            //        albumElement el = (albumElement)LoadControl("albumElement.ascx");
-            //        el.AlbumID = sliki[i].AlbumID;
-            //        repeaterAlbum.Controls.Add(el);
-            //    }
-            //}
-
-            albumElement example1 = (albumElement)LoadControl("albumElement.ascx");
-            example1.SlikaID1 = 1;
-            example1.AlbumName = "ExampleAlbum";
-            example1.AlbumID = 1;
-            example1.Year = 2015;
-            example1.SlikaID2 = 2;
-            repeaterAlbum.Controls.Add(example1); //example 1 - One row. Has 2 album elements.
-
-            albumElementHalf example2 = (albumElementHalf)LoadControl("albumElementHalf.ascx");
-            example2.SlikaID = 3;
-            example2.AlbumName = "ExampleAlbum";
-            example2.AlbumID = 1;
-            example2.Year = 2015;
-            repeaterAlbum.Controls.Add(example2); //example 2 - one half row. Has 1 album element.
         }
         protected void LogOut_Click(Object sender, EventArgs e)
         {
@@ -60,6 +40,61 @@ namespace IT_Proekt
             Response.Redirect("Default.aspx");
         }
 
+        protected void btnChooseAlbum_Click(object sender, EventArgs e)
+        {
+            //ViewState["albumName"] = txbChooseAlbumName.Text;
+            //ViewState["albumYear"] = txbChooseAlbumYear.Text;
+            showAlbumStickers();
+        }
+        private void showAlbumStickers()
+        {
 
+            string albumName = txbChooseAlbumName.Text;
+            int albumYear = -1;
+            Int32.TryParse(txbChooseAlbumYear.Text, out albumYear);
+
+            Database db = new Database();
+            Album album = db.getAlbumByNameAndYear(albumName, albumYear);
+
+            if (album != null)
+            {
+                // fill(album);
+                List<Slika> sliki = db.getAllPicturesByAlbumID(album.ID);
+
+                if (sliki != null)
+                {
+                    int n = sliki.Count;
+                    for (int i = 0; i < n; i += 2)
+                    {
+                        if (n % 2 == 1 && i + 1 == n)
+                        {
+                            albumElementHalf el = (albumElementHalf)LoadControl("albumElementHalf.ascx");
+                            el.AlbumID = sliki[i].AlbumID;
+                            el.AlbumName = albumName;
+                            el.SlikaID = sliki[i].Broj;
+                            el.imgUrl = sliki[i].Url;
+                            el.Year = albumYear;
+                            repeaterAlbum.Controls.Add(el);
+                        }
+                        else
+                        {
+                            albumElement el = (albumElement)LoadControl("albumElement.ascx");
+
+                            el.AlbumID = sliki[i].AlbumID;
+                            el.AlbumName = albumName;
+                            el.Year = albumYear;
+                            el.SlikaID1 = sliki[i].Broj;
+                            el.imgUrl_1 = sliki[i].Url;
+
+                            el.SlikaID2 = sliki[i + 1].Broj;
+                            el.imgUrl_2 = sliki[i + 1].Url;
+
+                            repeaterAlbum.Controls.Add(el);
+                        }
+
+                    }
+                }
+            }
+        }
     }
 }

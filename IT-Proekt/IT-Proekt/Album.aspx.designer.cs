@@ -40,6 +40,15 @@ namespace IT_Proekt {
         protected global::System.Web.UI.ScriptManager scriptManager;
         
         /// <summary>
+        /// upPanelMenu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upPanelMenu;
+        
+        /// <summary>
         /// txbChooseAlbumName control.
         /// </summary>
         /// <remarks>
@@ -65,6 +74,15 @@ namespace IT_Proekt {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnChooseAlbum;
+        
+        /// <summary>
+        /// upPanelPictures control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upPanelPictures;
         
         /// <summary>
         /// repeaterAlbum control.
