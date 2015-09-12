@@ -94,16 +94,16 @@ namespace IT_Proekt
             get { return offer2ID; }
             set { offer2ID = value; }
         }
-        public string User1
+        public string User2
         {
-            get { return user1; }
-            set { user1 = value; }
+            get { return user2; }
+            set { user2 = value; }
         }
 
-        public string Email1
+        public string Email2
         {
-            get { return email1; }
-            set { email1 = value; }
+            get { return email2; }
+            set { email2 = value; }
         }
     }
 }

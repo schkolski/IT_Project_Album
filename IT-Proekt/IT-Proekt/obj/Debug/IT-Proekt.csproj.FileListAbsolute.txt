@@ -362,7 +362,6 @@ C:\Users\Kristijan\Desktop\nov_album\IT_Project_Album\IT-Proekt\IT-Proekt\bin\Mi
 C:\Users\Kristijan\Desktop\nov_album\IT_Project_Album\IT-Proekt\IT-Proekt\obj\Debug\IT-Proekt.dll
 C:\Users\Kristijan\Desktop\nov_album\IT_Project_Album\IT-Proekt\IT-Proekt\obj\Debug\IT-Proekt.pdb
 C:\Users\Kristijan\Desktop\nov_album\IT_Project_Album\IT-Proekt\IT-Proekt\obj\Debug\IT-Proekt.csprojResolveAssemblyReference.cache
-C:\Users\Goran\Documents\VI Semestar\Internet tehnologii\IT_Project_Album\IT-Proekt\IT-Proekt\obj\Debug\IT-Proekt.csprojResolveAssemblyReference.cache
 C:\Users\Goran\Documents\VI Semestar\Internet tehnologii\IT_Project_Album\IT-Proekt\IT-Proekt\bin\IT-Proekt.dll.config
 C:\Users\Goran\Documents\VI Semestar\Internet tehnologii\IT_Project_Album\IT-Proekt\IT-Proekt\bin\IT-Proekt.dll
 C:\Users\Goran\Documents\VI Semestar\Internet tehnologii\IT_Project_Album\IT-Proekt\IT-Proekt\bin\IT-Proekt.pdb

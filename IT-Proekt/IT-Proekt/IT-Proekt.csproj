@@ -223,6 +223,8 @@
     <Content Include="Site.Master" />
     <Content Include="Testing.aspx" />
     <Content Include="Transakcii.aspx" />
+    <Content Include="transakciiElement.ascx" />
+    <Content Include="transakciiElementHalf.ascx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -496,6 +498,20 @@
     </Compile>
     <Compile Include="Transakcii.aspx.designer.cs">
       <DependentUpon>Transakcii.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="transakciiElement.ascx.cs">
+      <DependentUpon>transakciiElement.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="transakciiElement.ascx.designer.cs">
+      <DependentUpon>transakciiElement.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="transakciiElementHalf.ascx.cs">
+      <DependentUpon>transakciiElementHalf.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="transakciiElementHalf.ascx.designer.cs">
+      <DependentUpon>transakciiElementHalf.ascx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
