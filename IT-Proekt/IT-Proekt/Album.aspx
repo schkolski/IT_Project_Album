@@ -4,7 +4,6 @@
 <%@ Register TagPrefix="myHalf" TagName="albumElementHalf" Src="albumElementHalf.ascx" %>
 
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
         <meta charset="utf-8" />
@@ -61,10 +60,10 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <asp:RequiredFieldValidator runat="server" ControlToValidate="txbChooseAlbumYear" ValidationGroup="1" ErrorMessage="Внесете име!!!" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator runat="server" ControlToValidate="txbChooseAlbumName" ValidationGroup="1" ErrorMessage="Внесете име!!!" ForeColor="Red"></asp:RequiredFieldValidator>
                                         </div>
                                         <div class="col-sm-6">
-                                            <asp:RequiredFieldValidator runat="server" ControlToValidate="txbChooseAlbumName" ValidationGroup="1" ErrorMessage="Внесете година!!!" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator runat="server" ControlToValidate="txbChooseAlbumYear" ValidationGroup="1" ErrorMessage="Внесете година!!!" ForeColor="Red"></asp:RequiredFieldValidator>
                                         </div>
                                     </div>
                                 </div>                                

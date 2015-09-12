@@ -14,7 +14,13 @@ namespace IT_Proekt
         Database db;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!Page.IsPostBack)
+            {
+                /* if (Session["UserName"] == null || Session["Admin"] != null)
+                 {
+                     Response.Redirect("Default.aspx");
+                 }*/
+            }
         }
         private void setFormInfo()
         {

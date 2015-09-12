@@ -32,12 +32,16 @@
                 int month = ddMonth.SelectedIndex;
                 Response.Write(day+" "+month+" "+year);
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert("+day+" "+month+")", true);
-                if(day>=1 && day <= 31 && year>=1900 && year<=2015 && month>=1 && month <= 12)
+                if (day >= 1 && day <= 31 && year >= 1900 && year <= 2015 && month >= 1 && month <= 12)
                 {
+                    System.Diagnostics.Debug.WriteLine(day + " " + month + " " + year);
                     Response.Write("yes");
                     args.IsValid = true;
                 }
-                args.IsValid = false;
+                else
+                {
+                    args.IsValid = false;
+                }
             }
     </script>
         

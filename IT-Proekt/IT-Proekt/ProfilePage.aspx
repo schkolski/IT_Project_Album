@@ -67,7 +67,7 @@
                         <li>
                             <asp:LinkButton href="ProfilePage.aspx" runat="server" Text="Мои Информации"></asp:LinkButton></li>
                         <li>
-                            <asp:LinkButton id="LogOut"  runat="server" Text="Одлогирај се"></asp:LinkButton></li>
+                            <asp:LinkButton id="LogOut"  runat="server" Text="Одлогирај се" OnClick="LogOut_Click"></asp:LinkButton></li>
                     </ul>
                 </div>
                 <!--/.nav-collapse -->

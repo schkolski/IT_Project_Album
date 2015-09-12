@@ -27,10 +27,8 @@
 
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li><asp:LinkButton href="Admin.aspx" runat="server" Text="Kорисници"></asp:LinkButton></li>
-                            <li><asp:LinkButton href="Dodadi_Album.aspx" runat="server" Text="Додади Албум"></asp:LinkButton></li>
-                            <li class="active"><asp:LinkButton href="MyOffers.aspx" runat="server" Text="Понуди" ></asp:LinkButton></li>                                 
-                            <li><asp:LinkButton href="#Stats" runat="server" Text="Статистики"></asp:LinkButton></li>           
+                            <li class="active"><asp:LinkButton href="Admin.aspx" runat="server" Text="Kорисници"></asp:LinkButton></li>
+                            <li><asp:LinkButton href="Dodadi_Album.aspx" runat="server" Text="Додади Албум"></asp:LinkButton></li>          
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li><asp:LinkButton href="ProfilePage.aspx" runat="server" Text="Мои Информации"></asp:LinkButton></li>
