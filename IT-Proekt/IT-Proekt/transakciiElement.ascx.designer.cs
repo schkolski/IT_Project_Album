@@ -10,114 +10,150 @@
 namespace IT_Proekt {
     
     
-    public partial class albumElement {
+    public partial class transakciiElement {
         
         /// <summary>
-        /// lblAlbumElementID1 control.
+        /// lblOfferName1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAlbumElementID1;
+        protected global::System.Web.UI.WebControls.Label lblOfferName1;
         
         /// <summary>
-        /// lblAlbumElementName1 control.
+        /// lblUserName1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAlbumElementName1;
+        protected global::System.Web.UI.WebControls.Label lblUserName1;
         
         /// <summary>
-        /// lblAlbumElementGodina1 control.
+        /// lblUserEmail1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAlbumElementGodina1;
+        protected global::System.Web.UI.WebControls.Label lblUserEmail1;
         
         /// <summary>
-        /// imgAlbumElementPreview1 control.
+        /// imgOfferPreview1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgAlbumElementPreview1;
+        protected global::System.Web.UI.WebControls.Image imgOfferPreview1;
         
         /// <summary>
-        /// txbAlbumElementNumber1 control.
+        /// lblOfferDescription1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbAlbumElementNumber1;
+        protected global::System.Web.UI.WebControls.Label lblOfferDescription1;
         
         /// <summary>
-        /// btnAlbumElementAdd1 control.
+        /// lblOfferPrice1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAlbumElementAdd1;
+        protected global::System.Web.UI.WebControls.Label lblOfferPrice1;
         
         /// <summary>
-        /// lblAlbumElementID2 control.
+        /// btnOfferBuy1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAlbumElementID2;
+        protected global::System.Web.UI.WebControls.Button btnOfferBuy1;
         
         /// <summary>
-        /// lblAlbumElementName2 control.
+        /// lblOfferName2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAlbumElementName2;
+        protected global::System.Web.UI.WebControls.Label lblOfferName2;
         
         /// <summary>
-        /// lblAlbumElementYear2 control.
+        /// lblUserName2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAlbumElementYear2;
+        protected global::System.Web.UI.WebControls.Label lblUserName2;
         
         /// <summary>
-        /// imgAlbumElementPreview2 control.
+        /// lblUserEmail2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgAlbumElementPreview2;
+        protected global::System.Web.UI.WebControls.Label lblUserEmail2;
         
         /// <summary>
-        /// txbAlbumElementNumber2 control.
+        /// imgOfferPreview2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbAlbumElementNumber2;
+        protected global::System.Web.UI.WebControls.Image imgOfferPreview2;
         
         /// <summary>
-        /// btnAlbumElementAdd2 control.
+        /// lblOfferDescription2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAlbumElementAdd2;
+        protected global::System.Web.UI.WebControls.Label lblOfferDescription2;
+        
+        /// <summary>
+        /// lblOfferPrice2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblOfferPrice2;
+        
+        /// <summary>
+        /// btnOfferBuy2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnOfferBuy2;
+        
+        /// <summary>
+        /// lblOffer1ID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblOffer1ID;
+        
+        /// <summary>
+        /// lblOffer2ID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblOffer2ID;
     }
 }
