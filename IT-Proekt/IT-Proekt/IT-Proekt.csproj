@@ -222,6 +222,7 @@
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
     <Content Include="Testing.aspx" />
+    <Content Include="Transakcii.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -488,6 +489,13 @@
     </Compile>
     <Compile Include="Testing.aspx.designer.cs">
       <DependentUpon>Testing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Transakcii.aspx.cs">
+      <DependentUpon>Transakcii.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Transakcii.aspx.designer.cs">
+      <DependentUpon>Transakcii.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
