@@ -46,7 +46,7 @@
             <div class="container">
                 <asp:ScriptManager runat="server" ID="scriptManager"></asp:ScriptManager>
 
-                <div id="chooseAlbumContainer" class="container offer">
+                <div id="chooseAlbumContainer" class="container offer" style="width:97%">
                     <asp:UpdatePanel runat="server">
                         <ContentTemplate>
                             <div class="row">
@@ -59,11 +59,19 @@
                                             <asp:TextBox ID="txbChooseAlbumYear" runat="server" placeholder="Внеси година..." width="70%"></asp:TextBox>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <asp:RequiredFieldValidator runat="server" ControlToValidate="txbChooseAlbumYear" ValidationGroup="1" ErrorMessage="Внесете име!!!" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <asp:RequiredFieldValidator runat="server" ControlToValidate="txbChooseAlbumName" ValidationGroup="1" ErrorMessage="Внесете година!!!" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        </div>
+                                    </div>
                                 </div>                                
                                 <div class="col-sm-6" style="padding-left:15px">
                                     <div class="row">
                                         <div class="col-sm-3 col-sm-offset-9">
-                                            <asp:Button runat="server" ID="btnChooseAlbum" CssClass="btn btn-primary" Text="Избери"/>
+                                            <asp:Button runat="server" ID="btnChooseAlbum" CssClass="btn btn-primary" Text="Избери" ValidationGroup="1"/>
                                         </div>
                                     </div>                                    
                                 </div>
@@ -75,105 +83,7 @@
                 <div id="albumContainer" class="">  <!-- Функционира само над 768px -->
                     <asp:UpdatePanel runat="server">
                         <ContentTemplate>                        
-                            <div class="row">
-
-                                <div class="col-sm-6" id="albumElementContainer1">
-                                    <div class="offer" style="margin-right:7px">
-                                        <div class="row">
-                                            <div class="col-sm-4 col-sm-offset-1">
-                                                <asp:Label runat="server" ID="lblAlbumElementID" Text="ID"></asp:Label>
-                                            </div>   
-                                            <div class="col-sm-4">
-                                                <asp:Label runat="server" ID="lblAlbumElementName" Text="Album"></asp:Label>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <asp:Label runat="server" ID="lblAlbumElementGodina" Text="Year"></asp:Label>
-                                             </div>
-                                        </div>  
-                                    
-                                        <div class="row" style="padding-top:15px">
-                                            <div class="col-xs-6">
-                                                <asp:Image ID="imgAlbumElementPreview" runat="server" height="130px" Width="100%"/>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="row">
-                                                    <h4>Опции:</h4>
-                                                </div>            
-                                                <div class="row">
-                                                    <div class="col-sm-6" style="padding-left:0px">
-                                                        <p>Замена</p>
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <asp:CheckBox runat="server" ID="chkAlbumElementExchange" Checked="false" />
-                                                    </div>
-                                                </div>                                    
-                                                <div class="row">
-                                                    <div class="col-sm-6" style="padding-left:0px">
-                                                        <p>Број на слики</p>
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <asp:TextBox runat="server" ID="txbAlbumElementNumber" Width="30px">1</asp:TextBox>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-sm-6 col-sm-offset-6" style="padding-top:15px">
-                                                        <asp:Button ID="btnAlbumElementAdd" runat="server" CssClass="btn btn-success" Text="Додај" /> 
-                                                    </div>
-                                                </div>
-                                            </div>      
-                                        </div>                                          
-                                    </div>
-                                </div> <!-- end albumElementContainer1 -->
-
-                                <div class="col-sm-6" id="albumElementContainer2">
-                                    <div class="offer" style="margin-right:7px">
-                                        <div class="row">
-                                            <div class="col-sm-4 col-sm-offset-1">
-                                                <asp:Label runat="server" ID="Label1" Text="ID"></asp:Label>
-                                            </div>   
-                                            <div class="col-sm-4">
-                                                <asp:Label runat="server" ID="Label2" Text="Album"></asp:Label>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <asp:Label runat="server" ID="Label3" Text="Year"></asp:Label>
-                                             </div>
-                                        </div>  
-                                    
-                                        <div class="row" style="padding-top:15px">
-                                            <div class="col-xs-6">
-                                                <asp:Image ID="Image1" runat="server" height="130px" Width="100%"/>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="row">
-                                                    <h4>Опции:</h4>
-                                                </div>            
-                                                <div class="row">
-                                                    <div class="col-sm-6" style="padding-left:0px">
-                                                        <p>Замена</p>
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <asp:CheckBox runat="server" ID="CheckBox1" Checked="false" />
-                                                    </div>
-                                                </div>                                    
-                                                <div class="row">
-                                                    <div class="col-sm-6" style="padding-left:0px">
-                                                        <p>Број на слики</p>
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <asp:TextBox runat="server" ID="TextBox1" Width="30px">1</asp:TextBox>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-sm-6 col-sm-offset-6" style="padding-top:15px">
-                                                        <asp:Button ID="Button1" runat="server" CssClass="btn btn-success" Text="Додај" /> 
-                                                    </div>
-                                                </div>
-                                            </div>      
-                                        </div>                                          
-                                    </div>
-                                </div> <!-- end albumElementContainer2 -->
-
-                            </div> <!-- end row -->
+                             <!-- end row -->
                                  
                         </ContentTemplate>
                     </asp:UpdatePanel>

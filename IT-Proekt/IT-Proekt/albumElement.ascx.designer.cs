@@ -49,15 +49,6 @@ namespace IT_Proekt {
         protected global::System.Web.UI.WebControls.Image imgAlbumElementPreview1;
         
         /// <summary>
-        /// chkAlbumElementExchange1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkAlbumElementExchange1;
-        
-        /// <summary>
         /// txbAlbumElementNumber1 control.
         /// </summary>
         /// <remarks>
@@ -110,15 +101,6 @@ namespace IT_Proekt {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgAlbumElementPreview2;
-        
-        /// <summary>
-        /// chkAlbumElementExchange2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkAlbumElementExchange2;
         
         /// <summary>
         /// txbAlbumElementNumber2 control.

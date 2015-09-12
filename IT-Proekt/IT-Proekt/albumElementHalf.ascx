@@ -22,25 +22,20 @@
                                     
                         <div class="row" style="padding-top:15px">
                             <div class="col-xs-6">
-                                <asp:Image ID="imgAlbumElementPreview" runat="server" height="130px" Width="100%"/>
+                                <asp:Image ID="imgAlbumElementPreview" runat="server" height="200px" Width="155px"/>
                             </div>
-                            <div class="col-sm-6">
-                                <div class="row">
-                                    <h4>Опции:</h4>
-                                </div>            
-                                <div class="row">
-                                    <div class="col-sm-6" style="padding-left:0px">
-                                        <p>Замена</p>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <asp:CheckBox runat="server" ID="chkAlbumElementExchange" Checked="false" />
-                                    </div>
-                                </div>                                    
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <div class="col-sm-6">                             
                                 <div class="row">
                                     <div class="col-sm-6" style="padding-left:0px">
-                                        <p>Број на слики</p>
+                                        <p>Количина</p>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-6" style="float:right">
                                         <asp:TextBox runat="server" ID="txbAlbumElementNumber" Width="30px">1</asp:TextBox>
                                     </div>
                                 </div>

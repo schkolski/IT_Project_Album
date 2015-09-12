@@ -9,7 +9,13 @@
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="Content/homePage.css" rel="stylesheet" />
     <script type="text/javascript" src="Scripts/jquery-1.10.2.min.js"></script>
-    
+    <!--<script>
+            $(document).ready(function () {
+                $("#changePass").click(function () {
+                    $(".skrij").toggle();
+                })
+            });
+        </script>-->
     <script src="Scripts/js/bootstrap-datepicker.js"></script>
     <script src="Scripts/css/datepicker.css"></script>
     
@@ -17,11 +23,13 @@
         
     <script src="Scripts/jquery-ui-1.11.4/jquery-ui.js"></script>
     <script>
+        
         $(document).ready(function () {
             // $('.datepicker').datepicker();
             $(function () {
                 $(".datepicker").datepicker({
-                    format: 'mm/dd/yyyy',
+                    startDate: '-3d',
+                    dateFormat:"dd/mm/yy",
                     changeMonth: true,
                     changeYear: true
                 });
@@ -59,7 +67,7 @@
                         <li>
                             <asp:LinkButton href="ProfilePage.aspx" runat="server" Text="Мои Информации"></asp:LinkButton></li>
                         <li>
-                            <asp:LinkButton id="LogOut"  runat="server" Text="Одлогирај се" OnClick="LogOut_Click"></asp:LinkButton></li>
+                            <asp:LinkButton id="LogOut"  runat="server" Text="Одлогирај се"></asp:LinkButton></li>
                     </ul>
                 </div>
                 <!--/.nav-collapse -->
@@ -83,7 +91,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <h5>BirthDay</h5>
-                    <div class="input-append date" id="dp3" data-date="02/23/2012" data-date-format="mm/dd/yyyy">
+                    <div class="input-append date" id="dp3">
                         <asp:TextBox ID="bDay" runat="server" class="datepicker" size="16"></asp:TextBox>
                         <!--<asp: input id="bDay" class="datepicker" size="16" type="text">-->
                       <span class="add-on"><i class="icon-th"></i></span>
