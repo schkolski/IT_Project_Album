@@ -40,30 +40,27 @@
             </nav>
 
             <div id="fInsertAlbum" runat="server" visible="true">
-                <div class="container" style="margin: auto; padding: 15%">
+                <div class="container col-sm-6 col-sm-offset-3 col-lg-8 col-lg-offset-4" style="padding-top:15px" >
                     <div class="row">
                         <div class="col-lg-6">
                             <asp:TextBox runat="server" placeholder="Year" CssClass="form-control" ID="tbYear" ValidationGroup="1"></asp:TextBox>
-                        </div>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbYear" ErrorMessage="RequiredFieldValidator"></asp:RequiredFieldValidator>
-                    </div>
+                        </div></div>
                     <br />
                     <div class="row">
                         <div class="col-lg-6">
                             <asp:TextBox runat="server" placeholder="Title of Album" CssClass="form-control" ID="tbTitle" ValidationGroup="1"></asp:TextBox>
                         </div>
                     </div>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="tbTitle" ErrorMessage="RequiredFieldValidator"></asp:RequiredFieldValidator>
                     <br />
                     <div class="row">
                         <div class="col-lg-6">
                             <label style="position: center;">
-                                <asp:TextBox ID="user_lic" TextMode="Number" runat="server" min="0" max="1000" step="1" /></label>
+                                <asp:TextBox ID="user_lic" TextMode="Number" runat="server" min="0" max="1000" step="1" ValidationGroup="1" /></label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <asp:Button runat="server" Text="Add album" CssClass="btn btn-success" ID="btAddAlbum" OnClick="btAddAlbum_Click"></asp:Button>
+                            <asp:Button runat="server" Text="Add album" CssClass="btn btn-success" ID="btAddAlbum" OnClick="btAddAlbum_Click" ValidationGroup="1"></asp:Button>
 
                         </div>
                     </div>
@@ -71,14 +68,14 @@
             </div>
 
 
-            <div class="container" style="margin: auto; padding: 15%;">        
+            <div class="container col-sm-6 col-sm-offset-3 col-lg-6 col-lg-offset-3" style="padding-top:15px">        
                 <div id="fAddPicture" runat="server" visible="false">
                     <div class="row">
 
-                        <div class="col-md-4 col-sm-4">
+                        <div class="col-xs-12 col-sm-6 col-md-4">
                             <asp:Image runat="server" ID="imgPrev" Width="150px" Height="200px" />
                         </div>
-                        <div class="col-md-8 col-sm-8">
+                        <div class="col-xs-12 col-sm-6 col-md-8">
 
 
                             <fieldset>
@@ -114,7 +111,7 @@
                     <hr />
                     <div class="row">
 
-                        <div class="col-md-4">
+                        <div class=" col-sm-4 col-md-3">
                             <asp:FileUpload runat="server" CssClass="filestyle" ID="ImageUpload" style="position: absolute; clip: rect(0px 0px 0px 0px);" />
                     
                             <div class="bootstrap-filestyle input-group " style="width: auto;">
@@ -129,17 +126,22 @@
                                 <!-- Choose file - button  glyphicon glyphicon-forward-->
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-sm-3 col-md-3">
                             <asp:Button ID="btnPreview" runat="server" Text="Preview" CssClass="btn btn-info" OnClick="btnPreview_Click"/>
                         </div>
-                        <div class="col-md-4" style="float: right">
+                        <div class="col-sm-2 col-md-3 col-sm-offset-3">
                             <asp:Button ID="btnNext" runat="server" Text="Next" CssClass="btn btn-primary" OnClick="btnNext_Click"/>
                         </div>
                     </div>
                 </div>
+
+                
+                <asp:ValidationSummary runat="server" ID="ValidationSummary1" DisplayMode="BulletList" ValidationGroup="1" ForeColor="Red"/>
+
+                <asp:ValidationSummary runat="server" ID="ValidationSummary2" DisplayMode="BulletList" ValidationGroup="2" ForeColor="Red"/>
+
             </div>
 
-            <asp:Label ID="lblTest" runat="server" Text="URL"></asp:Label>
         </form>
     
     </body>

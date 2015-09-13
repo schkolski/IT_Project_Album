@@ -52,16 +52,7 @@
                                 </span> 
                             </div><!-- /input-group -->
                         </div>
-                        <div class="col-md-1 hidden-sm hidden-xs">
-                            <asp:CheckBox ID="chkbID" runat="server" Text=" ID"/>
-                        </div>
-                        <div class="col-md-1 hidden-sm hidden-xs">
-                            <asp:CheckBox ID="chkbName" runat="server" Text=" Име"/>
-                        </div>
-                        <div class="col-md-2 hidden-sm hidden-xs">
-                            <asp:CheckBox ID="chkbAlbum" runat="server" Text=" Албум"/>
-                        </div>
-                        <div class="col-md-3 col-lg-2 col-md-offset-5 col-lg-offset-6">
+                        <div class="col-md-3 col-lg-2 col-md-offset-9 col-lg-offset-10">
                             <button ID="toggleAdvancedSearch" class="btn btn-link" type="button">Опции за пребарување</button>                      
                         </div>                 
                     </div>
@@ -132,15 +123,13 @@
 
                 <div id="transakciiButtonsContainer" class="container"> <!-- funkcionira do 500px -->
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-8 col-sm-offset-2">
                             <div class="row">
-                                <div class="col-lg-2 col-lg-offset-10 col-md-3 col-md-offset-9 col-sm-3 col-sm-offset-9">
-                                    <asp:Button CssClass="btn btn-primary" runat="server" id="btnTransakcii1" Text="Tab 1"/>
-                                </div>
+                                <ul class="nav nav-tabs">
+                                  <li role="presentation" class="active"><asp:LinkButton runat="server" ID="btnTabKupuvam" Text="Купувам"></asp:LinkButton></li>
+                                  <li role="presentation"><asp:LinkButton runat="server" ID="btnTabProdavam" Text="Продавам"></asp:LinkButton></li>
+                                </ul>
                             </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <asp:Button CssClass="btn btn-primary" runat="server" id="btnTransakcii2" Text="Tab2"/>
                         </div>
                     </div>
                 </div>
@@ -164,7 +153,7 @@
                         <ContentTemplate>
                             <div class="row">
                 
-                                <div class="col-sm-6" id="offerElementContainer1">
+                                <div class="col-sm-8 col-sm-offset-2" id="offerElementContainer1">
                                     <div class="offer" style="margin-right:7px">
                                         <div class="row">
                                             <div class="col-xs-6">
@@ -212,54 +201,8 @@
                                         </div>                                          
                                     </div>
                                 </div> <!-- end offerElementContainer1 -->
-
-                                <div class="col-sm-6" id="offerElementContainer2">
-                                   <div class="offer" style="margin-right:7px">
-                                       <div class="row">
-                                           <div class="col-xs-6">
-                                               <asp:Label runat="server" ID="lblOfferName2" Text="OfferName"></asp:Label>
-                                           </div>
-                                           <div class="col-xs-6">
-                                                <div class="row">
-                                                    <div class="col-lg-6" style="padding-left:0px">
-                                                        <asp:Label runat="server" ID="lblUserName2" Text="UserName"></asp:Label>
-                                                    </div>
-                                                    <div class="col-lg-6" style="padding-left:0px">
-                                                        <asp:Label runat="server" ID="lblUserEmail2" Text="email@email.com"></asp:Label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                       </div>  
-                                       <div class="row" style="padding-top:15px">
-                                           <div class="col-xs-6">
-                                               <asp:Image ID="imgOfferPreview2" runat="server" height="200px" Width="155px"/>
-                                           </div>
-                                           <div class="col-xs-6">
-                                               <div class="row">
-                                                   <h4>Опис</h4>
-                                               </div>            
-                                               <div class="row">
-                                                   <div class="col-xs-12" style="padding-left:0px; height:120px">
-                                                       <asp:Label ID="lblOfferDescription2" CssClass="widthTextBox" runat="server">
-                                                           Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                                                       </asp:Label>
-                                                   </div>
-                                               </div>                
-                                               <div class="row" style="padding-bottom:10px">
-                                                   <div class="col-xs-3" style="padding-left:0px; padding-top:8px">
-                                                       <p>Цена:</p>
-                                                   </div>
-                                                   <div class="col-xs-3" style="padding-top:8px">
-                                                       <asp:Label ID="lblOfferPrice2" runat="server">10$</asp:Label>
-                                                   </div>
-                                                   <div class="col-xs-6">
-                                                       <asp:Button runat="server" id="btnOfferBuy2" CssClass="btn btn-success" Text="Потврди"/> 
-                                                   </div>
-                                               </div>
-                                           </div>      
-                                       </div>                                          
-                                   </div>
-                                </div> <!-- end offerElementContainer2 -->
+                
+                                <asp:Label ID="lblOffer1ID" runat="server" CssClass="displayNone"></asp:Label>
 
                             </div>     
                         </ContentTemplate>
