@@ -1,12 +1,12 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="transakciiElementHalf.ascx.cs" Inherits="IT_Proekt.transakciiElementHalf" %>
 
 
-<div id="TransakciiContainer" class="">  <!-- Функционира само над 500px -->
+<div id="TransakciiContainer" class="">  <!-- Функционира само над 500px. Променет да биде централен во една страна -->
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
             <div class="row">
                 
-                <div class="col-sm-6" id="offerElementContainer1">
+                <div class="col-sm-8 col-sm-offset-2" id="offerElementContainer1">
                     <div class="offer" style="margin-right:7px">
                         <div class="row">
                             <div class="col-xs-6">

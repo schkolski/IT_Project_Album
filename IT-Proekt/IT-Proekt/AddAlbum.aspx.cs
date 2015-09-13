@@ -16,10 +16,10 @@ namespace IT_Proekt
         {
             if (!Page.IsPostBack)
             {
-                /* if (Session["UserName"] == null || Session["Admin"] != null)
+                 if (Session["UserName"] == null || Session["Admin"] != null)
                  {
-                     Response.Redirect("Default.aspx");
-                 }*/
+                     Response.Redirect("HomePage.aspx");
+                 }
             }
         }
         private void setFormInfo()
@@ -35,47 +35,54 @@ namespace IT_Proekt
         }
         protected void btAddAlbum_Click(object sender, EventArgs e)
         {
-            bool res = insertAlbumIntoDatabase();
-            if (res)
+            if (validateAddAlbum())
             {
-                // TODO: Show successful message
-                changeForm();
-                setFormInfo();
-            }
+                bool res = insertAlbumIntoDatabase();
+                if (res)
+                {
+                    // TODO: Show successful message
+                    changeForm();
+                    setFormInfo();
+                }
+            }                   
         }
 
         protected void btnNext_Click(object sender, EventArgs e)
         {
-            string imgName = tbImgName.Text.Trim();
-            string imgUrl = getPictureUrl();
-            if (imgUrl == null)
+            if (validateAddPicture())
             {
-                imgUrl = ViewState["img"] as String;
-            }
-            int albumID = (Int32)ViewState["album_id"];
-            int pictureID = (Int32)ViewState["mom_br_sliki"];
-            bool res = false;
-            if (imgUrl != null)
-                res = insertPictureIntoDatabase(pictureID, albumID, imgName, imgUrl);
-            if (res)
-            {
-                // If and only if insert picture was succsessful
-
-                ViewState["mom_br_sliki"] = (Int32)ViewState["mom_br_sliki"] + 1;
-                if (ViewState["mom_br_sliki"].Equals(ViewState["br_sliki"]))
+                string imgName = tbImgName.Text.Trim();
+                string imgUrl = getPictureUrl();
+                if (imgUrl == null)
                 {
-                    btnNext.Text = "Finish";
-                    btnNext.CssClass = "btn btn-success";
+                    imgUrl = ViewState["img"] as String;
                 }
-                setFormInfo();
+                int albumID = (Int32)ViewState["album_id"];
+                int pictureID = (Int32)ViewState["mom_br_sliki"];
+                bool res = false;
+                if (imgUrl != null)
+                    res = insertPictureIntoDatabase(pictureID, albumID, imgName, imgUrl);
+                if (res)
+                {
+                    // If and only if insert picture was succsessful
+
+                    ViewState["mom_br_sliki"] = (Int32)ViewState["mom_br_sliki"] + 1;
+                    if (ViewState["mom_br_sliki"].Equals(ViewState["br_sliki"]))
+                    {
+                        btnNext.Text = "Finish";
+                        btnNext.CssClass = "btn btn-success";
+                    }
+                    setFormInfo();
+                }
+                if ((Int32)ViewState["mom_br_sliki"] > (Int32)ViewState["br_sliki"])
+                {
+                    clearViewStates();
+                    Response.Redirect("~/AddAlbum.aspx");
+                }
+                imgPrev.ImageUrl = "";
+                ViewState["img"] = null;
             }
-            if ((Int32)ViewState["mom_br_sliki"] > (Int32)ViewState["br_sliki"])
-            {
-                clearViewStates();
-                Response.Redirect("~/AddAlbum.aspx");
-            }
-            imgPrev.ImageUrl = "";
-            ViewState["img"] = null;
+            
         }
 
         private bool insertAlbumIntoDatabase()
@@ -141,11 +148,11 @@ namespace IT_Proekt
             {
                 imgPrev.ImageUrl = url;
                 ViewState["img"] = url;
-                lblTest.Text = url;
+                //lblTest.Text = url;
             }
             else
             {
-                lblTest.Text = "NEMA NISHTO";
+                //lblTest.Text = "NEMA NISHTO";
             }
 
         }
@@ -176,6 +183,126 @@ namespace IT_Proekt
             }
             return null;
         }
+
+        protected bool validateAddPicture()
+        {
+            if (String.IsNullOrWhiteSpace(tbImgName.Text))
+            {
+                var val = new CustomValidator() //sozdaj nov validatior. Error message kje se zapishe
+                {                               //vo validation summary
+                    ErrorMessage = "Не внесовте име на сликата.",
+                    Display = ValidatorDisplay.None,
+                    IsValid = false,
+                    ValidationGroup = "2",
+                };
+                val.ServerValidate += (object source, ServerValidateEventArgs args) =>
+                { args.IsValid = false; }; //so ovaa linija val se postavuva da ne e valid i kje se prikaze vo validation summary
+                Page.Validators.Add(val);
+            }
+
+            if (!ImageUpload.HasFile && ViewState["img"] == null)
+            {
+                var val = new CustomValidator() //sozdaj nov validatior. Error message kje se zapishe
+                {                               //vo validation summary
+                    ErrorMessage = "Изберете слика.",
+                    Display = ValidatorDisplay.None,
+                    IsValid = false,
+                    ValidationGroup = "1",
+                };
+                val.ServerValidate += (object source, ServerValidateEventArgs args) =>
+                { args.IsValid = false; }; //so ovaa linija val se postavuva da ne e valid i kje se prikaze vo validation summary
+                Page.Validators.Add(val);
+            }
+
+            Page.Validate();
+            if (Page.IsValid)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        protected bool validateAddAlbum()
+        {
+            if (!isInputEmpty())
+            {
+                int number;
+                bool result = Int32.TryParse(tbYear.Text, out number);
+                if (!result)
+                {
+                    var val = new CustomValidator() //sozdaj nov validatior. Error message kje se zapishe
+                    {                               //vo validation summary
+                        ErrorMessage = "Не внесовте правилна година на албумот.",
+                        Display = ValidatorDisplay.None,
+                        IsValid = false,
+                        ValidationGroup = "1",
+                    };
+                    val.ServerValidate += (object source, ServerValidateEventArgs args) =>
+                    { args.IsValid = false; }; //so ovaa linija val se postavuva da ne e valid i kje se prikaze vo validation summary
+                    Page.Validators.Add(val);
+                }
+
+                Page.Validate();
+                if(Page.IsValid){
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private bool isInputEmpty() //proveri dali ima prazen input
+        {
+            if (String.IsNullOrWhiteSpace(tbYear.Text))
+            {
+                var val = new CustomValidator() //sozdaj nov validatior. Error message kje se zapishe
+                {                               //vo validation summary
+                    ErrorMessage = "Не внесовте година на албумот.",
+                    Display = ValidatorDisplay.None,
+                    IsValid = false,
+                    ValidationGroup = "1",
+                };
+                val.ServerValidate += (object source, ServerValidateEventArgs args) =>
+                { args.IsValid = false; }; //so ovaa linija val se postavuva da ne e valid i kje se prikaze vo validation summary
+                Page.Validators.Add(val);
+            }
+
+            if (String.IsNullOrWhiteSpace(tbTitle.Text))
+            {
+                var val = new CustomValidator()
+                {
+                    ErrorMessage = "Не внесовте име на албумот.",
+                    Display = ValidatorDisplay.None,
+                    IsValid = false,
+                    ValidationGroup = "1",
+                };
+                val.ServerValidate += (object source, ServerValidateEventArgs args) =>
+                { args.IsValid = false; };
+                Page.Validators.Add(val);
+            }
+
+            if (String.IsNullOrWhiteSpace(user_lic.Text))
+            {
+                var val = new CustomValidator()
+                {
+                    ErrorMessage = "Не внесовте број на слики на албумот.",
+                    Display = ValidatorDisplay.None,
+                    IsValid = false,
+                    ValidationGroup = "1",
+                };
+                val.ServerValidate += (object source, ServerValidateEventArgs args) =>
+                { args.IsValid = false; };
+                Page.Validators.Add(val);
+            }
+
+            Page.Validate();
+            if (Page.IsValid)
+            {
+                return false;
+            }
+            return true;
+        }
+
+
 
         protected void LogOut_Click(Object sender, EventArgs e)
         {

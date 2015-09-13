@@ -49,33 +49,6 @@ namespace IT_Proekt {
         protected global::System.Web.UI.WebControls.Button btnSearch;
         
         /// <summary>
-        /// chkbID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkbID;
-        
-        /// <summary>
-        /// chkbName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkbName;
-        
-        /// <summary>
-        /// chkbAlbum control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkbAlbum;
-        
-        /// <summary>
         /// lblName control.
         /// </summary>
         /// <remarks>
@@ -211,22 +184,22 @@ namespace IT_Proekt {
         protected global::System.Web.UI.WebControls.Button btnAdvancedSearch;
         
         /// <summary>
-        /// btnTransakcii1 control.
+        /// btnTabKupuvam control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnTransakcii1;
+        protected global::System.Web.UI.WebControls.LinkButton btnTabKupuvam;
         
         /// <summary>
-        /// btnTransakcii2 control.
+        /// btnTabProdavam control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnTransakcii2;
+        protected global::System.Web.UI.WebControls.LinkButton btnTabProdavam;
         
         /// <summary>
         /// scriptManager control.
@@ -319,67 +292,13 @@ namespace IT_Proekt {
         protected global::System.Web.UI.WebControls.Button btnOfferBuy1;
         
         /// <summary>
-        /// lblOfferName2 control.
+        /// lblOffer1ID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOfferName2;
-        
-        /// <summary>
-        /// lblUserName2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUserName2;
-        
-        /// <summary>
-        /// lblUserEmail2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUserEmail2;
-        
-        /// <summary>
-        /// imgOfferPreview2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgOfferPreview2;
-        
-        /// <summary>
-        /// lblOfferDescription2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOfferDescription2;
-        
-        /// <summary>
-        /// lblOfferPrice2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOfferPrice2;
-        
-        /// <summary>
-        /// btnOfferBuy2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnOfferBuy2;
+        protected global::System.Web.UI.WebControls.Label lblOffer1ID;
         
         /// <summary>
         /// repeaterTransakcii control.
