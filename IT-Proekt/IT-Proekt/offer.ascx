@@ -48,7 +48,8 @@
                         <br />
                         <div class="col-sm-12" style=" margin-left:260px;" >
                             <asp:Button runat="server" id="btnOfferBuy" CssClass="btn btn-success" Text="Купи"/>
-                            <asp:Button runat="server" id="exchange" CssClass="btn btn-success" Text="Замени"/>
+                            <asp:Button runat="server" id="exchange" CssClass="btn btn-success" Text="Замени" OnClick="exchange_Click"/>
+                            <asp:DropDownList runat="server" ID="ddZamena" Visible="false"></asp:DropDownList>
                         </div>                                    
                     </div>
                 </div>

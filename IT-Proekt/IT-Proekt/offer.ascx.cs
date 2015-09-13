@@ -50,5 +50,11 @@ namespace IT_Proekt
             set { price = value; }
         }
 
+        protected void exchange_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("Da");
+            ddZamena.Visible = true;
+            exchange.Visible = false;
+        }
     }
 }

@@ -17,7 +17,7 @@ namespace IT_Proekt
         }
         public SqlConnection getConnection()
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["dbConnection_Aleksandar"].ConnectionString;
+            string connectionString = ConfigurationManager.ConnectionStrings["dbConnection_Mico"].ConnectionString;
 
             return new SqlConnection(connectionString);
         }
