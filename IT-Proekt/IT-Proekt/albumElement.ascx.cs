@@ -22,7 +22,6 @@ namespace IT_Proekt
             lblAlbumElementYear2.Text = year.ToString();
             imgAlbumElementPreview2.ImageUrl = imgUrl_2;
 
-            txbAlbumElementNumber1.Text = "0";
             txbAlbumElementNumber1.Text = initElementNumber(slikaID1);
             txbAlbumElementNumber2.Text = initElementNumber(slikaID2);
         }
@@ -34,7 +33,7 @@ namespace IT_Proekt
                 albumID, pictureID);
             System.Diagnostics.Debug.WriteLine("-->>AlbumID:" + albumID.ToString() 
                 + " pictureID:" + pictureID.ToString() + " Q:"+res.ToString());
-            if (res > 0)
+            if (res >= 0)
             {
                 return res.ToString();
             }
@@ -84,7 +83,7 @@ namespace IT_Proekt
             string username = Session["UserName"].ToString();
             Int32.TryParse(txbAlbumElementNumber1.Text, out q);
             System.Diagnostics.Debug.WriteLine("--btnAlbumElementAdd1_Click: " + q.ToString());
-            if (q > 0)
+            if (q >= 0)
             {
                 bool res = addToPoseduva(username, albumID, slikaID1, q);
                 System.Diagnostics.Debug.WriteLine("--btnAlbumElementAdd1_Click: " + res.ToString());
@@ -102,7 +101,7 @@ namespace IT_Proekt
             string username = Session["UserName"].ToString();
             Int32.TryParse(txbAlbumElementNumber2.Text, out q);
             System.Diagnostics.Debug.WriteLine("--btnAlbumElementAdd2_Click: " + q.ToString());
-            if (q > 0)
+            if (q >= 0)
             {
                 bool res = addToPoseduva(username, albumID, slikaID2, q);
                 System.Diagnostics.Debug.WriteLine("--btnAlbumElementAdd2_Click: " + res.ToString());

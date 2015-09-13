@@ -80,7 +80,7 @@
                                         <p>Количина</p>
                                     </div>
                                     <div class="col-sm-6" style="float: right">
-                                        <asp:TextBox runat="server" ID="txbAlbumElementNumber2" Width="30px">1</asp:TextBox>
+                                        <asp:TextBox runat="server" ID="txbAlbumElementNumber2" Width="30px">0</asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="row">

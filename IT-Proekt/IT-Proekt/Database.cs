@@ -139,8 +139,6 @@ namespace IT_Proekt
             }
             return album;
         }
-
-
         public Slika getPicture(int albumID, int pictureID)
         {
             SqlConnection con = getConnection();
@@ -279,6 +277,55 @@ namespace IT_Proekt
                                     "album_id, broj_slika, exchange, username, datum " +
                                "FROM Ponuda " +
                                "WHERE username=@username";
+
+                SqlCommand command = new SqlCommand(query, con);
+                command.Parameters.AddWithValue("@username", username);
+
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+                DataSet data = new DataSet();
+                dataAdapter.Fill(data);
+
+                offers = new List<Ponuda>();
+                foreach (DataRow row in data.Tables[0].Rows)
+                {
+                    Ponuda offer = new Ponuda(
+                        Int32.Parse(row["id"].ToString()),
+                        row["offer_description"].ToString(),
+                        Int32.Parse(row["price"].ToString()),
+                        row["name"].ToString(),
+                        Int32.Parse(row["album_id"].ToString()),
+                        Int32.Parse(row["broj_slika"].ToString()),
+                        row["username"].ToString(),
+                        Int32.Parse(row["exchange"].ToString()),
+                        DateTime.Parse(row["datum"].ToString())
+                    );
+                    offers.Add(offer);
+                }
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Log("getAllOffersByUsername", result);
+            }
+            return offers;
+        }
+        public List<Ponuda> getAllOffersForUsername(string username)
+        {
+            SqlConnection con = getConnection();
+            string result = "OK";
+            List<Ponuda> offers = null;
+            try
+            {
+                con.Open();
+                string query = "SELECT id, offer_description, price, name, " +
+                                    "album_id, broj_slika, exchange, username, datum " +
+                               "FROM Ponuda " +
+                               "WHERE album_id IN ";
 
                 SqlCommand command = new SqlCommand(query, con);
                 command.Parameters.AddWithValue("@username", username);
