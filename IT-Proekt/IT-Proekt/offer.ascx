@@ -1,58 +1,74 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="offer.ascx.cs" Inherits="IT_Proekt.offer" %>
 
 
-<div id="OfferContainer" class="container offer" style="width:70%">  <!-- Функционира само над 768px -->
-    <asp:UpdatePanel runat="server">
-        <ContentTemplate>        
-            <div class="row">
-                <div class="col-sm-4">
+<asp:UpdatePanel runat="server">
+    <ContentTemplate>
+        <div class="row">
+
+            <div class="col-sm-8 col-sm-offset-2" id="offerElementContainer1">
+                <div class="offer" style="margin-right: 7px">
                     <div class="row">
-                        <div class="col-sm-4" style="font-size:20px">
-                            <asp:Label ID="lblOfferName" runat="server" Text=""></asp:Label>
+                        <div class="col-xs-6">
+                            <asp:Label runat="server" ID="lblOfferName" Text="OfferName"></asp:Label>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="row">
+                                <div class="col-lg-8" style="padding-left: 0px">
+                                    <asp:Label runat="server" ID="lblUserName" Text="UserName"></asp:Label>
+                                </div>
+                                <div class="col-xs-4">
+                                    <asp:Label runat="server" ID="lblOfferDatum" Text="01.01.3000"></asp:Label>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-4" style="font-size:20px">
-                            <asp:Image ID="imgAlbumElementPreview1" runat="server" height="200px" Width="155px"/>
+
+                    <div class="row" style="padding-top: 15px">
+                        <div class="col-xs-6">
+                            <asp:Image ID="imgOfferPreview" runat="server" Height="200px" Width="155px" />
                         </div>
-                    </div> 
+                        <div class="col-xs-6">
+                            <div class="row" style="padding-bottom: 10px">
+                                <div class="col-xs-12" style="padding-left: 0px">
+                                    <asp:Label runat="server" ID="lblOfferOwner" Text="email@email.com"></asp:Label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <h4>Опис</h4>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12" style="padding-left: 0px; height: 100px">
+                                    <asp:Label ID="lblOfferDescription" CssClass="widthTextBox" runat="server">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                                    </asp:Label>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-bottom: 10px">
+                                <div class="col-xs-1" style="padding-left: 0px; padding-top: 8px">
+                                    <p>Цена:</p>
+                                </div>
+                                <div class="col-xs-1" style="padding-top: 8px">
+                                    <asp:Label ID="lblOfferPrice" runat="server">10$</asp:Label>
+                                </div>
+                                <div class="col-xs-10">
+                                    <asp:Button runat="server" ID="btnOfferBuy" CommandName="btnOfferBuy" CssClass="btn btn-success" Text="Купи" />
+                                    <asp:Button runat="server" ID="exchange" CommandName="exchange" CssClass="btn btn-success" Text="Замени" OnClick="exchange_Click" />
+                                    <asp:DropDownList runat="server" ID="ddZamena" CommandName="ddZamena" Visible="false" OnSelectedIndexChanged="ddZamena_SelectedIndexChanged"  AutoPostBack="true" ></asp:DropDownList>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-sm-4">
-                    <div class="row" style="font-size:20px">
-                        <div class="col-sm-3 ">
-                            <asp:Label ID="lblOfferOwner" runat="server" Text=""></asp:Label>
-                        </div>
-                        <div class="col-sm-3 col-sm-offset-6">
-                            <asp:Label ID="lblOfferTrustLevel" runat="server" Text=""></asp:Label>
-                        </div>
-                    </div>
-                    <div class="row" style="padding-top:10px">
-                        <div class="col-sm-12">
-                            <p>Опис</p>
-                            <asp:Label ID="lblOfferDescription" runat="server" Text=""></asp:Label>
-                        </div>                                
-                    </div>
-                    <div class="row " style="padding-top:10px">
-                        <div class="col-sm-2 " >
-                            <p>Цена:</p>
-                        </div>
-                        <div class="col-sm-7">
-                            <asp:Label ID="lblOfferPrice" runat="server" Text=""></asp:Label>
-                        </div>
-                        <br />
-                        <br />
-                        <br />
-                        <br />
-                        <br />
-                        <br />
-                        <br />
-                        <div class="col-sm-12" style=" margin-left:260px;" >
-                            <asp:Button runat="server" id="btnOfferBuy" CssClass="btn btn-success" Text="Купи"/>
-                            <asp:Button runat="server" id="exchange" CssClass="btn btn-success" Text="Замени"/>
-                        </div>                                    
-                    </div>
-                </div>
-            </div>                                     
-        </ContentTemplate>
-    </asp:UpdatePanel>   
-</div>
+            </div>
+            <!-- end offerElementContainer1 -->
+
+            <asp:Label ID="lblOffer1ID" runat="server" CssClass="displayNone"></asp:Label>
+
+        </div>
+    </ContentTemplate>
+    <Triggers>
+        <asp:AsyncPostBackTrigger ControlID="exchange" EventName="Click" />
+        <asp:AsyncPostBackTrigger ControlID="btnOfferBuy" EventName="Click" />
+        <asp:AsyncPostBackTrigger ControlID="ddZamena" EventName="SelectedIndexChanged" />
+    </Triggers>
+</asp:UpdatePanel>

@@ -176,6 +176,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="HomePage.aspx" />
+    <Content Include="Korisnici.ascx" />
     <Content Include="myOffer.ascx" />
     <Content Include="myOfferHalf.ascx" />
     <Content Include="MyOffers.aspx" />
@@ -432,6 +433,13 @@
     </Compile>
     <Compile Include="HomePage.aspx.designer.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Korisnici.ascx.cs">
+      <DependentUpon>Korisnici.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Korisnici.ascx.designer.cs">
+      <DependentUpon>Korisnici.ascx</DependentUpon>
     </Compile>
     <Compile Include="Korisnik.cs" />
     <Compile Include="Models\IdentityModels.cs" />

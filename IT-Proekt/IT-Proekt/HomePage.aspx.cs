@@ -17,8 +17,11 @@ namespace IT_Proekt
                 {
                     Response.Redirect("Default.aspx");
                 }
-                fillOffers(); //dinamichno dodaj offers
+                 //dinamichno dodaj offers
             }
+            repeaterHomepage.DataSource = null;
+            repeaterHomepage.DataBind();
+            fillOffers();
         }
 
         protected void fillOffers()

@@ -13,9 +13,11 @@ namespace IT_Proekt
         {
             lblOfferName.Text = name;
             lblOfferOwner.Text = owner;
-            lblOfferTrustLevel.Text = trust.ToString();
+          //  lblOfferTrustLevel.Text = trust.ToString();
             lblOfferDescription.Text = description;
             lblOfferPrice.Text = price.ToString();
+            ddZamena.Items.Add("primer");
+            ddZamena.Items.Add("primer1");
         }
 
         private string name;
@@ -50,5 +52,18 @@ namespace IT_Proekt
             set { price = value; }
         }
 
+        protected void exchange_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("Da");
+            ddZamena.Visible = true;
+            exchange.Enabled = false;
+        }
+
+        protected void ddZamena_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("Ne tuka");
+            exchange.Enabled = true;
+            ddZamena.Visible = true;
+        }
     }
 }
