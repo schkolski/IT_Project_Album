@@ -22,13 +22,31 @@ namespace IT_Proekt {
         protected global::System.Web.UI.WebControls.Label lblOfferName;
         
         /// <summary>
-        /// imgAlbumElementPreview1 control.
+        /// lblUserName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgAlbumElementPreview1;
+        protected global::System.Web.UI.WebControls.Label lblUserName;
+        
+        /// <summary>
+        /// lblOfferDatum control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblOfferDatum;
+        
+        /// <summary>
+        /// imgOfferPreview control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgOfferPreview;
         
         /// <summary>
         /// lblOfferOwner control.
@@ -38,15 +56,6 @@ namespace IT_Proekt {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblOfferOwner;
-        
-        /// <summary>
-        /// lblOfferTrustLevel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOfferTrustLevel;
         
         /// <summary>
         /// lblOfferDescription control.
@@ -76,6 +85,15 @@ namespace IT_Proekt {
         protected global::System.Web.UI.WebControls.Button btnOfferBuy;
         
         /// <summary>
+        /// exchange control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button exchange;
+        
+        /// <summary>
         /// ddZamena control.
         /// </summary>
         /// <remarks>
@@ -85,12 +103,12 @@ namespace IT_Proekt {
         protected global::System.Web.UI.WebControls.DropDownList ddZamena;
         
         /// <summary>
-        /// exchange control.
+        /// lblOffer1ID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button exchange;
+        protected global::System.Web.UI.WebControls.Label lblOffer1ID;
     }
 }

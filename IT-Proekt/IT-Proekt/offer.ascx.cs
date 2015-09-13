@@ -13,7 +13,7 @@ namespace IT_Proekt
         {
             lblOfferName.Text = name;
             lblOfferOwner.Text = owner;
-            lblOfferTrustLevel.Text = trust.ToString();
+          //  lblOfferTrustLevel.Text = trust.ToString();
             lblOfferDescription.Text = description;
             lblOfferPrice.Text = price.ToString();
             ddZamena.Items.Add("primer");
@@ -56,13 +56,14 @@ namespace IT_Proekt
         {
             System.Diagnostics.Debug.WriteLine("Da");
             ddZamena.Visible = true;
-            exchange.Visible = false;
+            exchange.Enabled = false;
         }
 
         protected void ddZamena_SelectedIndexChanged(object sender, EventArgs e)
         {
             System.Diagnostics.Debug.WriteLine("Ne tuka");
-            exchange.Visible = true;
+            exchange.Enabled = true;
+            ddZamena.Visible = true;
         }
     }
 }

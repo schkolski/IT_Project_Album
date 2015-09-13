@@ -10,7 +10,40 @@
     <title>Admin-Korisnici</title>
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="Content/homePage.css" rel="stylesheet" />
-    <script src="Scripts/jquery-ui-1.11.4/jquery-ui.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script>
+        $(function () {
+            var availableTags = [
+              "ActionScript",
+              "AppleScript",
+              "Asp",
+              "BASIC",
+              "C",
+              "C++",
+              "Clojure",
+              "COBOL",
+              "ColdFusion",
+              "Erlang",
+              "Fortran",
+              "Groovy",
+              "Haskell",
+              "Java",
+              "JavaScript",
+              "Lisp",
+              "Perl",
+              "PHP",
+              "Python",
+              "Ruby",
+              "Scala",
+              "Scheme"
+            ];
+            $("#tags").autocomplete({
+                source: availableTags
+            });
+        });
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -31,7 +64,7 @@
                         <li class="active">
                             <asp:LinkButton href="Admin.aspx" runat="server" Text="Kорисници"></asp:LinkButton></li>
                         <li>
-                            <asp:LinkButton href="Dodadi_Album.aspx" runat="server" Text="Додади Албум"></asp:LinkButton></li>
+                            <asp:LinkButton href="AddAlbum.aspx" runat="server" Text="Додади Албум"></asp:LinkButton></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li>
@@ -45,56 +78,46 @@
         </nav>
 
         <div class="container">
-            <asp:ScriptManager runat="server" ID="scriptManager"></asp:ScriptManager>
-
-            <div id="Admini" class="" style="width: 70%">
-                <!-- Функционира само над 768px -->
-                <asp:UpdatePanel runat="server">
-                    <ContentTemplate>
-                        <div class="row">
-                            <ul class="nav" style="margin-left: 30%; margin-top:10%; background-color:gainsboro;border-radius: 25px;">
-                                <li>
-                                    <div class="col-lg-6">
-                                        <asp:Label ID="tbName" runat="server" Text="Пример"></asp:Label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="col-lg-6">
-                                        <asp:Button runat="server" ID="btPromeni" Text="Промени" />
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
-
+            <div class="search">
+                <div class="col-xs-12">
+                    <div class="input-group">
+                        <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Пребарај слики, албуми..."></asp:TextBox>
+                        <span class="input-group-btn">
+                            <asp:Button ID="btnSearch" runat="server" Text="Барај" CssClass="btn btn-default proba"></asp:Button>
+                        </span>
+                    </div>
+                    <!-- /input-group -->
+                </div>
             </div>
-            <div id="Korisnici" class="" style="width: 70%">
-                <!-- Функционира само над 768px -->
-                <asp:UpdatePanel runat="server">
-                    <ContentTemplate>
-                        <div class="row">
-                            <ul class="nav" style="margin-left: 30%; margin-top:1%; background-color:gainsboro;border-radius: 25px;">
-                                <li>
-                                    <div class="col-lg-6">
-                                        <asp:Label ID="Label1" runat="server" Text="Пример"></asp:Label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="col-lg-6">
-                                        <asp:Button runat="server" ID="Button1" Text="Промени" />
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
-
+            <div class="row">
+                <div class="col-lg-12" style="margin-left: 20%; margin-top: 5%">
+                    <asp:Repeater runat="server" ID="repeaterTransakcii">
+                        <ItemTemplate>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" DataSourceID="SqlDataSource1" ForeColor="Black" GridLines="Vertical" Width="327px">
+                        <AlternatingRowStyle BackColor="Gainsboro" />
+                        <Columns>
+                            <asp:BoundField DataField="name" SortExpression="name">
+                                <ItemStyle HorizontalAlign="Right" VerticalAlign="Middle" />
+                            </asp:BoundField>
+                            <asp:ButtonField ButtonType="Button" Text="Промени">
+                                <ItemStyle HorizontalAlign="Right" VerticalAlign="Middle" />
+                            </asp:ButtonField>
+                        </Columns>
+                        <EditRowStyle BackColor="#EEEEEE" ForeColor="Black" />
+                        <FooterStyle BackColor="#CCCCCC" />
+                        <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                        <SelectedRowStyle BackColor="#8080FF" Font-Bold="True" ForeColor="White" />
+                        <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                        <SortedAscendingHeaderStyle BackColor="#808080" />
+                        <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                        <SortedDescendingHeaderStyle BackColor="#383838" />
+                    </asp:GridView>
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dbConnection_Mico %>" SelectCommand="SELECT [name] FROM [Korisnik]"></asp:SqlDataSource>
+                </div>
             </div>
-            <asp:Repeater runat="server" ID="repeaterTransakcii">
-                <ItemTemplate>
-                </ItemTemplate>
-            </asp:Repeater>
         </div>
 
         <footer class="footer">
