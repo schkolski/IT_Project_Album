@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace IT_Proekt
 {
-    public partial class transakciiElementHalf : System.Web.UI.UserControl
+    public partial class transakciiElementHalfProdavam : System.Web.UI.UserControl
     {
         protected void Page_Load(object sender, EventArgs e)
         {
