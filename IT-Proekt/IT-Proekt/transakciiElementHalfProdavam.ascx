@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="transakciiElementHalf.ascx.cs" Inherits="IT_Proekt.transakciiElementHalf" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="transakciiElementHalfProdavam.ascx.cs" Inherits="IT_Proekt.transakciiElementHalfProdavam" %>
 
 
 <div id="TransakciiContainer" class="">  <!-- Функционира само над 500px. Централен во една страна -->
@@ -48,8 +48,11 @@
                                     <div class="col-xs-1" style="padding-left:0px; padding-top:8px">
                                         <p>Цена:</p>
                                     </div>
-                                    <div class="col-xs-7" style="padding-top:8px">
+                                    <div class="col-xs-3" style="padding-top:8px">
                                         <asp:Label ID="lblOfferPrice1" runat="server">10$</asp:Label>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <asp:Button runat="server" id="btnOfferCancel1" CssClass="btn btn-danger" Text="Откажи"/> 
                                     </div>
                                     <div class="col-xs-4">
                                         <asp:Button runat="server" id="btnOfferBuy1" CssClass="btn btn-success" Text="Потврди"/> 

@@ -47,5 +47,6 @@ C:\Users\Kristijan\Desktop\nov_album\v_sabota\IT_Project_Album\IT-Proekt\IT-Proe
 C:\Users\Kristijan\Desktop\nov_album\v_sabota\IT_Project_Album\IT-Proekt\IT-Proekt\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Kristijan\Desktop\nov_album\v_sabota\IT_Project_Album\IT-Proekt\IT-Proekt\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Kristijan\Desktop\nov_album\v_sabota\IT_Project_Album\IT-Proekt\IT-Proekt\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Kristijan\Desktop\nov_album\v_sabota\IT_Project_Album\IT-Proekt\IT-Proekt\obj\Debug\IT-Proekt.csprojResolveAssemblyReference.cache
 C:\Users\Kristijan\Desktop\nov_album\v_sabota\IT_Project_Album\IT-Proekt\IT-Proekt\obj\Debug\IT-Proekt.dll
 C:\Users\Kristijan\Desktop\nov_album\v_sabota\IT_Project_Album\IT-Proekt\IT-Proekt\obj\Debug\IT-Proekt.pdb

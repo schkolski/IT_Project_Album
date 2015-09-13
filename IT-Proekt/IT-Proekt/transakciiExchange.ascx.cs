@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace IT_Proekt
 {
-    public partial class transakciiElementHalf : System.Web.UI.UserControl
+    public partial class transakciiExchangeElementHalf : System.Web.UI.UserControl
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -20,6 +20,7 @@ namespace IT_Proekt
             lblOfferDatum.Text = date.ToShortDateString();
 
             imgOfferPreview1.ImageUrl = imgUrl_1;
+            imgOfferPreview2.ImageUrl = imgUrl_2;
         }
 
         private string name1;
@@ -31,6 +32,7 @@ namespace IT_Proekt
         private DateTime date;
 
         public string imgUrl_1 { get; set; }
+        public string imgUrl_2 { get; set; }
         public int albumID_1 { get; set; }
 
         public string Name1
