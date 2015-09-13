@@ -20,6 +20,12 @@ namespace IT_Proekt
             Exchange = exchange;
             Datum = datum;
         }
+
+        public const string 
+            DATE = "datum",
+            PRICE = "price",
+            NAME = "name";
+        
         public int ID { get; set; }
         public string Desc { get; set; }
         public int Price { get; set; }

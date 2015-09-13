@@ -135,7 +135,45 @@ namespace IT_Proekt
             {
                 con.Close();
                 // Log the result
-                Log("getAllAlbums", result);
+                Log("getAlbumByNameAndYear", result);
+            }
+            return album;
+        }
+        public Album getAlbumByID(int albumID)
+        {
+            SqlConnection con = getConnection();
+            string result = "OK";
+            Album album = null;
+            try
+            {
+                con.Open();
+                string query = "SELECT name, year_published FROM Album WHERE id=@album_id";
+
+                SqlCommand command = new SqlCommand(query, con);
+                command.Parameters.AddWithValue("@album_id", albumID);
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    album = new Album(
+                         albumID,
+                         reader["name"].ToString(),
+                         Int32.Parse(reader["year_published"].ToString())
+                     );
+                }
+
+                return album;
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Log("getAlbumByID", result);
             }
             return album;
         }
@@ -314,7 +352,7 @@ namespace IT_Proekt
             }
             return offers;
         }
-        public List<Ponuda> getAllOffersForUsername(string username)
+        public List<Ponuda> getAllOffersForUsername(string username, string orderBy)
         {
             SqlConnection con = getConnection();
             string result = "OK";
@@ -322,10 +360,24 @@ namespace IT_Proekt
             try
             {
                 con.Open();
-                string query = "SELECT id, offer_description, price, name, " +
-                                    "album_id, broj_slika, exchange, username, datum " +
-                               "FROM Ponuda " +
-                               "WHERE album_id IN ";
+                string query = 
+                    "SELECT * FROM Ponuda as p "+
+                    "WHERE p.album_id IN ( "+
+					        "SELECT distinct(po.album_id) "+
+					        "FROM Poseduva as po "+
+					        "WHERE po.username = @username "+
+				            ") "+
+		            "AND p.broj_slika NOT IN ( "+
+						    "SELECT po1.broj_slika "+
+						    "FROM Poseduva as po1 "+
+						    "WHERE po1.album_id = p.album_id AND po1.username=@username AND "+
+							"po1.quantity > 0 "+
+                            ") "+
+                    "AND p.id NOT IN ( "+
+					        "SELECT t.ponuda_id from Transakcija as t "+
+					        "WHERE t.username = @username "+
+			                ") "+
+                    "ORDER BY " + orderBy;
 
                 SqlCommand command = new SqlCommand(query, con);
                 command.Parameters.AddWithValue("@username", username);
@@ -350,6 +402,7 @@ namespace IT_Proekt
                     );
                     offers.Add(offer);
                 }
+                return offers;
             }
             catch (Exception e)
             {
@@ -359,7 +412,7 @@ namespace IT_Proekt
             {
                 con.Close();
                 // Log the result
-                Log("getAllOffersByUsername", result);
+                Log("getAllOffersForUsername", result);
             }
             return offers;
         }
@@ -448,7 +501,78 @@ namespace IT_Proekt
 
             //return new Korisnik(name, username, new DateTime(), 0, type, 0);
         }
+        public bool addTransakcijaBuy(string username, int offerID)
+        {
+            SqlConnection con = getConnection();
+            string result = "OK";
+            try
+            {
+                con.Open();
+                string query = "INSERT INTO Transakcija " +
+                    "(ponuda_id, username, datum, status, album_id, broj_slika) " +
+                    "VALUES (@ponuda_id, @username, @datum, @status, null, null)";
 
+                SqlCommand command = new SqlCommand(query, con);
+                command.Prepare();
+                command.Parameters.AddWithValue("@ponuda_id", offerID);
+                command.Parameters.AddWithValue("@username", username);
+                command.Parameters.AddWithValue("@datum", DateTime.Now);
+                command.Parameters.AddWithValue("@status", 0);
+                //command.Parameters.AddWithValue("@album_id", null);
+                //command.Parameters.AddWithValue("@broj_slika", null);
+
+                command.ExecuteNonQuery();
+
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+                return false;
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Log("addTransakcijaBuy", result);
+            }
+            return true;
+        }
+        public bool addTransakcijaExchange(string username, int offerID, int albumID, int pictureID)
+        {
+            SqlConnection con = getConnection();
+            string result = "OK";
+            try
+            {
+                con.Open();
+                string query = "INSERT INTO Transakcija " +
+                    "(ponuda_id, username, datum, status, album_id, broj_slika) " +
+                    "VALUES (@ponuda_id, @username, @datum, @status, @album_id, @broj_slika)";
+
+                SqlCommand command = new SqlCommand(query, con);
+                command.Prepare();
+                command.Parameters.AddWithValue("@ponuda_id", offerID);
+                command.Parameters.AddWithValue("@username", username);
+                command.Parameters.AddWithValue("@datum", DateTime.Now);
+                command.Parameters.AddWithValue("@status", 0);
+                command.Parameters.AddWithValue("@album_id", albumID);
+                command.Parameters.AddWithValue("@broj_slika", pictureID);
+
+                command.ExecuteNonQuery();
+
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+                return false;
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Log("addTransakcijaExchange", result);
+            }
+            return true;
+        }
         public bool addOffer(string offerDesc, int price, string name, int albumid,
             int brslika, int exchange, String username, DateTime datum, int quantity)
         {

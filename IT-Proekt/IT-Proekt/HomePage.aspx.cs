@@ -19,25 +19,37 @@ namespace IT_Proekt
                 }
                  //dinamichno dodaj offers
             }
-            repeaterHomepage.DataSource = null;
-            repeaterHomepage.DataBind();
+            
             fillOffers();
         }
 
         protected void fillOffers()
         {
+            clearScreen();
             Database db = new Database();
-            for (int i = 1; i < 10; i++) //example usage
+            List<Ponuda> offers = db.getAllOffersForUsername(Session["UserName"].ToString(),
+                Ponuda.DATE);
+
+            foreach (Ponuda o in offers)
             {
-                offer offer = (offer)LoadControl("offer.ascx");
-                offer.Name = i+" AlbumExample 2015";
-                offer.Owner = "ExampleUser";
-                offer.Trust = 5;
-                offer.Description = "Example Description";
-                offer.Price = 10;
-                repeaterHomepage.Controls.Add(offer);
+                offer offerElem = (offer)LoadControl("offer.ascx");
+                Album a = db.getAlbumByID(o.AlbumID);
+                Slika s = db.getPicture(o.AlbumID, o.BrojSlika);
+                offerElem.imgUrl = s.Url;
+                offerElem.Name = o.BrojSlika + " - " + o.Name + " " + a.Year;
+                offerElem.Owner = o.Username;
+                offerElem.Description = o.Desc;
+                offerElem.Price = o.Price;
+                offerElem.Trust = 5;
+                offerElem.Datum = o.Datum;
+                offerElem.thisPonuda = o;
+                repeaterHomepage.Controls.Add(offerElem);
             }
-            
+        }
+        private void clearScreen()
+        {
+            repeaterHomepage.DataSource = null;
+            repeaterHomepage.DataBind();
         }
         protected void LogOut_Click(Object sender, EventArgs e)
         {

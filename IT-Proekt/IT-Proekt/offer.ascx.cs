@@ -11,21 +11,27 @@ namespace IT_Proekt
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblUserName.Text = "Owner: " + owner;
             lblOfferName.Text = name;
-            lblOfferOwner.Text = owner;
           //  lblOfferTrustLevel.Text = trust.ToString();
             lblOfferDescription.Text = description;
             lblOfferPrice.Text = price.ToString();
             ddZamena.Items.Add("primer");
             ddZamena.Items.Add("primer1");
+            imgOfferPreview.ImageUrl = imgUrl;
+            // This label must be empty  
+            lblOfferOwner.Text = ""; 
+            lblOfferDatum.Text = Datum.ToShortDateString();
+            exchange.Visible = thisPonuda.Exchange == 1;
         }
-
+        public Ponuda thisPonuda { get; set; }
+        public DateTime Datum { get; set; }
+        public string imgUrl { get; set; }
         private string name;
         private string owner;
         private int trust;
         private string description;
         private int price;
-
         public string Name 
         {
             get { return name; }
@@ -64,6 +70,13 @@ namespace IT_Proekt
             System.Diagnostics.Debug.WriteLine("Ne tuka");
             exchange.Enabled = true;
             ddZamena.Visible = true;
+        }
+
+        protected void btnOfferBuy_Click(object sender, EventArgs e)
+        {
+            Database db = new Database();
+            bool res = db.addTransakcijaBuy(Session["UserName"].ToString(), thisPonuda.ID);
+            Response.Redirect("~/HomePage.aspx");
         }
     }
 }
