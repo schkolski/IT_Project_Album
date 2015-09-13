@@ -226,6 +226,9 @@
     <Content Include="Transakcii.aspx" />
     <Content Include="transakciiElement.ascx" />
     <Content Include="transakciiElementHalf.ascx" />
+    <Content Include="transakciiElementHalfProdavam.ascx" />
+    <Content Include="transakciiExchange.ascx" />
+    <Content Include="transakciiExchangeProdavam.ascx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -520,6 +523,27 @@
     </Compile>
     <Compile Include="transakciiElementHalf.ascx.designer.cs">
       <DependentUpon>transakciiElementHalf.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="transakciiElementHalfProdavam.ascx.cs">
+      <DependentUpon>transakciiElementHalfProdavam.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="transakciiElementHalfProdavam.ascx.designer.cs">
+      <DependentUpon>transakciiElementHalfProdavam.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="transakciiExchange.ascx.cs">
+      <DependentUpon>transakciiExchange.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="transakciiExchange.ascx.designer.cs">
+      <DependentUpon>transakciiExchange.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="transakciiExchangeProdavam.ascx.cs">
+      <DependentUpon>transakciiExchangeProdavam.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="transakciiExchangeProdavam.ascx.designer.cs">
+      <DependentUpon>transakciiExchangeProdavam.ascx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

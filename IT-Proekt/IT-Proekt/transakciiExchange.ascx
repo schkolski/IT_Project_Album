@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="transakciiElementHalf.ascx.cs" Inherits="IT_Proekt.transakciiElementHalf" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="transakciiExchange.ascx.cs" Inherits="IT_Proekt.transakciiExchangeElementHalf" %>
 
 
 <div id="TransakciiContainer" class="">  <!-- Функционира само над 500px. Централен во една страна -->
@@ -26,7 +26,14 @@
                                     
                         <div class="row" style="padding-top:15px">
                             <div class="col-xs-6">
-                                <asp:Image ID="imgOfferPreview1" runat="server" height="200px" Width="155px"/>
+                                <div class="row">
+                                    <div class="col-sm-6" style="padding-left:0px">
+                                        <asp:Image ID="imgOfferPreview1" runat="server" height="200px" Width="155px"/>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <asp:Image ID="imgOfferPreview2" runat="server" height="200px" Width="155px"/>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-xs-6" >                                                
                                 <div class="row" style="padding-bottom:10px">

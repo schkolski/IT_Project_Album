@@ -15,8 +15,21 @@ namespace IT_Proekt
             lblAlbumElementName.Text = albumName;
             lblAlbumElementGodina.Text = year.ToString();
             imgAlbumElementPreview.ImageUrl = imgUrl;
-        }   
 
+            txbAlbumElementNumber.Text = initElementNumber(slikaID);
+        }
+        private string initElementNumber(int pictureID)
+        {
+            Database db = new Database();
+            int res = db.getQuantity(Session["UserName"].ToString(),
+                albumID, pictureID);
+
+            if (res > 0)
+            {
+                return res.ToString();
+            }
+            return "0";
+        }
         private int slikaID;
         private string albumName;
         private int year;
@@ -43,6 +56,27 @@ namespace IT_Proekt
             get { return albumID; }
             set { albumID = value; }
         }
-       
+
+        protected void btnAlbumElementAdd_Click(object sender, EventArgs e)
+        {
+            int q = -1;
+            Int32.TryParse(txbAlbumElementNumber.Text, out q);
+            System.Diagnostics.Debug.WriteLine("TUKA SUM BE :)");
+            bool res = addToPoseduva(Session["UserName"].ToString(), albumID, slikaID, q);
+
+            if (!res) updatePonuda(Session["UserName"].ToString(), albumID, slikaID, q);
+        }
+
+        private bool addToPoseduva(string username, int albumID, int slikaID, int q)
+        {
+            Database db = new Database();
+            return db.addPoseduvaRelation(username, albumID, slikaID, q);
+        }
+        private bool updatePonuda(string username, int albumID, int slikaID, int q)
+        {
+            Database db = new Database();
+
+            return db.updatePoseduvaRelation(username, albumID, slikaID, q);
+        }
     }
 }

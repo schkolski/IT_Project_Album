@@ -24,5 +24,26 @@ namespace IT_Proekt
             Session.Abandon();
             Response.Redirect("Default.aspx");
         }
+
+        protected void btnTabKupuvam_Click(object sender, EventArgs e)
+        {
+            liTabKupuvam.Attributes["Class"] = "active";
+            liTabProdavam.Attributes["Class"] = "";
+            liTabIstorija.Attributes["Class"] = "";
+        }
+
+        protected void btnTabProdavam_Click(object sender, EventArgs e)
+        {
+            liTabKupuvam.Attributes["Class"] = "";
+            liTabProdavam.Attributes["Class"] = "active";
+            liTabIstorija.Attributes["Class"] = "";
+        }
+
+        protected void btnTabIstorija_Click(object sender, EventArgs e)
+        {
+            liTabKupuvam.Attributes["Class"] = "";
+            liTabProdavam.Attributes["Class"] = "";
+            liTabIstorija.Attributes["Class"] = "active";
+        }
     }
 }
