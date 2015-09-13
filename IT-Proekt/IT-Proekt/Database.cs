@@ -338,10 +338,11 @@ namespace IT_Proekt
 
                 SqlDataReader reader = command.ExecuteReader();
 
-                while (reader.Read())
+                if (reader.Read())
                 {
-                    quantity = reader.GetInt32(0);
+                    quantity = Int32.Parse(reader["quantity"].ToString());
                 }
+                return quantity;
             }
             catch (Exception e)
             {
@@ -521,7 +522,7 @@ namespace IT_Proekt
             return true;
         }
 
-        private bool addPoseduvaRelation(string username, int albumid, int brslika, int quantity)
+        public bool addPoseduvaRelation(string username, int albumid, int brslika, int quantity)
         {
             // Ova se izvrshuva privatno pri dodavanje na slikicka
 
@@ -559,6 +560,42 @@ namespace IT_Proekt
             return true;
         }
 
+        public bool updatePoseduvaRelation(string username, int albumid, int brslika, int quantity)
+        {
+
+            SqlConnection con = getConnection();
+            string result = "OK";
+            try
+            {
+                con.Open();
+                string query = "UPDATE Poseduva " +
+                               "SET quantity=@quantity " +
+                               "WHERE username=@username AND album_id=@album_id AND broj_slika=@broj_slika";
+
+
+                SqlCommand command = new SqlCommand(query, con);
+                command.Prepare();
+                command.Parameters.AddWithValue("@username", username);
+                command.Parameters.AddWithValue("@album_id", albumid);
+                command.Parameters.AddWithValue("@broj_slika", brslika);
+                command.Parameters.AddWithValue("@quantity", quantity);
+
+                command.ExecuteNonQuery();
+
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+                return false;
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Log("updatePoseduvaRelation", result);
+            }
+            return true;
+        }
         public bool refreshOffer(int id)
         {
 
@@ -592,7 +629,6 @@ namespace IT_Proekt
             }
             return true;
         }
-
         public bool updateOffer(int id, string offerDesc, int price, string name, int albumid,
             int brslika, int exchange, String username, DateTime datum)
         {

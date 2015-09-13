@@ -77,7 +77,7 @@
                             <div class="col-sm-6" style="padding-left: 15px">
                                 <div class="row">
                                     <div class="col-sm-3 col-sm-offset-9">
-                                        <asp:Button runat="server" ID="btnChooseAlbum" CssClass="btn btn-primary" Text="Избери" ValidationGroup="1" OnClick="btnChooseAlbum_Click" />
+                                        <asp:Button runat="server" ID="btnChooseAlbum" CssClass="btn btn-primary" Text="Избери" ValidationGroup="1" OnClick="btnChooseAlbum_Click" AutoPostBack="True" />
                                     </div>
                                 </div>
                             </div>
@@ -89,23 +89,17 @@
             <div id="albumContainer" class="">
                 <!-- Функционира само над 768px -->
                 <asp:UpdatePanel runat="server" ID="upPanelPictures">
-                    <Triggers>
-                        <asp:AsyncPostBackTrigger ControlID="btnChooseAlbum" EventName="Click" />
-                    </Triggers>
                     <ContentTemplate>
-
                         <!-- end row -->
-                        <asp:Repeater runat="server" ID="repeaterAlbum">
+                        <asp:Repeater runat="server" ID="repeaterAlbum" OnItemCommand="repeaterAlbum_ItemCommand">
                             <ItemTemplate>
                             </ItemTemplate>
                         </asp:Repeater>
                     </ContentTemplate>
                 </asp:UpdatePanel>
+
             </div>
             <!-- end albumContainer -->
-
-
-
         </div>
 
         <footer class="footer">

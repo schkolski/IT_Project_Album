@@ -21,6 +21,24 @@ namespace IT_Proekt
             lblAlbumElementName2.Text = albumName;
             lblAlbumElementYear2.Text = year.ToString();
             imgAlbumElementPreview2.ImageUrl = imgUrl_2;
+
+            txbAlbumElementNumber1.Text = "0";
+            txbAlbumElementNumber1.Text = initElementNumber(slikaID1);
+            txbAlbumElementNumber2.Text = initElementNumber(slikaID2);
+        }
+
+        private string initElementNumber(int pictureID)
+        {
+            Database db = new Database();
+            int res = db.getQuantity(Session["UserName"].ToString(),
+                albumID, pictureID);
+            System.Diagnostics.Debug.WriteLine("-->>AlbumID:" + albumID.ToString() 
+                + " pictureID:" + pictureID.ToString() + " Q:"+res.ToString());
+            if (res > 0)
+            {
+                return res.ToString();
+            }
+            return "0";
         }
 
         private int slikaID1;
@@ -60,13 +78,53 @@ namespace IT_Proekt
 
         protected void btnAlbumElementAdd1_Click(object sender, EventArgs e)
         {
+            // TODO: msg's for error or succsess
 
+            int q = -1;
+            string username = Session["UserName"].ToString();
+            Int32.TryParse(txbAlbumElementNumber1.Text, out q);
+            System.Diagnostics.Debug.WriteLine("--btnAlbumElementAdd1_Click: " + q.ToString());
+            if (q > 0)
+            {
+                bool res = addToPoseduva(username, albumID, slikaID1, q);
+                System.Diagnostics.Debug.WriteLine("--btnAlbumElementAdd1_Click: " + res.ToString());
+
+                if (!res)
+                {
+                    updatePonuda(username, albumID, slikaID1, q);
+                }
+            }
         }
 
         protected void btnAlbumElementAdd2_Click(object sender, EventArgs e)
         {
+            int q = -1;
+            string username = Session["UserName"].ToString();
+            Int32.TryParse(txbAlbumElementNumber2.Text, out q);
+            System.Diagnostics.Debug.WriteLine("--btnAlbumElementAdd2_Click: " + q.ToString());
+            if (q > 0)
+            {
+                bool res = addToPoseduva(username, albumID, slikaID2, q);
+                System.Diagnostics.Debug.WriteLine("--btnAlbumElementAdd2_Click: " + res.ToString());
 
+                if (!res)
+                {
+                    updatePonuda(username, albumID, slikaID2, q);
+                }
+            }
         }
-        
+
+        private bool addToPoseduva(string username, int albumID, int slikaID, int q)
+        {
+            Database db = new Database();
+
+            return db.addPoseduvaRelation(username, albumID, slikaID, q);
+        }
+        private bool updatePonuda(string username, int albumID, int slikaID, int q)
+        {
+            Database db = new Database();
+
+            return db.updatePoseduvaRelation(username, albumID, slikaID, q);
+        }
     }
 }

@@ -41,7 +41,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6 col-sm-offset-6" style="padding-top:15px">
-                                        <asp:Button ID="btnAlbumElementAdd" runat="server" CssClass="btn btn-success" Text="Додај" /> 
+                                        <asp:Button CommandName="btnAlbumElementAdd" ID="btnAlbumElementAdd" runat="server" CssClass="btn btn-success" Text="Додај" OnClick="btnAlbumElementAdd_Click" /> 
                                     </div>
                                 </div>
                             </div>      
@@ -53,5 +53,8 @@
             </div> <!-- end row -->
                                  
         </ContentTemplate>
+        <Triggers>
+            <asp:AsyncPostBackTrigger ControlID="btnAlbumElementAdd" EventName="Click" />
+        </Triggers>
     </asp:UpdatePanel>
 </div> <!-- end albumContainer -->
