@@ -220,6 +220,15 @@ namespace IT_Proekt {
         protected global::System.Web.UI.ScriptManager scriptManager;
         
         /// <summary>
+        /// primer1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel primer1;
+        
+        /// <summary>
         /// repeaterHomepage control.
         /// </summary>
         /// <remarks>

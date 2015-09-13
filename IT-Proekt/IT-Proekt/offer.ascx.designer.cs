@@ -76,15 +76,6 @@ namespace IT_Proekt {
         protected global::System.Web.UI.WebControls.Button btnOfferBuy;
         
         /// <summary>
-        /// exchange control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button exchange;
-        
-        /// <summary>
         /// ddZamena control.
         /// </summary>
         /// <remarks>
@@ -92,5 +83,14 @@ namespace IT_Proekt {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddZamena;
+        
+        /// <summary>
+        /// exchange control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button exchange;
     }
 }

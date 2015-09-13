@@ -16,6 +16,8 @@ namespace IT_Proekt
             lblOfferTrustLevel.Text = trust.ToString();
             lblOfferDescription.Text = description;
             lblOfferPrice.Text = price.ToString();
+            ddZamena.Items.Add("primer");
+            ddZamena.Items.Add("primer1");
         }
 
         private string name;
@@ -55,6 +57,12 @@ namespace IT_Proekt
             System.Diagnostics.Debug.WriteLine("Da");
             ddZamena.Visible = true;
             exchange.Visible = false;
+        }
+
+        protected void ddZamena_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("Ne tuka");
+            exchange.Visible = true;
         }
     }
 }

@@ -7,18 +7,18 @@
             <div class="row">
                 <div class="col-sm-4">
                     <div class="row">
-                        <div class="col-sm-4" style="font-size:20px">
+                        <div class="col-sm-4" style="font-size:12px">
                             <asp:Label ID="lblOfferName" runat="server" Text=""></asp:Label>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4" style="font-size:20px">
+                        <div class="col-sm-4" style="font-size:12px">
                             <asp:Image ID="imgAlbumElementPreview1" runat="server" height="200px" Width="155px"/>
                         </div>
                     </div> 
                 </div>
-                <div class="col-sm-4">
-                    <div class="row" style="font-size:20px">
+                <div class="col-sm-4" style="margin-left:10px;">
+                    <div class="row" style="font-size:12px">
                         <div class="col-sm-3 ">
                             <asp:Label ID="lblOfferOwner" runat="server" Text=""></asp:Label>
                         </div>
@@ -47,13 +47,19 @@
                         <br />
                         <br />
                         <div class="col-sm-12" style=" margin-left:260px;" >
-                            <asp:Button runat="server" id="btnOfferBuy" CssClass="btn btn-success" Text="Купи"/>
-                            <asp:Button runat="server" id="exchange" CssClass="btn btn-success" Text="Замени" OnClick="exchange_Click"/>
-                            <asp:DropDownList runat="server" ID="ddZamena" Visible="false"></asp:DropDownList>
+                            <asp:Button runat="server" id="btnOfferBuy" CommandName="btnOfferBuy" CssClass="btn btn-success" Text="Купи"/>
+                            <asp:DropDownList runat="server" ID="ddZamena" CommandName="ddZamena" Visible="false" OnSelectedIndexChanged="ddZamena_SelectedIndexChanged"></asp:DropDownList>
+                            <asp:Button runat="server" id="exchange" CommandName="exchange" CssClass="btn btn-success" Text="Замени" OnClick="exchange_Click"/>
+                           
                         </div>                                    
                     </div>
                 </div>
             </div>                                     
         </ContentTemplate>
+        <Triggers>
+            <asp:AsyncPostBackTrigger ControlID="exchange" EventName="Click" />
+             <asp:AsyncPostBackTrigger ControlID="ddZamena" EventName="SelectedIndexChanged" />
+            <asp:AsyncPostBackTrigger ControlID="btnOfferBuy" EventName="Click" />
+        </Triggers>
     </asp:UpdatePanel>   
 </div>
