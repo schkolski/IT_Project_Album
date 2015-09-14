@@ -11,6 +11,8 @@ namespace IT_Proekt
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+           
+
             lblOfferName1.Text = name1;
             lblOfferDescription1.Text = description1;
             lblOfferPrice1.Text = price1.ToString();
@@ -19,7 +21,6 @@ namespace IT_Proekt
             imgOfferPreview1.ImageUrl = imgUrl_1;
             imgOfferPreview2.ImageUrl = imgUrl_2;
 
-            btnOfferBuy2.Visible = false;
             btnOfferBuy1.Enabled = false;
             if (Status == 1)
             {

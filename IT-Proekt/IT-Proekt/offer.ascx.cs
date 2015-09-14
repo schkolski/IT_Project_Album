@@ -16,8 +16,19 @@ namespace IT_Proekt
           //  lblOfferTrustLevel.Text = trust.ToString();
             lblOfferDescription.Text = description;
             lblOfferPrice.Text = price.ToString();
-            ddZamena.Items.Add("primer");
-            ddZamena.Items.Add("primer1");
+
+            Database db = new Database();
+            List<int> Brojki = db.getAvailableExchangePictures(Session["UserName"].ToString(), thisPonuda.Name, thisPonuda.AlbumID);
+            if (Brojki.Count > 0)
+            {
+                ddZamena.DataSource = Brojki;
+                ddZamena.DataBind();
+            }
+            else
+            {
+                ddZamena.Visible = false;
+                exchange.Enabled = false;
+            }
             imgOfferPreview.ImageUrl = imgUrl;
             // This label must be empty  
             lblOfferOwner.Text = ""; 
@@ -60,16 +71,19 @@ namespace IT_Proekt
 
         protected void exchange_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("Da");
             ddZamena.Visible = true;
             exchange.Enabled = false;
         }
 
         protected void ddZamena_SelectedIndexChanged(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("Ne tuka");
-            exchange.Enabled = true;
-            ddZamena.Visible = true;
+
+            Database db = new Database();
+            int imgID_selected = Int32.Parse(ddZamena.SelectedItem.Text);
+            
+            bool res = db.addTransakcijaExchange(Session["UserName"].ToString(), thisPonuda.ID, thisPonuda.AlbumID, imgID_selected);
+
+            Response.Redirect("~/HomePage.aspx");
         }
 
         protected void btnOfferBuy_Click(object sender, EventArgs e)

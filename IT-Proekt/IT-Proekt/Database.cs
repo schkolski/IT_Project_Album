@@ -523,9 +523,45 @@ namespace IT_Proekt
             }
             return transakcii;
         }
-        public List<int> ge(int tranID)
+        public List<int> getAvailableExchangePictures(string userKupuvac, string userProdavac, int albumID)
         {
+            SqlConnection con = getConnection();
+            string result = "OK";
+            List<int> sliki = null;
+            try
+            {
+                con.Open();
+                string query =
+                    "SELECT broj_slika FROM Poseduva WHERE username=@userKupuvac AND album_id=@albumID AND quantity > 1 " +
+                    "AND broj_slika NOT IN (SELECT p.broj_slika FROM poseduva AS p WHERE p.username=@userProdavac AND p.album_id=@albumID AND p.quantity > 0)";
 
+                SqlCommand command = new SqlCommand(query, con);
+                command.Parameters.AddWithValue("@userKupuvac", userKupuvac);
+                command.Parameters.AddWithValue("@userProdavac", userProdavac);
+                command.Parameters.AddWithValue("@albumID", albumID);
+
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+                DataSet data = new DataSet();
+                dataAdapter.Fill(data);
+
+                sliki = new List<int>();
+                foreach (DataRow row in data.Tables[0].Rows)
+                {
+                    sliki.Add(Int32.Parse(row[0].ToString()));
+                }
+                return sliki;
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Log("getAvailableExchangePictures", result);
+            }
+            return sliki;
         }
         public Transakcija getTransakcijaByID(int tranID)
         {
@@ -847,7 +883,7 @@ namespace IT_Proekt
                 command.Parameters.AddWithValue("@ponuda_id", offerID);
                 command.Parameters.AddWithValue("@username", username);
                 command.Parameters.AddWithValue("@datum", DateTime.Now);
-                command.Parameters.AddWithValue("@status", 0);
+                command.Parameters.AddWithValue("@status", 1);
                 command.Parameters.AddWithValue("@album_id", albumID);
                 command.Parameters.AddWithValue("@broj_slika", pictureID);
 

@@ -45,23 +45,22 @@
                                     <h4>Опис</h4>
                                 </div>            
                                 <div class="row">
-                                    <div class="col-xs-12" style="padding-left:0px; height:100px">
+                                    <div class="col-xs-12" style="padding-left:0px; height:50px">
                                         <asp:Label ID="lblOfferDescription1" CssClass="widthTextBox" runat="server">
                                             Lorem ipsum dolor sit amet, consectetur adipiscing elit
                                         </asp:Label>
                                     </div>
-                                </div>                                                          
+                                </div>                                       
+                                <div class="row">
+                                    <div class="col-xs-12" style="padding-left:0px;margin-top:1px;">
+                                        <p>Замена за слика: <asp:Label ID="lblOfferPrice1" runat="server">10$</asp:Label></p>
+                                    </div>
+                                </div>                   
                                 <div class="row" style="padding-bottom:10px">
-                                    <div class="col-xs-1" style="padding-left:0px; padding-top:8px">
-                                        <p>Замена за слика:</p>
-                                    </div>
-                                    <div class="col-xs-3" style="padding-top:8px">
-                                        <asp:Label ID="lblOfferPrice1" runat="server">10$</asp:Label>
-                                    </div>
-                                    <div class="col-xs-4">
+                                    <div class="col-xs-6">
                                         <asp:Button runat="server" CommandName="btnOfferCancel1" id="btnOfferCancel1" CssClass="btn btn-danger" Text="Откажи" OnClick="btnOfferCancel1_Click" AutoPostBack="True" /> 
                                     </div>
-                                    <div class="col-xs-4">
+                                    <div class="col-xs-6">
                                         <asp:Button runat="server" CommandName="btnOfferBuy1" id="btnOfferBuy1" CssClass="btn btn-success" Text="Потврди" OnClick="btnOfferBuy1_Click" AutoPostBack="True" /> 
                                     </div>
                                 </div>

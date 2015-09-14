@@ -132,6 +132,7 @@ namespace IT_Proekt
                     }
                     else
                     {
+                        
                         transakciiElement tranElem = (transakciiElement)LoadControl("transakciiElement.ascx");
                         Ponuda p = db.getOffer(t.ID);
                         Korisnik user = db.getUserInfoByUsername(t.Username);
