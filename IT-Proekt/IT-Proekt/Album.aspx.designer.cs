@@ -49,22 +49,22 @@ namespace IT_Proekt {
         protected global::System.Web.UI.UpdatePanel upPanelMenu;
         
         /// <summary>
-        /// txbChooseAlbumName control.
+        /// ddName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbChooseAlbumName;
+        protected global::System.Web.UI.WebControls.DropDownList ddName;
         
         /// <summary>
-        /// txbChooseAlbumYear control.
+        /// ddYear control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbChooseAlbumYear;
+        protected global::System.Web.UI.WebControls.DropDownList ddYear;
         
         /// <summary>
         /// btnChooseAlbum control.

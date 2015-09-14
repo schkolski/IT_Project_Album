@@ -38,28 +38,31 @@ namespace IT_Proekt.ServiceReference1
             return niza;
         }
         [WebMethod]
-        public String[] getAlbumNames()
+        public String [] getAlbumNames()
         {
             db = new Database();
             List<Album> niza = db.getAllAlbumsNames();
-            String[] album = new String[niza.Count];
-            int i = 0;
+            String [] album = new String [niza.Count+1];
+            int i = 1;
+            album[0] = "Izberete album";
             foreach (Album temp in niza)
             {
                 album[i++] = temp.Name;
             }
+
             return album;
         }
         [WebMethod]
-        public int[] getAlbumYearByName(String name)
+        public String [] getAlbumYearByName(String name)
         {
             db = new Database();
             List<Album> albums = db.getAlbumByName(name);
-            int[] godini = new int[albums.Count];
+            String[] godini = new String[albums.Count];
             int i = 0;
             foreach (Album temp in albums)
             {
-                godini[i++] = temp.Year;
+                godini[i++]=temp.Year.ToString();
+                
             }
             return godini;
         }

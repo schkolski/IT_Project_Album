@@ -12,8 +12,12 @@
     <title>My Offers</title>
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="Content/homePage.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap-wizard/1.2/jquery.bootstrap.wizard.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script>
 </head>
-<body>
+<body onload="GetMyValueNames()">
     <form id="form1" runat="server">
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
@@ -50,28 +54,25 @@
         </nav>
 
         <div class="container">
+
             <asp:ScriptManager runat="server" ID="scriptManager"></asp:ScriptManager>
 
             <div id="chooseAlbumContainer" class="container offer" style="width: 97%">
                 <asp:UpdatePanel runat="server" ID="upPanelMenu">
                     <ContentTemplate>
                         <div class="row">
-                            <div class="col-sm-6">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <asp:TextBox ID="txbChooseAlbumName" runat="server" placeholder="Внеси име на албум..." Width="70%"></asp:TextBox>
+                            <div class="search">
+                                <div class="col-xs-3">
+                                    <div class="input-group">
+                                        <asp:DropDownList ID="ddName" CommandName="ddName" runat="server" OnSelectedIndexChanged="ddName_SelectedIndexChanged" CssClass="btn btn-default dropdown-toggle" AutoPostBack="true" style="width:150%; text-align:center;"></asp:DropDownList>
                                     </div>
-                                    <div class="col-sm-6">
-                                        <asp:TextBox ID="txbChooseAlbumYear" runat="server" placeholder="Внеси година..." Width="70%"></asp:TextBox>
-                                    </div>
+                                    <!-- /input-group -->
                                 </div>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txbChooseAlbumName" ValidationGroup="1" ErrorMessage="Внесете име!!!" ForeColor="Red"></asp:RequiredFieldValidator>
+                                <div class="col-xs-3">
+                                    <div class="input-group">
+                                        <asp:DropDownList ID="ddYear" runat="server" CssClass="btn btn-default dropdown-toggle" style="width:150%"></asp:DropDownList>
                                     </div>
-                                    <div class="col-sm-6">
-                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txbChooseAlbumYear" ValidationGroup="1" ErrorMessage="Внесете година!!!" ForeColor="Red"></asp:RequiredFieldValidator>
-                                    </div>
+                                    <!-- /input-group -->
                                 </div>
                             </div>
                             <div class="col-sm-6" style="padding-left: 15px">
@@ -83,6 +84,9 @@
                             </div>
                         </div>
                     </ContentTemplate>
+                    <Triggers>
+                        <asp:AsyncPostBackTrigger ControlID="ddName" EventName="SelectedIndexChanged" />
+                    </Triggers>
                 </asp:UpdatePanel>
             </div>
 
@@ -113,7 +117,5 @@
 </body>
 
 
-<script src="Scripts/jquery-1.10.2.min.js"></script>
-<script src="Scripts/bootstrap.min.js"></script>
-<script src="Scripts/HomePage.js"></script>
+
 </html>
