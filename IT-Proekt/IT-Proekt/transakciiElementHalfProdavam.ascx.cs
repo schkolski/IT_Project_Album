@@ -86,7 +86,7 @@ namespace IT_Proekt
         {
             bool res = updateTranStatus(3);
             Database db = new Database();
-            Transakcija t = db.geyTransakcijaByID(tranID);
+            Transakcija t = db.getTransakcijaByID(tranID);
             Ponuda p = db.getOffer(t.ID);
             if(t.AlbumID == -1){
                 db.addPoseduvaRelation(t.Username, p.AlbumID, p.BrojSlika, 0);

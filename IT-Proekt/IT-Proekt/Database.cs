@@ -523,7 +523,11 @@ namespace IT_Proekt
             }
             return transakcii;
         }
-        public Transakcija geyTransakcijaByID(int tranID)
+        public List<int> ge(int tranID)
+        {
+
+        }
+        public Transakcija getTransakcijaByID(int tranID)
         {
             SqlConnection con = getConnection();
             string result = "OK";
