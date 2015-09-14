@@ -10,10 +10,14 @@ namespace IT_Proekt
 {
     public partial class Album1 : System.Web.UI.Page
     {
+        public String []niza;
+        public String []godini;
+        public ServiceReference1.WebService1 ab;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
+                fillNames();
                 ViewState["init"] = true;
                 if (Session["UserName"] == null)
                 {
@@ -27,19 +31,29 @@ namespace IT_Proekt
                     System.Diagnostics.Debug.WriteLine("TUKA!");
                     return;
                 }
-                if (!ViewState["albumName"].ToString().Equals(txbChooseAlbumName.Text))
+                if (!ViewState["albumName"].ToString().Equals(ddName.SelectedItem.Text.ToString()))
                 {
-                    ViewState["albumName"] = txbChooseAlbumName.Text;
+                    ViewState["albumName"] = ddName.SelectedItem.Text.ToString();
                 }
-                if (!ViewState["albumYear"].ToString().Equals(txbChooseAlbumYear.Text))
+                if (!ViewState["albumYear"].ToString().Equals(ddYear.SelectedItem.Text.ToString()))
                 {
-                    ViewState["albumYear"] = txbChooseAlbumYear.Text;
+                    ViewState["albumYear"] = ddYear.SelectedItem.Text.ToString();
                 }
-                txbChooseAlbumName.Text = ViewState["albumName"].ToString();
-                txbChooseAlbumYear.Text = ViewState["albumYear"].ToString();
+                ddName.SelectedItem.Text = ViewState["albumName"].ToString();
+                ddYear.SelectedItem.Text = ViewState["albumYear"].ToString();
                 showAlbumStickers();
             }
 
+           
+        }
+        public void fillNames()
+        {
+            
+            ab = new ServiceReference1.WebService1();
+            niza = ab.getAlbumNames();
+            
+            ddName.DataSource = niza;
+            ddName.DataBind();
         }
         protected void LogOut_Click(Object sender, EventArgs e)
         {
@@ -51,10 +65,10 @@ namespace IT_Proekt
         
         protected void btnChooseAlbum_Click(object sender, EventArgs e)
         {
-            ViewState["albumName"] = txbChooseAlbumName.Text;
-            ViewState["albumYear"] = txbChooseAlbumYear.Text;
-            System.Diagnostics.Debug.WriteLine(ViewState["albumName"].ToString() + "; " + txbChooseAlbumName.Text);
-            System.Diagnostics.Debug.WriteLine(ViewState["albumYear"].ToString() + "; " + txbChooseAlbumYear.Text);
+            ViewState["albumName"] = ddName.SelectedItem.Text.ToString();
+            ViewState["albumYear"] = ddYear.SelectedItem.Text.ToString();
+            System.Diagnostics.Debug.WriteLine(ViewState["albumName"].ToString() + "; " + ddName.SelectedItem.Text.ToString());
+            System.Diagnostics.Debug.WriteLine(ViewState["albumYear"].ToString() + "; " + ddYear.SelectedItem.Text.ToString());
             
             showAlbumStickers();
         }
@@ -67,9 +81,9 @@ namespace IT_Proekt
         {
             clearRepeater();
 
-            string albumName = txbChooseAlbumName.Text;
+            string albumName = ddName.SelectedItem.Text.ToString();
             int albumYear = -1;
-            Int32.TryParse(txbChooseAlbumYear.Text, out albumYear);
+            Int32.TryParse(ddYear.SelectedItem.Text.ToString(), out albumYear);
 
             Database db = new Database();
             Album album = db.getAlbumByNameAndYear(albumName, albumYear);
@@ -117,6 +131,22 @@ namespace IT_Proekt
         protected void repeaterAlbum_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
 
+        }
+
+        protected void txbChooseAlbumName_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+        protected void ddName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ab = new ServiceReference1.WebService1();
+            System.Diagnostics.Debug.Write("Ovdeka vleguva");
+            if(ddName.SelectedIndex != -1)
+            {
+                godini = ab.getAlbumYearByName(ddName.SelectedItem.Text.ToString());
+                ddYear.DataSource = godini;
+                ddYear.DataBind();
+            }
         }
     }
 }

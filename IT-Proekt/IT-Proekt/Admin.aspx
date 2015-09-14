@@ -10,42 +10,29 @@
     <title>Admin-Korisnici</title>
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="Content/homePage.css" rel="stylesheet" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap-wizard/1.2/jquery.bootstrap.wizard.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script>
+    <script type="text/javascript">
+        function GetMyValue()
+        {
+            var someVar = <%=this.fillAllUsers()%>;
+            return someVar;
+        }
+
+    </script>
     <script>
         $(function () {
-            var availableTags = [
-              "ActionScript",
-              "AppleScript",
-              "Asp",
-              "BASIC",
-              "C",
-              "C++",
-              "Clojure",
-              "COBOL",
-              "ColdFusion",
-              "Erlang",
-              "Fortran",
-              "Groovy",
-              "Haskell",
-              "Java",
-              "JavaScript",
-              "Lisp",
-              "Perl",
-              "PHP",
-              "Python",
-              "Ruby",
-              "Scala",
-              "Scheme"
-            ];
-            $("#tags").autocomplete({
+            var availableTags = GetMyValue();
+            console.log(availableTags); 
+            $("#txtSearch").autocomplete({
                 source: availableTags
             });
         });
     </script>
 </head>
-<body>
+<body onload="GetMyValue()">
     <form id="form1" runat="server">
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
@@ -77,7 +64,7 @@
             </div>
         </nav>
 
-        <div class="container">
+        <div class="container col-sm-4 col-sm-offset-3 col-lg-4 col-lg-offset-3" style="align-items:center">
             <div class="search">
                 <div class="col-xs-12">
                     <div class="input-group">
@@ -98,7 +85,7 @@
                     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" DataSourceID="SqlDataSource1" ForeColor="Black" GridLines="Vertical" Width="327px">
                         <AlternatingRowStyle BackColor="Gainsboro" />
                         <Columns>
-                            <asp:BoundField DataField="name" SortExpression="name">
+                            <asp:BoundField DataField="username" SortExpression="username">
                                 <ItemStyle HorizontalAlign="Right" VerticalAlign="Middle" />
                             </asp:BoundField>
                             <asp:ButtonField ButtonType="Button" Text="Промени">
@@ -115,7 +102,7 @@
                         <SortedDescendingCellStyle BackColor="#CAC9C9" />
                         <SortedDescendingHeaderStyle BackColor="#383838" />
                     </asp:GridView>
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dbConnection_Mico %>" SelectCommand="SELECT [name] FROM [Korisnik]"></asp:SqlDataSource>
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dbConnection %>" SelectCommand="SELECT [username] FROM [Korisnik]"></asp:SqlDataSource>
                 </div>
             </div>
         </div>
@@ -127,9 +114,5 @@
         </footer>
     </form>
 </body>
-
-
-<script src="Scripts/jquery-1.10.2.min.js"></script>
-<script src="Scripts/bootstrap.min.js"></script>
-<script src="Scripts/HomePage.js"></script>
 </html>
+

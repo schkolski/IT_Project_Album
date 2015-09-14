@@ -90,9 +90,9 @@ namespace IT_Proekt
             int day = 0;
             int year = 0;
             Int32.TryParse(ddYear.SelectedValue.ToString(), out year);
-            int month = ddMonth.SelectedIndex + 1;
+            int month = ddMonth.SelectedIndex;
             Int32.TryParse(ddDay.SelectedValue.ToString(), out day);
-            
+            System.Diagnostics.Debug.WriteLine(day + " " + month + " " + year);
             if (day != 0 && year != 0 && ddMonth.SelectedIndex >= 1) {
                 DateTime db = new DateTime(year, month, day);
                 bool flag = baza.checkKorisnik(tbUserReg.Text, tbPassReg.Text);
