@@ -16,10 +16,22 @@ namespace IT_Proekt
         {
             if (!Page.IsPostBack)
             {
-                 if (Session["UserName"] == null || Session["Admin"] != null)
-                 {
-                     Response.Redirect("HomePage.aspx");
-                 }
+                if (Session["UserName"] == null || Session["Admin"] != null)
+                {
+                    Response.Redirect("HomePage.aspx");
+                }
+
+                if (Request.Cookies.Get("AdminCookie") != null)
+                {
+                    ViewState["title"] = Request.Cookies["AdminCookie"]["albumName"];
+                    ViewState["year"] = Int32.Parse(Request.Cookies["AdminCookie"]["albumYear"]);
+                    ViewState["album_id"] = Int32.Parse(Request.Cookies["AdminCookie"]["albumID"]);
+                    ViewState["mom_br_sliki"] = Int32.Parse(Request.Cookies["AdminCookie"]["momImageNumber"]);
+                    ViewState["br_sliki"] = Int32.Parse(Request.Cookies["AdminCookie"]["imageNumber"]);
+
+                    changeForm();
+                    setFormInfo();
+                }
             }
         }
         private void setFormInfo()
@@ -41,10 +53,19 @@ namespace IT_Proekt
                 if (res)
                 {
                     // TODO: Show successful message
+
                     changeForm();
                     setFormInfo();
+
+                    Response.Cookies["AdminCookie"]["isAlbumAddInProgress"] = "Yes";
+                    Response.Cookies["AdminCookie"]["albumName"] = tbTitle.Text;
+                    Response.Cookies["AdminCookie"]["albumYear"] = tbYear.Text;
+                    Response.Cookies["AdminCookie"]["albumID"] = ViewState["album_id"].ToString();
+                    Response.Cookies["AdminCookie"]["imageNumber"] = user_lic.Text;
+                    Response.Cookies["AdminCookie"]["momImageNumber"] = "1";
+                    Response.Cookies["AdminCookie"].Expires = DateTime.Now.AddDays(1);
                 }
-            }                   
+            }
         }
 
         protected void btnNext_Click(object sender, EventArgs e)
@@ -67,22 +88,29 @@ namespace IT_Proekt
                     // If and only if insert picture was succsessful
 
                     ViewState["mom_br_sliki"] = (Int32)ViewState["mom_br_sliki"] + 1;
+
+                    Response.Cookies["AdminCookie"]["imageNumber"] = ViewState["mom_br_sliki"].ToString();
+
                     if (ViewState["mom_br_sliki"].Equals(ViewState["br_sliki"]))
                     {
                         btnNext.Text = "Finish";
                         btnNext.CssClass = "btn btn-success";
                     }
+
                     setFormInfo();
                 }
                 if ((Int32)ViewState["mom_br_sliki"] > (Int32)ViewState["br_sliki"])
                 {
                     clearViewStates();
+
+                    Response.Cookies["AdminCookie"].Expires = DateTime.Now.AddDays(-1);
+
                     Response.Redirect("~/AddAlbum.aspx");
                 }
                 imgPrev.ImageUrl = "";
                 ViewState["img"] = null;
             }
-            
+
         }
 
         private bool insertAlbumIntoDatabase()
@@ -243,7 +271,8 @@ namespace IT_Proekt
                 }
 
                 Page.Validate();
-                if(Page.IsValid){
+                if (Page.IsValid)
+                {
                     return true;
                 }
             }

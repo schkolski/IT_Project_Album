@@ -115,7 +115,7 @@
                         <SortedDescendingCellStyle BackColor="#CAC9C9" />
                         <SortedDescendingHeaderStyle BackColor="#383838" />
                     </asp:GridView>
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dbConnection_Mico %>" SelectCommand="SELECT [name] FROM [Korisnik]"></asp:SqlDataSource>
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dbConnection_Aleksandar %>" SelectCommand="SELECT [name] FROM [Korisnik]"></asp:SqlDataSource>
                 </div>
             </div>
         </div>

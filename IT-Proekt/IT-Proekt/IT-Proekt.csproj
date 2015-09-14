@@ -45,6 +45,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -222,6 +223,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
+    <Content Include="Statistiki.aspx" />
     <Content Include="Testing.aspx" />
     <Content Include="Transakcii.aspx" />
     <Content Include="transakciiElement.ascx" />
@@ -496,6 +498,13 @@
     </Compile>
     <Compile Include="Slika.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Statistiki.aspx.cs">
+      <DependentUpon>Statistiki.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Statistiki.aspx.designer.cs">
+      <DependentUpon>Statistiki.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Testing.aspx.cs">
       <DependentUpon>Testing.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
