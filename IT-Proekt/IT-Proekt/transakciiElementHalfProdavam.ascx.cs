@@ -30,6 +30,7 @@ namespace IT_Proekt
         private string email1;
         private DateTime date;
 
+        public int tranID { get; set; }
         public string imgUrl_1 { get; set; }
         public int albumID_1 { get; set; }
 
@@ -67,10 +68,38 @@ namespace IT_Proekt
             set { email1 = value; }
         }
 
-        private DateTime Date
+        public DateTime Date
         {
             get { return date; }
             set { date = value; }
+        }
+
+        protected void btnOfferCancel1_Click(object sender, EventArgs e)
+        {
+            bool res = updateTranStatus(2);
+            Session["state"] = "prodavam";
+            Response.Redirect("~/Transakcii.aspx");
+
+        }
+
+        protected void btnOfferBuy1_Click(object sender, EventArgs e)
+        {
+            bool res = updateTranStatus(3);
+            Database db = new Database();
+            Transakcija t = db.geyTransakcijaByID(tranID);
+            Ponuda p = db.getOffer(t.ID);
+            if(t.AlbumID == -1){
+                db.addPoseduvaRelation(t.Username, p.AlbumID, p.BrojSlika, 0);
+                db.updateQuantity(t.Username, p.AlbumID, p.BrojSlika, 1);
+            }
+            Session["state"] = "prodavam";
+            Response.Redirect("~/Transakcii.aspx");
+        }
+
+        private bool updateTranStatus(int status)
+        {
+            Database db = new Database();
+            return db.updateTransakcija(tranID, status);
         }
     }
 }

@@ -53,16 +53,16 @@
                                 </div>                                                          
                                 <div class="row" style="padding-bottom:10px">
                                     <div class="col-xs-1" style="padding-left:0px; padding-top:8px">
-                                        <p>Цена:</p>
+                                        <p>Замена за слика:</p>
                                     </div>
                                     <div class="col-xs-3" style="padding-top:8px">
                                         <asp:Label ID="lblOfferPrice1" runat="server">10$</asp:Label>
                                     </div>
                                     <div class="col-xs-4">
-                                        <asp:Button runat="server" id="btnOfferCancel1" CssClass="btn btn-danger" Text="Откажи"/> 
+                                        <asp:Button runat="server" CommandName="btnOfferCancel1" id="btnOfferCancel1" CssClass="btn btn-danger" Text="Откажи" OnClick="btnOfferCancel1_Click" AutoPostBack="True" /> 
                                     </div>
                                     <div class="col-xs-4">
-                                        <asp:Button runat="server" id="btnOfferBuy1" CssClass="btn btn-success" Text="Потврди"/> 
+                                        <asp:Button runat="server" CommandName="btnOfferBuy1" id="btnOfferBuy1" CssClass="btn btn-success" Text="Потврди" OnClick="btnOfferBuy1_Click" AutoPostBack="True" /> 
                                     </div>
                                 </div>
                             </div>      
@@ -74,5 +74,9 @@
 
             </div>     
         </ContentTemplate>
+        <Triggers>
+            <asp:AsyncPostBackTrigger ControlID="btnOfferCancel1" EventName="Click" />
+            <asp:AsyncPostBackTrigger ControlID="btnOfferBuy1" EventName="Click" />
+        </Triggers>
     </asp:UpdatePanel>
 </div><!--end TransakciiContainer-->

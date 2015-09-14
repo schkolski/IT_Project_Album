@@ -13,7 +13,7 @@ namespace IT_Proekt
         {
             lblOfferName1.Text = name1;
             lblOfferDescription1.Text = description1;
-            lblOfferPrice1.Text = price1.ToString();
+            lblOfferPrice1.Text = imgID_2.ToString();
             lblOffer1ID.Text = offer1ID.ToString();
             lblUserName1.Text = user1;
             lblUserEmail1.Text = email1;
@@ -30,9 +30,13 @@ namespace IT_Proekt
         private string user1;
         private string email1;
         private DateTime date;
-
+        public int tranID { get; set; }
         public string imgUrl_1 { get; set; }
+
         public string imgUrl_2 { get; set; }
+
+        public int imgID_1 { get; set; }
+        public int imgID_2 { get; set; }
         public int albumID_1 { get; set; }
 
         public string Name1
@@ -69,10 +73,30 @@ namespace IT_Proekt
             set { email1 = value; }
         }
 
-        private DateTime Date
+        public DateTime Date
         {
             get { return date; }
             set { date = value; }
+        }
+
+        protected void btnOfferCancel1_Click(object sender, EventArgs e)
+        {
+            bool res = updateTranStatus(2); 
+            Session["state"] = "prodavam";
+            Response.Redirect("~/Transakcii.aspx");
+        }
+
+        protected void btnOfferBuy1_Click(object sender, EventArgs e)
+        {
+            bool res = updateTranStatus(3); 
+            Session["state"] = "prodavam";
+            Response.Redirect("~/Transakcii.aspx");
+        }
+
+        private bool updateTranStatus(int status)
+        {
+            Database db = new Database();
+            return db.updateTransakcija(tranID, status);
         }
     }
 }

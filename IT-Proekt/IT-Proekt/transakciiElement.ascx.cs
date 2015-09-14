@@ -14,24 +14,42 @@ namespace IT_Proekt
             lblOfferName1.Text = name1;
             lblOfferDescription1.Text = description1;
             lblOfferPrice1.Text = price1.ToString();
-            lblOffer1ID.Text = offer1ID.ToString();
             lblUserName1.Text = user1;
             lblUserEmail1.Text = email1;
+            imgOfferPreview1.ImageUrl = imgUrl_1;
+            imgOfferPreview2.ImageUrl = imgUrl_2;
 
-            lblOfferName2.Text = name2;
-            lblOfferDescription2.Text = description2;
-            lblOfferPrice2.Text = price2.ToString();
-            lblOffer2ID.Text = offer2ID.ToString();
-            lblUserName2.Text = user2;
-            lblUserEmail2.Text = email2;
+            btnOfferBuy2.Visible = false;
+            btnOfferBuy1.Enabled = false;
+            if (Status == 1)
+            {
+                btnOfferBuy1.Text = "Се чека на потврда";
+                btnOfferBuy1.CssClass = "btn btn-warning";
+            }
+            else if (Status == 2)
+            {
+                btnOfferBuy1.Text = "Понудата е одбиена";
+                btnOfferBuy1.CssClass = "btn btn-danger";
+            }
+            else
+            {
+                btnOfferBuy1.Text = "Понудата е прифатена";
+                btnOfferBuy1.CssClass = "btn btn-success";
+            }
         }
-
+        public int Status { get; set; }
+        public DateTime Date { get; set; }
         private string name1;
         private string description1;
         private int price1;
         private int offer1ID;
         private string user1;
         private string email1;
+        public string imgUrl_1 { get; set; }
+        public string imgUrl_2 { get; set; }
+        public int imgID_1 { get; set; }
+        public int imgID_2 { get; set; }
+        public int tranID { get; set; }
 
         private string name2;
         private string description2;
@@ -39,7 +57,7 @@ namespace IT_Proekt
         private int offer2ID;
         private string user2;
         private string email2;
-
+        
         public string Name1
         {
             get { return name1; }

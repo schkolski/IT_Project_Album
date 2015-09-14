@@ -214,6 +214,50 @@ namespace IT_Proekt
             }
             return picture;
         }
+        public Ponuda getOffer(int offerID)
+        {
+            SqlConnection con = getConnection();
+            string result = "OK";
+            Ponuda ponuda = null;
+            try
+            {
+                con.Open();
+                string query = "SELECT * FROM Ponuda " +
+                                "WHERE id=@id";
+                SqlCommand command = new SqlCommand(query, con);
+                command.Parameters.AddWithValue("@id", offerID);
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    ponuda = new Ponuda(
+                        Int32.Parse(reader["id"].ToString()),
+                        reader["offer_description"].ToString(),
+                        Int32.Parse(reader["price"].ToString()),
+                        reader["name"].ToString(),
+                        Int32.Parse(reader["album_id"].ToString()),
+                        Int32.Parse(reader["broj_slika"].ToString()),
+                        reader["username"].ToString(),
+                        Int32.Parse(reader["exchange"].ToString()),
+                        DateTime.Parse(reader["datum"].ToString())
+                   );
+
+                    return ponuda;
+                }
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Log("getOffer", result);
+            }
+            return ponuda;
+        }
         public List<Slika> getAllPicturesByAlbumID(int album_id)
         {
             SqlConnection con = getConnection();
@@ -314,7 +358,7 @@ namespace IT_Proekt
                 string query = "SELECT id, offer_description, price, name, " +
                                     "album_id, broj_slika, exchange, username, datum " +
                                "FROM Ponuda " +
-                               "WHERE username=@username";
+                               "WHERE username=@username AND id NOT IN (SELECT ponuda_id FROM Transakcija)";
 
                 SqlCommand command = new SqlCommand(query, con);
                 command.Parameters.AddWithValue("@username", username);
@@ -360,23 +404,22 @@ namespace IT_Proekt
             try
             {
                 con.Open();
-                string query = 
-                    "SELECT * FROM Ponuda as p "+
-                    "WHERE p.album_id IN ( "+
-					        "SELECT distinct(po.album_id) "+
-					        "FROM Poseduva as po "+
-					        "WHERE po.username = @username "+
-				            ") "+
-		            "AND p.broj_slika NOT IN ( "+
-						    "SELECT po1.broj_slika "+
-						    "FROM Poseduva as po1 "+
-						    "WHERE po1.album_id = p.album_id AND po1.username=@username AND "+
-							"po1.quantity > 0 "+
-                            ") "+
-                    "AND p.id NOT IN ( "+
-					        "SELECT t.ponuda_id from Transakcija as t "+
-					        "WHERE t.username = @username "+
-			                ") "+
+                string query =
+                    "SELECT * FROM Ponuda as p " +
+                    "WHERE p.album_id IN ( " +
+                            "SELECT distinct(po.album_id) " +
+                            "FROM Poseduva as po " +
+                            "WHERE po.username = @username " +
+                            ") " +
+                    "AND p.broj_slika NOT IN ( " +
+                            "SELECT po1.broj_slika " +
+                            "FROM Poseduva as po1 " +
+                            "WHERE po1.album_id = p.album_id AND po1.username=@username AND " +
+                            "po1.quantity > 0 " +
+                            ") " +
+                    "AND p.id NOT IN ( " +
+                            "SELECT t.ponuda_id from Transakcija as t " +
+                            ") " +
                     "ORDER BY " + orderBy;
 
                 SqlCommand command = new SqlCommand(query, con);
@@ -415,6 +458,253 @@ namespace IT_Proekt
                 Log("getAllOffersForUsername", result);
             }
             return offers;
+        }
+        public List<Transakcija> getAllTransakciiHistoryForUsername(string username, string orderBy)
+        {
+            SqlConnection con = getConnection();
+            string result = "OK";
+            List<Transakcija> transakcii = null;
+            try
+            {
+                con.Open();
+                string query =
+                    "SELECT t.ponuda_id, t.username, t.datum, t.status, t.album_id, t.broj_slika " +
+                    "from Transakcija as t, Ponuda as p " +
+                    "WHERE (t.username = '"  + username + "' and p.id=t.ponuda_id and p.username != '" + username + "' and t.status > 1) " +
+                    "OR    (t.username != '" + username + "' and p.id=t.ponuda_id and p.username = '"  + username + "' and t.status = 3) " +
+                    "ORDER BY " + orderBy;
+
+                SqlCommand command = new SqlCommand(query, con);
+                command.Parameters.AddWithValue("@username", username);
+
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+                DataSet data = new DataSet();
+                dataAdapter.Fill(data);
+
+                transakcii = new List<Transakcija>();
+                foreach (DataRow row in data.Tables[0].Rows)
+                {
+                    Transakcija t;
+                    if (row["album_id"].ToString().Equals(""))
+                    {
+                        t = new Transakcija(
+                            Int32.Parse(row["ponuda_id"].ToString()),
+                            row["username"].ToString(),
+                            DateTime.Parse(row["datum"].ToString()),
+                            Int32.Parse(row["status"].ToString())
+                        );
+                    }
+                    else
+                    {
+                        t = new Transakcija(
+                            Int32.Parse(row["ponuda_id"].ToString()),
+                            row["username"].ToString(),
+                            DateTime.Parse(row["datum"].ToString()),
+                            Int32.Parse(row["status"].ToString()),
+                            Int32.Parse(row["album_id"].ToString()),
+                            Int32.Parse(row["broj_slika"].ToString())
+                        );
+                    }
+                    transakcii.Add(t);
+                }
+                return transakcii;
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Log("getAllTransakciiHistoryForUsername", result);
+                if (transakcii != null)
+                    Log("Returned", transakcii.Count.ToString());
+            }
+            return transakcii;
+        }
+        public Transakcija geyTransakcijaByID(int tranID)
+        {
+            SqlConnection con = getConnection();
+            string result = "OK";
+            Transakcija transakcija = null;
+            try
+            {
+                con.Open();
+                string query =
+                    "SELECT * FROM Transakcija WHERE ponuda_id=" + tranID;
+
+                SqlCommand command = new SqlCommand(query, con);
+                SqlDataReader reader = command.ExecuteReader();
+
+                if(reader.Read())
+                {
+                    if (reader["album_id"].ToString().Equals(""))
+                    {
+                        transakcija = new Transakcija(
+                            Int32.Parse(reader["ponuda_id"].ToString()),
+                            reader["username"].ToString(),
+                            DateTime.Parse(reader["datum"].ToString()),
+                            Int32.Parse(reader["status"].ToString())
+                        );
+                    }
+                    else
+                    {
+                        transakcija = new Transakcija(
+                            Int32.Parse(reader["ponuda_id"].ToString()),
+                            reader["username"].ToString(),
+                            DateTime.Parse(reader["datum"].ToString()),
+                            Int32.Parse(reader["status"].ToString()),
+                            Int32.Parse(reader["album_id"].ToString()),
+                            Int32.Parse(reader["broj_slika"].ToString())
+                        );
+                    }
+                    return transakcija;
+                }
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Log("geyTransakcijaByID", result);
+            }
+            return transakcija;
+        }
+
+        public List<Transakcija> getAllTransakciiKupuvamForUsername(string username, string orderBy)
+        {
+            SqlConnection con = getConnection();
+            string result = "OK";
+            List<Transakcija> transakcii = null;
+            try
+            {
+                con.Open();
+                string query =
+                    //"SELECT t.ponuda_id, t.username, t.datum, t.status, t.album_id, t.broj_slika " +
+                    //"from Transakcija as t, Ponuda as p " +
+                    //"WHERE t.username = @username and p.id=t.ponuda_id and p.username != @username t.status=1 " +
+                    //"ORDER BY " + orderBy;
+
+                    "SELECT t.ponuda_id, t.username, t.datum, t.status, t.album_id, t.broj_slika " +
+                    "from Transakcija as t, Ponuda as p " +
+                    "WHERE t.username = '" + username + "' and p.id=t.ponuda_id and p.username != '" + username + "' and t.status = 1 " +
+                    "ORDER BY " + orderBy;
+
+                SqlCommand command = new SqlCommand(query, con);
+                command.Parameters.AddWithValue("@username", username);
+
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+                DataSet data = new DataSet();
+                dataAdapter.Fill(data);
+
+                transakcii = new List<Transakcija>();
+                foreach (DataRow row in data.Tables[0].Rows)
+                {
+                    Transakcija t;
+                    if (row["album_id"].ToString().Equals(""))
+                    {
+                        t = new Transakcija(
+                            Int32.Parse(row["ponuda_id"].ToString()),
+                            row["username"].ToString(),
+                            DateTime.Parse(row["datum"].ToString()),
+                            Int32.Parse(row["status"].ToString())
+                        );
+                    }
+                    else
+                    {
+                        t = new Transakcija(
+                            Int32.Parse(row["ponuda_id"].ToString()),
+                            row["username"].ToString(),
+                            DateTime.Parse(row["datum"].ToString()),
+                            Int32.Parse(row["status"].ToString()),
+                            Int32.Parse(row["album_id"].ToString()),
+                            Int32.Parse(row["broj_slika"].ToString())
+                        );
+                    }
+                    transakcii.Add(t);
+                }
+                return transakcii;
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Log("getAllTransakciiKupuvamForUsername", result );
+                if(transakcii != null)
+                    Log("Returned", transakcii.Count.ToString());
+            }
+            return transakcii;
+        }
+        public List<Transakcija> getAllTransakciiProdavamForUsername(string username, string orderBy)
+        {
+            SqlConnection con = getConnection();
+            string result = "OK";
+            List<Transakcija> transakcii = null;
+            try
+            {
+                con.Open();
+                string query =
+                    "SELECT t.ponuda_id, t.username, t.datum, t.status, t.album_id, t.broj_slika " +
+                    "from Transakcija as t, Ponuda as p " +
+                    "WHERE t.username != '"+username+"' and p.id=t.ponuda_id and p.username = '"+username+"' and t.status = 1 " +
+                    "ORDER BY " + orderBy;
+
+                SqlCommand command = new SqlCommand(query, con);
+
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+                DataSet data = new DataSet();
+                dataAdapter.Fill(data);
+
+                transakcii = new List<Transakcija>();
+                foreach (DataRow row in data.Tables[0].Rows)
+                {
+                    Transakcija t;
+
+                    if (row["album_id"].ToString().Equals(""))
+                    {
+                        t = new Transakcija(
+                            Int32.Parse(row["ponuda_id"].ToString()),
+                            row["username"].ToString(),
+                            DateTime.Parse(row["datum"].ToString()),
+                            Int32.Parse(row["status"].ToString())
+                        );
+                    }
+                    else
+                    {
+                        t = new Transakcija(
+                            Int32.Parse(row["ponuda_id"].ToString()),
+                            row["username"].ToString(),
+                            DateTime.Parse(row["datum"].ToString()),
+                            Int32.Parse(row["status"].ToString()),
+                            Int32.Parse(row["album_id"].ToString()),
+                            Int32.Parse(row["broj_slika"].ToString())
+                        );
+                    }
+                    transakcii.Add(t);
+                }
+                return transakcii;
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Log("getAllTransakciiProdavamForUsername", result);
+                if (transakcii != null)
+                    Log("Returned", transakcii.Count.ToString());
+            }
+            return transakcii;
         }
         public int getQuantity(string username, int album_id, int broj_slika)
         {
@@ -517,7 +807,7 @@ namespace IT_Proekt
                 command.Parameters.AddWithValue("@ponuda_id", offerID);
                 command.Parameters.AddWithValue("@username", username);
                 command.Parameters.AddWithValue("@datum", DateTime.Now);
-                command.Parameters.AddWithValue("@status", 0);
+                command.Parameters.AddWithValue("@status", 1);
                 //command.Parameters.AddWithValue("@album_id", null);
                 //command.Parameters.AddWithValue("@broj_slika", null);
 
@@ -610,7 +900,10 @@ namespace IT_Proekt
                 // Log the result
                 if (result.Equals("OK"))
                 {
-                    addPoseduvaRelation(username, albumid, brslika, quantity);
+                    int q = getQuantity(username, albumid, brslika);
+                    // TODO: proveri q <= 1
+                    updateQuantity(username, albumid, brslika, q - 1);
+                    
                 }
                 Log("addOffer", result);
             }
@@ -797,6 +1090,38 @@ namespace IT_Proekt
                 con.Close();
                 // Log the result
                 Log("refreshOffer", result);
+            }
+            return true;
+        }
+        public bool updateTransakcija(int tranID, int newStatus)
+        {
+            SqlConnection con = getConnection();
+            string result = "OK";
+            try
+            {
+                con.Open();
+                string query = "UPDATE Transakcija " +
+                               "SET status=@status " +
+                               "WHERE ponuda_id=@id";
+
+                SqlCommand command = new SqlCommand(query, con);
+                command.Prepare();
+                command.Parameters.AddWithValue("@id", tranID);
+                command.Parameters.AddWithValue("@status", newStatus);
+                command.ExecuteNonQuery();
+
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+                return false;
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Log("updateTransakcija", result); 
+                Log(" >>> newStatus", newStatus.ToString());
             }
             return true;
         }
@@ -1245,11 +1570,11 @@ namespace IT_Proekt
                 con.Open();
 
                 string query1 = "DELETE FROM Ponuda " +
-                                "WHERE username=@username AND "+
-                                "album_id=@album_id AND broj_slika=@picture_id";
-                string query2 = "DELETE FROM Poseduva " +
                                 "WHERE username=@username AND " +
                                 "album_id=@album_id AND broj_slika=@picture_id";
+                //string query2 = "DELETE FROM Poseduva " +
+                //                "WHERE username=@username AND " +
+                //                "album_id=@album_id AND broj_slika=@picture_id";
 
                 SqlCommand cmd = con.CreateCommand();
                 SqlTransaction transaction = con.BeginTransaction("Deleting an Offer");
@@ -1262,10 +1587,11 @@ namespace IT_Proekt
                 cmd.Parameters.AddWithValue("@album_id", albumID);
                 cmd.Parameters.AddWithValue("@picture_id", pictureID);
                 cmd.ExecuteNonQuery();
-                cmd.CommandText = query2;
-                cmd.ExecuteNonQuery();
-
+                //cmd.CommandText = query2;
+                //cmd.ExecuteNonQuery();
                 transaction.Commit();
+                int q = getQuantity(username, albumID, pictureID);
+                updateQuantity(username, albumID, pictureID, q - 1);
                 Log("removeOffer", "Successfully removed an Offer");
 
             }

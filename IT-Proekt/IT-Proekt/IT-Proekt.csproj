@@ -545,6 +545,7 @@
     <Compile Include="transakciiExchangeProdavam.ascx.designer.cs">
       <DependentUpon>transakciiExchangeProdavam.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Transakcija.cs" />
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

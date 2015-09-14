@@ -108,7 +108,7 @@ namespace IT_Proekt
                 bool executeQuery = db.addOffer(offerDesc, price, name, albumid,
                     brslika, exchange, username, datum, quantity);
 
-                System.Diagnostics.Debug.WriteLine("executeQuery AddNEWOFFER:" + executeQuery.ToString());
+                System.Diagnostics.Debug.WriteLine("executeQuery" + executeQuery.ToString());
                 if (executeQuery)
                 {
                     lblErrorInput.Text = "Успешно додадена нова понуда.";

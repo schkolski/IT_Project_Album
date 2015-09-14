@@ -20,9 +20,26 @@ namespace IT_Proekt
             lblOfferDatum.Text = date.ToShortDateString();
 
             imgOfferPreview1.ImageUrl = imgUrl_1;
-            imgOfferPreview2.ImageUrl = imgUrl_2;
+            lblOfferDatum.Text = date.ToShortDateString();
+            btnOfferBuy1.Enabled = false;
+            if (Status == 1)
+            {
+                btnOfferBuy1.Text = "Се чека на потврда";
+                btnOfferBuy1.CssClass = "btn btn-warning";
+            }
+            else if (Status == 2)
+            {
+                btnOfferBuy1.Text = "Понудата е одбиена";
+                btnOfferBuy1.CssClass = "btn btn-danger";
+            }
+            else
+            {
+                btnOfferBuy1.Text = "Понудата е прифатена";
+                btnOfferBuy1.CssClass = "btn btn-success";
+            }
         }
-
+        public int Status { get; set; }
+        public int tranID { get; set; }
         private string name1;
         private string description1;
         private int price1;
@@ -30,7 +47,7 @@ namespace IT_Proekt
         private string user1;
         private string email1;
         private DateTime date;
-
+        public bool BuyButton { get; set; }
         public string imgUrl_1 { get; set; }
         public string imgUrl_2 { get; set; }
         public int albumID_1 { get; set; }
@@ -69,7 +86,7 @@ namespace IT_Proekt
             set { email1 = value; }
         }
 
-        private DateTime Date
+        public DateTime Date
         {
             get { return date; }
             set { date = value; }
