@@ -29,7 +29,9 @@ namespace IT_Proekt
             Database db = new Database();
             List<Ponuda> offers = db.getAllOffersForUsername(Session["UserName"].ToString(),
                 Ponuda.DATE);
-
+            if (offers == null) {
+                return;
+            }
             foreach (Ponuda o in offers)
             {
                 offer offerElem = (offer)LoadControl("offer.ascx");

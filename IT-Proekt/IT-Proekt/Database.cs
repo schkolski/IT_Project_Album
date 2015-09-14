@@ -99,6 +99,41 @@ namespace IT_Proekt
             }
             return albums;
         }
+        public List<Album> getAllAlbumsNames()
+        {
+            SqlConnection con = getConnection();
+            string result = "OK";
+            List<Album> albums = null;
+            try
+            {
+                con.Open();
+                string query = "SELECT name FROM Album";
+                SqlCommand command = new SqlCommand(query, con);
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+                DataSet data = new DataSet();
+                dataAdapter.Fill(data);
+
+                albums = new List<Album>();
+                foreach (DataRow row in data.Tables[0].Rows)
+                {
+                    Album album = new Album(
+                        row["name"].ToString()
+                    );
+                    albums.Add(album);
+                }
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Log("getAllAlbumsNames", result);
+            }
+            return albums;
+        }
         public Album getAlbumByNameAndYear(string name, int year)
         {
             SqlConnection con = getConnection();
@@ -138,6 +173,46 @@ namespace IT_Proekt
                 Log("getAlbumByNameAndYear", result);
             }
             return album;
+        }
+        public List<Album> getAlbumByName(string name)
+        {
+            SqlConnection con = getConnection();
+            string result = "OK";
+            List<Album> albums = null;
+            try
+            {
+                con.Open();
+                string query = "SELECT id, name, year_published FROM Album WHERE name=@name";
+
+                SqlCommand command = new SqlCommand(query, con);
+                command.Parameters.AddWithValue("@name", name);
+        
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+                DataSet data = new DataSet();
+                dataAdapter.Fill(data);
+                albums = new List<Album>();
+                foreach (DataRow row in data.Tables[0].Rows)
+                {
+                    Album album = new Album(
+                        Int32.Parse(row["id"].ToString()),
+                        row["name"].ToString(),
+                        Int32.Parse(row["year_published"].ToString())
+                    );
+                    albums.Add(album);
+                }
+
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Log("getAlbumByName", result);
+            }
+            return albums;
         }
         public Album getAlbumByID(int albumID)
         {

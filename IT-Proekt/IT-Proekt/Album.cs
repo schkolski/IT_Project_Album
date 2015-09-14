@@ -13,6 +13,11 @@ namespace IT_Proekt
             Name = name;
             Year = year;
         }
+        public Album(string name)
+        {
+           
+            Name = name;
+        }
         public int ID { get; set; }
         public string Name { get; set; }
         public int Year { get; set; }

@@ -24,7 +24,7 @@
     <script>
         $(function () {
             var availableTags = GetMyValue();
-            console.log(availableTags);
+            console.log(availableTags); 
             $("#txtSearch").autocomplete({
                 source: availableTags
             });

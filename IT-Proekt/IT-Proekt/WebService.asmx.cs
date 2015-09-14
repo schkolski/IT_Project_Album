@@ -36,5 +36,31 @@ namespace IT_Proekt
             }
             return niza;
         }
+        [WebMethod]
+        public String[] getAlbumNames()
+        {
+            db = new Database();
+            List<Album> niza = db.getAllAlbumsNames();
+            String[] album = new String[niza.Count];
+            int i = 0;
+            foreach (Album temp in niza)
+            {
+                album[i++] = temp.Name;
+            }
+            return album;
+        }
+        [WebMethod]
+        public int[] getAlbumYearByName(String name)
+        {
+            db = new Database();
+            List<Album> albums = db.getAlbumByName(name);
+            int [] godini = new int[albums.Count];
+            int i = 0;
+            foreach (Album temp in albums)
+            {
+                godini[i++] = temp.Year;
+            }
+            return godini;
+        }
     }
 }

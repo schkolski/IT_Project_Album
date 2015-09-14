@@ -39,6 +39,7 @@ namespace IT_Proekt
                 txbChooseAlbumYear.Text = ViewState["albumYear"].ToString();
                 showAlbumStickers();
             }
+            
 
         }
         protected void LogOut_Click(Object sender, EventArgs e)
