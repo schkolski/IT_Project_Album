@@ -17,7 +17,7 @@ namespace IT_Proekt
         }
         public SqlConnection getConnection()
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["dbConnection_Aleksandar"].ConnectionString;
+            string connectionString = ConfigurationManager.ConnectionStrings["dbConnection_Mico"].ConnectionString;
 
             return new SqlConnection(connectionString);
         }
@@ -1573,6 +1573,43 @@ namespace IT_Proekt
                 Log("removeAllSlikaByAlbumId", result);
             }
             return true;
+        }
+        public List<Korisnik> getAllUser()
+        {
+            SqlConnection con = getConnection();
+            List<Korisnik> korisnici = null;
+            string result = "OK";
+            try
+            {
+                con.Open();
+
+                string query = "SELECT USERNAME FROM Korisnik ";
+
+                SqlCommand command = new SqlCommand(query, con);
+                command.Prepare();
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+                DataSet data = new DataSet();
+                dataAdapter.Fill(data);
+                korisnici = new List<Korisnik>();
+                foreach (DataRow row in data.Tables[0].Rows)
+                {
+                    Korisnik temp = new Korisnik(
+                        row["username"].ToString());
+                    korisnici.Add(temp);
+                }
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Log("removeAllSlikaByAlbumId", result);
+            }
+            return korisnici;
         }
 
     }

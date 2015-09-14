@@ -13,39 +13,25 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script type="text/javascript">
+        function GetMyValue()
+        {
+            var someVar = <%=this.fillAllUsers()%>;
+            return someVar;
+        }
+
+    </script>
     <script>
         $(function () {
-            var availableTags = [
-              "ActionScript",
-              "AppleScript",
-              "Asp",
-              "BASIC",
-              "C",
-              "C++",
-              "Clojure",
-              "COBOL",
-              "ColdFusion",
-              "Erlang",
-              "Fortran",
-              "Groovy",
-              "Haskell",
-              "Java",
-              "JavaScript",
-              "Lisp",
-              "Perl",
-              "PHP",
-              "Python",
-              "Ruby",
-              "Scala",
-              "Scheme"
-            ];
-            $("#tags").autocomplete({
+            var availableTags = GetMyValue();
+            console.log(availableTags);
+            $("#txtSearch").autocomplete({
                 source: availableTags
             });
         });
     </script>
 </head>
-<body>
+<body onload="GetMyValue()">
     <form id="form1" runat="server">
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
@@ -115,7 +101,7 @@
                         <SortedDescendingCellStyle BackColor="#CAC9C9" />
                         <SortedDescendingHeaderStyle BackColor="#383838" />
                     </asp:GridView>
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dbConnection_Aleksandar %>" SelectCommand="SELECT [name] FROM [Korisnik]"></asp:SqlDataSource>
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dbConnection_Mico %>" SelectCommand="SELECT [name] FROM [Korisnik]"></asp:SqlDataSource>
                 </div>
             </div>
         </div>
@@ -127,9 +113,5 @@
         </footer>
     </form>
 </body>
-
-
-<script src="Scripts/jquery-1.10.2.min.js"></script>
-<script src="Scripts/bootstrap.min.js"></script>
-<script src="Scripts/HomePage.js"></script>
 </html>
+
