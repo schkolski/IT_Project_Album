@@ -39,6 +39,7 @@ namespace IT_Proekt
                 txbChooseAlbumYear.Text = ViewState["albumYear"].ToString();
                 showAlbumStickers();
             }
+            ServiceReference1.WebService1 ab = new ServiceReference1.WebService1();
             
 
         }
