@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
@@ -65,6 +66,73 @@ namespace IT_Proekt.ServiceReference1
                 
             }
             return godini;
+        }
+        [WebMethod]
+        public bool isAdmin(String username) {
+            db = new Database();
+            Korisnik k = db.getUserInfoByUsername(username);
+            return k.Type == 0;
+        }
+        [WebMethod]
+        public int[] getPercentOfPicturesOnOffer() //rezultat vo format 
+        {                                          //broj Sliki na ponuda, broj Sliki preostanati 
+            db = new Database();
+            List<Slika> slikiVoPonuda = db.getSiteSlikaVoPonuda();
+            List<Slika> sliki = db.getAllPictures();
+
+            int brSlikiVoPonuda = slikiVoPonuda.Count;
+            int brSliki = sliki.Count - brSlikiVoPonuda;
+
+            int[] rezultat = { brSlikiVoPonuda, brSliki };
+
+            return rezultat;
+        }
+
+        [WebMethod]
+        public DataTable getNajmnoguBrojPonudiVoDen()
+        {
+            db = new Database();
+
+            return db.getNajmnoguBrojPonudiVoDen();
+        }
+
+        public Slika getNajprodavanaSlika()
+        {
+            db = new Database();
+
+            return db.getNajprodavanaSlika();
+        }
+
+        public Slika getNajskapoProdadenaSlika()
+        {
+            db = new Database();
+
+            return db.getNajskapoProdadenaSlika();
+        }
+
+        public int[] getAllTransakciiByStatus() //rezultat vo format 
+        {                                       //sliki so status=1, status=2, status=3
+            db = new Database();
+
+            List<Slika> status1 = db.getAllTransakciiByStatus(1);
+            List<Slika> status2 = db.getAllTransakciiByStatus(2);
+            List<Slika> status3 = db.getAllTransakciiByStatus(3);
+
+            if (status1 != null && status2 != null && status3 != null)
+            {
+                int[] rezultat = { status1.Count, status2.Count, status3.Count };
+                return rezultat;
+            }
+
+            int[] rez = { 1, 0, 0 }; //kolku da ne bide prazna pitata
+            return rez;
+        }
+
+        public Korisnik getUserNajmnoguPotroshil()
+        {
+            db = new Database();
+
+            return db.getUserNajmnoguPotroshil();
         }
     }
 }

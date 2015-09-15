@@ -40,15 +40,6 @@ namespace IT_Proekt {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl fInsertAlbum;
         
         /// <summary>
-        /// tbYear control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbYear;
-        
-        /// <summary>
         /// tbTitle control.
         /// </summary>
         /// <remarks>
@@ -56,6 +47,15 @@ namespace IT_Proekt {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbTitle;
+        
+        /// <summary>
+        /// tbYear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbYear;
         
         /// <summary>
         /// user_lic control.

@@ -12,6 +12,34 @@
     <title>Статистики</title>
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="Content/homePage.css" rel="stylesheet" />
+    <script type="text/javascript" src="Scripts/jquery-1.10.2.min.js"></script>
+    <style>
+        .nevidlivo 
+        {
+            display:none;
+            visibility:hidden;
+        }
+    </style>
+    <script>
+        $(function () {
+            var admin =<%=this.primer()%>;
+           if(new String (admin).valueOf() ==new String("true").valueOf())
+           {   
+               $( ".primer" ).addClass( "nevidlivo" );
+               $(".lbAddAlbum").attr({href:"AddAlbum.aspx"});
+               $("#<%=lbAddAlbum.ClientID%>").text('Додади Албум');
+                $("#<%=lbKorisnici.ClientID%>").text('Корисници');
+                $(".lbKorisnici").attr({href:"Admin.aspx"});
+                $("#<%=lbIt.ClientID%>").attr({href:"Admin.aspx"});
+                $("li .primer").remove();
+            }else
+            {
+                $("#<%=lbIt.ClientID%>").attr({href:"HomePage.aspx"});
+            }
+            
+       });
+    </script>
+    
 </head>
 <body>
     <form id="form1" runat="server">
@@ -25,17 +53,18 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <asp:LinkButton CssClass="navbar-brand" runat="server" Text="ИТ Проект"></asp:LinkButton>
+                    <asp:LinkButton CssClass="navbar-brand" runat="server" ID="lbIt" Text="ИТ Проект"></asp:LinkButton>
                 </div>
 
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li>
-                            <asp:LinkButton href="HomePage.aspx" runat="server" Text="Дома"></asp:LinkButton></li>
+                            <asp:LinkButton href="HomePage.aspx" ID="lbKorisnici" runat="server" CssClass="lbKorisnici" Text="Дома"></asp:LinkButton></li>
                         <li>
-                            <asp:LinkButton href="Album.aspx" runat="server" Text="Албум"></asp:LinkButton></li>
-                        <li>
-                            <asp:LinkButton href="MyOffers.aspx" runat="server" Text="Мои Понуди"></asp:LinkButton></li>
+                            <asp:LinkButton href="Album.aspx" ID="lbAddAlbum" CssClass="lbAddAlbum" runat="server" Text="Албум"></asp:LinkButton></li>
+                        <li class="primer">
+                            <asp:LinkButton href="MyOffers.aspx" runat="server" CssClass="primer" Text="Мои Понуди"></asp:LinkButton></li>
+                        <li class="primer"><asp:LinkButton href="Transakcii.aspx" runat="server" CssClass="primer" Text="Транскации"></asp:LinkButton></li>
                         <li class="active">
                             <asp:LinkButton href="Statistiki.aspx" runat="server" Text="Статистики"></asp:LinkButton></li>
                     </ul>
@@ -61,7 +90,7 @@
             <div class="row">
             <div class="col-lg-4">
 
-                <asp:chart id="Chart1" runat="server" Height="300px" Width="300px">
+                <asp:chart id="Chart1" runat="server" Height="300px" Width="350px">
                   <titles>
                     <asp:Title ShadowOffset="3" Name="Title1" />
                   </titles>
@@ -79,12 +108,12 @@
                   </chartareas>
                 </asp:chart>
                 
-                <h2>Динамичка Пита 1</h2>
-                <p>Информации за питата. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
+                <h2>Денови со најголем број понуди</h2>
+                <p><asp:Label runat="server" id="lblPie1"></asp:Label></p>
                 
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-4">
-                <asp:chart id="Chart2" runat="server" Height="300px" Width="300px">
+                <asp:chart id="Chart2" runat="server" Height="300px" Width="350px">
                   <titles>
                     <asp:Title ShadowOffset="3" Name="Title1" />
                   </titles>
@@ -102,12 +131,12 @@
                   </chartareas>
                 </asp:chart>
                 
-                <h2>Динамичка Пита 2</h2>
-                <p>Информации за питата. Еget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+                <h2>Понудени сликички</h2>
+                <p><asp:Label runat="server" ID="lblPie2"></asp:Label></p>
                 
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-4">
-                <asp:chart id="Chart3" runat="server" Height="300px" Width="300px">
+                <asp:chart id="Chart3" runat="server" Height="300px" Width="350px">
                   <titles>
                     <asp:Title ShadowOffset="3" Name="Title1" />
                   </titles>
@@ -125,8 +154,8 @@
                   </chartareas>
                 </asp:chart>
                 
-                <h2>Динамичка Пита 3</h2>
-                <p>Информации за питата. Dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                <h2>Состојба на трансакции</h2>
+                <p><asp:Label runat="server" ID="lblPie3"></asp:Label></p>
                 
             </div><!-- /.col-lg-4 -->
             </div><!-- /.row -->
@@ -138,11 +167,11 @@
 
             <div class="row featurette">
             <div class="col-md-7">
-                <h2 class="featurette-heading">Најпродавана сликичка. <span class="text-muted">Име на сликичката</span></h2>
-                <p class="lead">Оваа сликичка е најпополарна во овој момент. Се работи за сликичка од албумот ИмеНаАлбум издаден во 3000 година.</p>
+                <h2 class="featurette-heading">Најпродавана сликичка. <span class="text-muted"><asp:Label runat="server" ID="lblNajprodavana"></asp:Label></span></h2>
+                <p class="lead"><asp:Label runat="server" ID="lblNajprodavanaDescription" Text="Нема најпродавана сликичка во овој момент."></asp:Label></p>
             </div>
             <div class="col-md-5">
-                <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+                <asp:Image runat="server" ID="imgNajprodavana" CssClass="featurette-image img-responsive center-block" alt="Generic placeholder image" Width="155px" Height="200px" />
             </div>
             </div>
 
@@ -150,11 +179,11 @@
 
             <div class="row featurette">
             <div class="col-md-7 col-md-push-5">
-                <h2 class="featurette-heading">Албум кој е најсобиран. <span class="text-muted">Име на албум</span></h2>
-                <p class="lead">Најсобираниот албум е издаден во 2500 година и има 50 сликички. Повеќе информации за албумот тука ќе се допишат...</p>
+                <h2 class="featurette-heading">Најскапо продадена сликичка. <span class="text-muted"><asp:Label runat="server" ID="lblNajskapa"></asp:Label></span></h2>
+                <p class="lead"><asp:Label runat="server" ID="lblNajskapaDescription" Text="Нема најскапо продадена сликичка во овој момент."></asp:Label></p>
             </div>
             <div class="col-md-5 col-md-pull-7">
-                <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+                <asp:Image runat="server" ID="imgNajskapa" CssClass="featurette-image img-responsive center-block" alt="Generic placeholder image" Width="155px" Height="200px"/>
             </div>
             </div>
 
@@ -162,8 +191,8 @@
 
             <div class="row featurette">
             <div class="col-md-7">
-                <h2 class="featurette-heading">Уште една статистика. <span class="text-muted">Име</span></h2>
-                <p class="lead">Информации...</p>
+                <h2 class="featurette-heading">Корисник што потрошил најмногу пари. <span class="text-muted"><asp:Label runat="server" ID="lblNajmnoguPotroshil"></asp:Label></span></h2>
+                <p class="lead"><asp:Label runat="server" ID="lblNajmnoguPotroshilDescription" Text="Нема корисник што потрошил најмногу пари во овој момент."></asp:Label></p>
             </div>
             <div class="col-md-5">
                 <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">

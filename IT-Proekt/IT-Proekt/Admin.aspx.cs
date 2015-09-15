@@ -16,11 +16,24 @@ namespace IT_Proekt
         {
             if (!Page.IsPostBack)
             {
-                fillAllUsers();
-               /* if (Session["UserName"] == null || Session["Admin"] != null)
+                
+                if (Session["UserName"] != null)
                 {
-                    Response.Redirect("Default.aspx");
-                }*/
+                    Database db = new Database();
+                    Korisnik k = db.getUserInfoByUsername(Session["UserName"].ToString());
+
+                    if (k.Type == 1)
+                    {
+                        Response.Redirect("HomePage.aspx");
+                    }
+                }
+                else
+                {
+                    Response.Redirect("~/");
+                }
+
+                fillAllUsers();
+
             }
         }
         protected void LogOut_Click(Object sender, EventArgs e)

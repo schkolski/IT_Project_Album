@@ -76,6 +76,9 @@ namespace IT_Proekt
                         Ponuda p = db.getOffer(t.ID);
                         Korisnik user = db.getUserInfoByUsername(t.Username);
                         Slika s = db.getPicture(p.AlbumID, p.BrojSlika);
+                        Album a = db.getAlbumByID(p.AlbumID);
+                        tranElem.AlbumYear = a.Year;
+                        tranElem.imgID_1 = s.Broj;
                         tranElem.Name1 = p.Name;
                         tranElem.Description1 = p.Desc;
                         tranElem.Email1 = user.Email;
@@ -94,6 +97,8 @@ namespace IT_Proekt
                         Korisnik user = db.getUserInfoByUsername(t.Username);
                         Slika s_moja = db.getPicture(p.AlbumID, p.BrojSlika);
                         Slika s_zamena = db.getPicture(t.AlbumID, t.PictureID);
+                        Album a = db.getAlbumByID(p.AlbumID);
+                        tranElem.AlbumYear = a.Year;
                         tranElem.Name1 = p.Name;
                         tranElem.Description1 = p.Desc;
                         tranElem.Email1 = user.Email;
@@ -118,6 +123,9 @@ namespace IT_Proekt
                         Ponuda p = db.getOffer(t.ID);
                         Korisnik user = db.getUserInfoByUsername(t.Username);
                         Slika s = db.getPicture(p.AlbumID, p.BrojSlika);
+                        Album a = db.getAlbumByID(p.AlbumID);
+                        tranElem.AlbumYear = a.Year;
+                        tranElem.imgID_1 = s.Broj;
                         tranElem.Name1 = p.Name;
                         tranElem.Description1 = p.Desc;
                         tranElem.Email1 = user.Email;
@@ -138,6 +146,8 @@ namespace IT_Proekt
                         Korisnik user = db.getUserInfoByUsername(t.Username);
                         Slika s_moja = db.getPicture(p.AlbumID, p.BrojSlika);
                         Slika s_zamena = db.getPicture(t.AlbumID, t.PictureID);
+                        Album a = db.getAlbumByID(p.AlbumID);
+                        tranElem.AlbumYear = a.Year;
                         tranElem.Name1 = p.Name;
                         tranElem.Description1 = p.Desc;
                         tranElem.Email1 = user.Email;
@@ -162,6 +172,9 @@ namespace IT_Proekt
                         Ponuda p = db.getOffer(t.ID);
                         Korisnik user = db.getUserInfoByUsername(t.Username);
                         Slika s = db.getPicture(p.AlbumID, p.BrojSlika);
+                        Album a = db.getAlbumByID(p.AlbumID);
+                        tranElem.AlbumYear = a.Year;
+                        tranElem.imgID_1 = s.Broj;
                         tranElem.Name1 = p.Name;
                         tranElem.Description1 = p.Desc;
                         tranElem.Email1 = user.Email;
@@ -181,6 +194,8 @@ namespace IT_Proekt
                         Korisnik user = db.getUserInfoByUsername(t.Username);
                         Slika s_moja = db.getPicture(p.AlbumID, p.BrojSlika);
                         Slika s_zamena = db.getPicture(t.AlbumID, t.PictureID);
+                        Album a = db.getAlbumByID(p.AlbumID);
+                        tranElem.AlbumYear = a.Year;
                         tranElem.Name1 = p.Name;
                         tranElem.Description1 = p.Desc;
                         tranElem.Email1 = user.Email;

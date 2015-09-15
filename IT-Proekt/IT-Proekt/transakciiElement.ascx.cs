@@ -11,10 +11,11 @@ namespace IT_Proekt
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-           
 
-            lblOfferName1.Text = name1;
+
+            lblOfferName1.Text = name1 + " " + AlbumYear.ToString() + " - " + imgID_1.ToString();
             lblOfferDescription1.Text = description1;
+            lblOfferDatum.Text = Date.ToShortDateString();
             lblOfferPrice1.Text = price1.ToString();
             lblUserName1.Text = user1;
             lblUserEmail1.Text = email1;
@@ -46,6 +47,7 @@ namespace IT_Proekt
         private int offer1ID;
         private string user1;
         private string email1;
+        public int AlbumYear { get; set; }
         public string imgUrl_1 { get; set; }
         public string imgUrl_2 { get; set; }
         public int imgID_1 { get; set; }

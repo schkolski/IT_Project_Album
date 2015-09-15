@@ -22,6 +22,33 @@ namespace IT_Proekt {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// lbIt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbIt;
+        
+        /// <summary>
+        /// lbKorisnici control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbKorisnici;
+        
+        /// <summary>
+        /// lbAddAlbum control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbAddAlbum;
+        
+        /// <summary>
         /// LogOut control.
         /// </summary>
         /// <remarks>
@@ -40,6 +67,15 @@ namespace IT_Proekt {
         protected global::System.Web.UI.DataVisualization.Charting.Chart Chart1;
         
         /// <summary>
+        /// lblPie1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPie1;
+        
+        /// <summary>
         /// Chart2 control.
         /// </summary>
         /// <remarks>
@@ -49,6 +85,15 @@ namespace IT_Proekt {
         protected global::System.Web.UI.DataVisualization.Charting.Chart Chart2;
         
         /// <summary>
+        /// lblPie2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPie2;
+        
+        /// <summary>
         /// Chart3 control.
         /// </summary>
         /// <remarks>
@@ -56,5 +101,86 @@ namespace IT_Proekt {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.DataVisualization.Charting.Chart Chart3;
+        
+        /// <summary>
+        /// lblPie3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPie3;
+        
+        /// <summary>
+        /// lblNajprodavana control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNajprodavana;
+        
+        /// <summary>
+        /// lblNajprodavanaDescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNajprodavanaDescription;
+        
+        /// <summary>
+        /// imgNajprodavana control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgNajprodavana;
+        
+        /// <summary>
+        /// lblNajskapa control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNajskapa;
+        
+        /// <summary>
+        /// lblNajskapaDescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNajskapaDescription;
+        
+        /// <summary>
+        /// imgNajskapa control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgNajskapa;
+        
+        /// <summary>
+        /// lblNajmnoguPotroshil control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNajmnoguPotroshil;
+        
+        /// <summary>
+        /// lblNajmnoguPotroshilDescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNajmnoguPotroshilDescription;
     }
 }

@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>My Offers</title>
+    <title>Албуми</title>
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="Content/homePage.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.js"></script>
@@ -28,7 +28,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <asp:LinkButton CssClass="navbar-brand" runat="server" Text="ИТ Проект"></asp:LinkButton>
+                    <asp:LinkButton href="HomePage.aspx" CssClass="navbar-brand" runat="server" Text="ИТ Проект"></asp:LinkButton>
                 </div>
 
                 <div id="navbar" class="navbar-collapse collapse">
@@ -39,8 +39,9 @@
                             <asp:LinkButton href="Album.aspx" runat="server" Text="Албум"></asp:LinkButton></li>
                         <li>
                             <asp:LinkButton href="MyOffers.aspx" runat="server" Text="Мои Понуди"></asp:LinkButton></li>
+                        <li><asp:LinkButton href="Transakcii.aspx" runat="server" Text="Транскации"></asp:LinkButton></li>
                         <li>
-                            <asp:LinkButton href="#Stats" runat="server" Text="Статистики"></asp:LinkButton></li>
+                            <asp:LinkButton href="Statistiki.aspx" runat="server" Text="Статистики"></asp:LinkButton></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li>

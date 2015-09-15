@@ -11,7 +11,7 @@ namespace IT_Proekt
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblOfferName1.Text = name1;
+            lblOfferName1.Text = name1+" "+AlbumYear.ToString()+" - "+imgID_1.ToString();
             lblOfferDescription1.Text = description1;
             lblOfferPrice1.Text = imgID_2.ToString();
             lblOffer1ID.Text = offer1ID.ToString();
@@ -30,6 +30,7 @@ namespace IT_Proekt
         private string user1;
         private string email1;
         private DateTime date;
+        public int AlbumYear { get; set; }
         public int tranID { get; set; }
         public string imgUrl_1 { get; set; }
 

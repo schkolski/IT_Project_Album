@@ -11,7 +11,7 @@ namespace IT_Proekt
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblOfferName1.Text = name1;
+            lblOfferName1.Text = name1 + " " + AlbumYear.ToString() + " - " + imgID_1.ToString();
             lblOfferDescription1.Text = description1;
             lblOfferPrice1.Text = price1.ToString();
             lblOffer1ID.Text = offer1ID.ToString();
@@ -40,6 +40,7 @@ namespace IT_Proekt
         }
         public int Status { get; set; }
         public int tranID { get; set; }
+        public int AlbumYear { get; set; }
         private string name1;
         private string description1;
         private int price1;
@@ -49,6 +50,7 @@ namespace IT_Proekt
         private DateTime date;
         public bool BuyButton { get; set; }
         public string imgUrl_1 { get; set; }
+        public int imgID_1 { get; set; }
         public string imgUrl_2 { get; set; }
         public int albumID_1 { get; set; }
 

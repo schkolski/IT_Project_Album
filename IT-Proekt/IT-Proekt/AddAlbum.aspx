@@ -23,13 +23,16 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         </button>
-                        <asp:LinkButton CssClass="navbar-brand" href="#" runat="server" Text="ИТ Проект"></asp:LinkButton>
+                        <asp:LinkButton CssClass="navbar-brand" href="Admin.aspx" runat="server" Text="ИТ Проект"></asp:LinkButton>
                     </div>
 
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
                             <li><asp:LinkButton href="Admin.aspx" runat="server" Text="Kорисници"></asp:LinkButton></li>
                             <li class="active"><asp:LinkButton href="AddAlbum.aspx" runat="server" Text="Додади Албум"></asp:LinkButton></li>          
+                             <li>
+                            <asp:LinkButton href="Statistiki.aspx" runat="server" Text="Статистики"></asp:LinkButton></li>
+                        
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li><asp:LinkButton href="ProfilePage.aspx" runat="server" Text="Мои Информации"></asp:LinkButton></li>
@@ -43,12 +46,13 @@
                 <div class="container col-sm-6 col-sm-offset-3 col-lg-8 col-lg-offset-4" style="padding-top:15px" >
                     <div class="row">
                         <div class="col-lg-6">
-                            <asp:TextBox runat="server" placeholder="Year" CssClass="form-control" ID="tbYear" ValidationGroup="1"></asp:TextBox>
+                            <asp:TextBox runat="server" placeholder="Title of Album" CssClass="form-control" ID="tbTitle" ValidationGroup="1"></asp:TextBox>
                         </div></div>
                     <br />
                     <div class="row">
                         <div class="col-lg-6">
-                            <asp:TextBox runat="server" placeholder="Title of Album" CssClass="form-control" ID="tbTitle" ValidationGroup="1"></asp:TextBox>
+                            <asp:TextBox runat="server" placeholder="Year" CssClass="form-control" ID="tbYear" ValidationGroup="1"></asp:TextBox>
+                            
                         </div>
                     </div>
                     <br />

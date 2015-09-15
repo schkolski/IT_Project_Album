@@ -16,9 +16,19 @@ namespace IT_Proekt
         {
             if (!Page.IsPostBack)
             {
-                if (Session["UserName"] == null || Session["Admin"] != null)
+                if (Session["UserName"] != null)
                 {
-                    Response.Redirect("HomePage.aspx");
+                    Database db = new Database();
+                    Korisnik k = db.getUserInfoByUsername(Session["UserName"].ToString());
+
+                    if (k.Type == 1)
+                    {
+                        Response.Redirect("HomePage.aspx");
+                    }
+                }
+                else
+                {
+                    Response.Redirect("~/");
                 }
 
                 if (Request.Cookies.Get("AdminCookie") != null)

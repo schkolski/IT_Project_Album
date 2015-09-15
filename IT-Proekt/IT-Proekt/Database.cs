@@ -186,7 +186,7 @@ namespace IT_Proekt
 
                 SqlCommand command = new SqlCommand(query, con);
                 command.Parameters.AddWithValue("@name", name);
-        
+
                 SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
                 DataSet data = new DataSet();
                 dataAdapter.Fill(data);
@@ -545,8 +545,8 @@ namespace IT_Proekt
                 string query =
                     "SELECT t.ponuda_id, t.username, t.datum, t.status, t.album_id, t.broj_slika " +
                     "from Transakcija as t, Ponuda as p " +
-                    "WHERE (t.username = '"  + username + "' and p.id=t.ponuda_id and p.username != '" + username + "' and t.status > 1) " +
-                    "OR    (t.username != '" + username + "' and p.id=t.ponuda_id and p.username = '"  + username + "' and t.status = 3) " +
+                    "WHERE (t.username = '" + username + "' and p.id=t.ponuda_id and p.username != '" + username + "' and t.status > 1) " +
+                    "OR    (t.username != '" + username + "' and p.id=t.ponuda_id and p.username = '" + username + "' and t.status = 3) " +
                     "ORDER BY " + orderBy;
 
                 SqlCommand command = new SqlCommand(query, con);
@@ -652,7 +652,7 @@ namespace IT_Proekt
                 SqlCommand command = new SqlCommand(query, con);
                 SqlDataReader reader = command.ExecuteReader();
 
-                if(reader.Read())
+                if (reader.Read())
                 {
                     if (reader["album_id"].ToString().Equals(""))
                     {
@@ -752,8 +752,8 @@ namespace IT_Proekt
             {
                 con.Close();
                 // Log the result
-                Log("getAllTransakciiKupuvamForUsername", result );
-                if(transakcii != null)
+                Log("getAllTransakciiKupuvamForUsername", result);
+                if (transakcii != null)
                     Log("Returned", transakcii.Count.ToString());
             }
             return transakcii;
@@ -769,7 +769,7 @@ namespace IT_Proekt
                 string query =
                     "SELECT t.ponuda_id, t.username, t.datum, t.status, t.album_id, t.broj_slika " +
                     "from Transakcija as t, Ponuda as p " +
-                    "WHERE t.username != '"+username+"' and p.id=t.ponuda_id and p.username = '"+username+"' and t.status = 1 " +
+                    "WHERE t.username != '" + username + "' and p.id=t.ponuda_id and p.username = '" + username + "' and t.status = 1 " +
                     "ORDER BY " + orderBy;
 
                 SqlCommand command = new SqlCommand(query, con);
@@ -1018,7 +1018,7 @@ namespace IT_Proekt
                     int q = getQuantity(username, albumid, brslika);
                     // TODO: proveri q <= 1
                     updateQuantity(username, albumid, brslika, q - 1);
-                    
+
                 }
                 Log("addOffer", result);
             }
@@ -1235,7 +1235,7 @@ namespace IT_Proekt
             {
                 con.Close();
                 // Log the result
-                Log("updateTransakcija", result); 
+                Log("updateTransakcija", result);
                 Log(" >>> newStatus", newStatus.ToString());
             }
             return true;
@@ -2053,5 +2053,310 @@ namespace IT_Proekt
             return korisnici;
         }
 
+        public DataTable getNajmnoguBrojPonudiVoDen()
+        {
+            SqlConnection con = getConnection();
+            string result = "OK";
+            DataSet data = new DataSet();
+            try
+            {
+                con.Open();
+
+                string query = "SELECT TOP 3 a.datum, a.count " +
+                                "FROM ( SELECT p.datum, count(*) as count " +
+                                       "FROM Ponuda as p " +
+                                       "GROUP BY p.datum) a " +
+                                "ORDER BY a.count DESC ";
+                SqlCommand command = new SqlCommand(query, con);
+                command.Prepare();
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+                dataAdapter.Fill(data);
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Log("removeAllSlikaByAlbumId", result);
+            }
+            return data.Tables[0];
+        }
+
+        public List<Slika> getSiteSlikaVoPonuda()
+        {
+            SqlConnection con = getConnection();
+            List<Slika> sliki = null;
+            string result = "OK";
+            try
+            {
+                con.Open();
+
+                string query = "SELECT distinct s.broj, s.album_id, s.url, s.name " +
+                                "FROM Slika as s, Ponuda as p " +
+                                "where s.album_id = p.album_id and s.broj = p.broj_slika";
+
+                SqlCommand command = new SqlCommand(query, con);
+                command.Prepare();
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+                DataSet data = new DataSet();
+                dataAdapter.Fill(data);
+                sliki = new List<Slika>();
+                foreach (DataRow row in data.Tables[0].Rows)
+                {
+                    Slika temp = new Slika(
+                        Int32.Parse(row["broj"].ToString()),
+                        Int32.Parse(row["album_id"].ToString()),
+                        row["url"].ToString(),
+                        row["name"].ToString());
+                    sliki.Add(temp);
+                }
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Log("getSiteSlikiVoPonuda", result);
+            }
+            return sliki;
+        }
+
+        public List<Slika> getAllPictures()
+        {
+            SqlConnection con = getConnection();
+            List<Slika> sliki = null;
+            string result = "OK";
+            try
+            {
+                con.Open();
+
+                string query = "SELECT * FROM Slika";
+
+                SqlCommand command = new SqlCommand(query, con);
+                command.Prepare();
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+                DataSet data = new DataSet();
+                dataAdapter.Fill(data);
+                sliki = new List<Slika>();
+                foreach (DataRow row in data.Tables[0].Rows)
+                {
+                    Slika temp = new Slika(
+                        Int32.Parse(row["broj"].ToString()),
+                        Int32.Parse(row["album_id"].ToString()),
+                        row["url"].ToString(),
+                        row["name"].ToString());
+                    sliki.Add(temp);
+                }
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Log("getAllPictures", result);
+            }
+            return sliki;
+        }
+
+
+        public Slika getNajprodavanaSlika()
+        {
+            SqlConnection con = getConnection();
+            Slika slika = null;
+            string result = "OK";
+            try
+            {
+                con.Open();
+
+                string query = "SELECT top 1 a.album_id,a.broj, a.name, a.url, a.count " +
+                                "FROM ( SELECT s.album_id, s.broj, s.name, s.url , COUNT(*) as count " +
+                                       "FROM Slika as s, Ponuda as p, " +
+                                                "Transakcija as t " +
+                                       "WHERE s.album_id = p.album_id and s.broj=p.broj_slika and " +
+                                                "p.id = t.ponuda_id " +
+                                       "GROUP BY s.album_id, s.broj, s.name, s.url ) a " +
+                                "ORDER BY a.count DESC";
+
+                SqlCommand command = new SqlCommand(query, con);
+                command.Prepare();
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+                DataSet data = new DataSet();
+                dataAdapter.Fill(data);
+                foreach (DataRow row in data.Tables[0].Rows)
+                {
+                    slika = new Slika(
+                        Int32.Parse(row["broj"].ToString()),
+                        Int32.Parse(row["album_id"].ToString()),
+                        row["url"].ToString(),
+                        row["name"].ToString());
+                }
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Log("getNajprodavanaSlika", result);
+            }
+            return slika;
+        }
+
+        public Slika getNajskapoProdadenaSlika()
+        {
+            SqlConnection con = getConnection();
+            Slika slika = null;
+            string result = "OK";
+            try
+            {
+                con.Open();
+
+                string query = "SELECT top 1 a.album_id,a.broj, a.name, a.url, a.price " +
+                                "FROM ( SELECT s.album_id, s.broj, s.name, s.url , p.price " +
+                                       "FROM Slika as s, Ponuda as p, " +
+                                                "Transakcija as t " +
+                                       "WHERE s.album_id = p.album_id and s.broj=p.broj_slika and " +
+                                                "p.id = t.ponuda_id ) a " +
+                                "ORDER BY a.price DESC";
+
+                SqlCommand command = new SqlCommand(query, con);
+                command.Prepare();
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+                DataSet data = new DataSet();
+                dataAdapter.Fill(data);
+                foreach (DataRow row in data.Tables[0].Rows)
+                {
+                    slika = new Slika(
+                        Int32.Parse(row["broj"].ToString()),
+                        Int32.Parse(row["album_id"].ToString()),
+                        row["url"].ToString(),
+                        row["name"].ToString());
+                }
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Log("getNajskapoProdadenaSlika", result);
+            }
+            return slika;
+        }
+
+        public List<Slika> getAllTransakciiByStatus(int status)
+        {
+            SqlConnection con = getConnection();
+            List<Slika> sliki = null;
+            string result = "OK";
+            try
+            {
+                con.Open();
+
+                string query = "SELECT s.broj, s.album_id, s.url, s.name " +
+                                "FROM Transakcija as t, Slika as s , Ponuda as p " +
+                                "where t.status=@status and t.ponuda_id = p.id and p.broj_slika = s.broj and p.album_id = s.album_id";
+
+
+
+                SqlCommand command = new SqlCommand(query, con);
+                command.Prepare();
+                command.Parameters.AddWithValue("@status", status);
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+                DataSet data = new DataSet();
+                dataAdapter.Fill(data);
+                sliki = new List<Slika>();
+                foreach (DataRow row in data.Tables[0].Rows)
+                {
+                    Slika temp = new Slika(
+                        Int32.Parse(row["broj"].ToString()),
+                        Int32.Parse(row["album_id"].ToString()),
+                        row["url"].ToString(),
+                        row["name"].ToString());
+                    sliki.Add(temp);
+                }
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Log("getAllTransakciiByStatus", result);
+            }
+            return sliki;
+        }
+
+        public Korisnik getUserNajmnoguPotroshil()
+        {
+            SqlConnection con = getConnection();
+            string result = "OK";
+            Korisnik k = null;
+            //string name, string username, DateTime bday, int sex, int type, double thrustLevel)
+            try
+            {
+                con.Open();
+                string query = "SELECT top 1 a.birthday, a.type, a.datum_na_reg, a.email, " +
+                                              "a.name, a.passwd, a.sex, a.trust_level, a.username, a.price " +
+                                "FROM ( SELECT k.birthday, k.type, k.datum_na_reg, k.email, " +
+                                              "k.name, k.passwd, k.sex, k.trust_level, k.username, sum(p.price) as price " +
+                                       "FROM Korisnik as k, Ponuda as p, " +
+                                                "Transakcija as t " +
+                                       "WHERE k.username = t.username and " +
+                                                "p.id = t.ponuda_id " +
+                                       "GROUP BY k.birthday, k.type, k.datum_na_reg, k.email, k.name, " +
+                                                "k.passwd, k.sex, k.trust_level, k.username ) a " +
+                                "ORDER BY a.price DESC";
+
+                SqlCommand command = new SqlCommand(query, con);
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    k = new Korisnik(
+                         reader["name"].ToString(),
+                         reader["username"].ToString(),
+                         reader["email"].ToString(),
+                         DateTime.Parse(reader["birthday"].ToString()),
+                         Int32.Parse(reader["sex"].ToString()),
+                         Int32.Parse(reader["type"].ToString()),
+                         Double.Parse(reader["trust_level"].ToString())
+                     );
+                }
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Log("getUserNajmnoguPotroshil", result);
+            }
+            return k;
+        }
     }
 }

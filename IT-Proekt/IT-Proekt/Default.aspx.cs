@@ -92,17 +92,23 @@ namespace IT_Proekt
             Int32.TryParse(ddYear.SelectedValue.ToString(), out year);
             int month = ddMonth.SelectedIndex;
             Int32.TryParse(ddDay.SelectedValue.ToString(), out day);
-            System.Diagnostics.Debug.WriteLine(day + " " + month + " " + year);
-            if (day != 0 && year != 0 && ddMonth.SelectedIndex >= 1) {
+
+            if (day != 0 && year != 0 && ddMonth.SelectedIndex >= 1)
+            {
                 DateTime db = new DateTime(year, month, day);
                 bool flag = baza.checkKorisnik(tbUserReg.Text, tbPassReg.Text);
-            if (flag == false)
-            {
-                System.Diagnostics.Debug.WriteLine("da proveruvam");
-                baza.addKorisnik(tbUserReg.Text, tbPassReg.Text, tbName.Text, tbEmail.Text, 1, db, 1);
-            }
-            else
-                System.Diagnostics.Debug.WriteLine("veke e registrian");
+                if (flag == false)
+                {
+                    int sex = rbMale.Checked ? 1 : 0;
+                    baza.addKorisnik(tbUserReg.Text, tbPassReg.Text, tbName.Text, tbEmail.Text, 1, db, sex);
+                    Session["UserName"] = tbUserReg.Text.ToString();
+                    Response.Redirect("Album.aspx");
+                }
+                else 
+                {
+                    lblError.Text = "Постоечко корисничко име";
+                    
+                }
             }
         }
         public void AllUsers(ArrayList korisnici)

@@ -11,12 +11,15 @@
                     <div class="offer" style="margin-right: 7px">
                         <div class="row">
                             <div class="col-xs-6">
-                                <asp:Label runat="server" ID="lblOfferName1" Text="OfferName"></asp:Label>
+                                <asp:Label runat="server" Font-Bold="true" ID="lblOfferName1" Text="OfferName"></asp:Label>
                             </div>
                             <div class="col-xs-6">
                                 <div class="row">
                                     <div class="col-lg-8" style="padding-left: 0px">
-                                        <asp:Label runat="server" ID="lblUserName1" Text="UserName"></asp:Label>
+                                        <p>
+                                            <b>Корисничко име: </b>
+                                            <asp:Label runat="server" ID="lblUserName1" Text="UserName"></asp:Label>
+                                        </p>
                                     </div>
                                     <div class="col-xs-4">
                                         <asp:Label runat="server" ID="lblOfferDatum" Text="01.01.3000"></asp:Label>
@@ -32,25 +35,25 @@
                             <div class="col-xs-6">
                                 <div class="row" style="padding-bottom: 10px">
                                     <div class="col-xs-12" style="padding-left: 0px">
-                                        <asp:Label runat="server" ID="lblUserEmail1" Text="email@email.com"></asp:Label>
+                                        <p>
+                                            <b>Email: </b>
+                                            <asp:Label runat="server" ID="lblUserEmail1" Text="email@email.com"></asp:Label>
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <h4>Опис</h4>
                                 </div>
                                 <div class="row">
-                                    <div class="col-xs-12" style="padding-left: 0px; height: 100px">
-                                        <asp:Label ID="lblOfferDescription1" CssClass="widthTextBox" runat="server">
+                                    <div class="col-xs-12" style="padding-left: 0px; height: 80px">
+                                        <asp:Label ID="lblOfferDescription1" Font-Italic="true" CssClass="widthTextBox" runat="server">
                                             Lorem ipsum dolor sit amet, consectetur adipiscing elit
                                         </asp:Label>
                                     </div>
                                 </div>
                                 <div class="row" style="padding-bottom: 10px">
-                                    <div class="col-xs-1" style="padding-left: 0px; padding-top: 8px">
-                                        <p>Цена:</p>
-                                    </div>
-                                    <div class="col-xs-3" style="padding-top: 8px">
-                                        <asp:Label ID="lblOfferPrice1" runat="server">10$</asp:Label>
+                                    <div class="col-xs-4" style="padding-left: 0px; padding-top: 8px">
+                                        <p><b>Цена:</b> <asp:Label ID="lblOfferPrice1" runat="server">10$</asp:Label></p>
                                     </div>
                                     <div class="col-xs-4">
                                         <asp:Button runat="server" ID="btnOfferCancel1" CommandName="btnOfferCancel1" CssClass="btn btn-danger" Text="Откажи" OnClick="btnOfferCancel1_Click" AutoPostBack="True" />

@@ -16,9 +16,34 @@
                 })
             });
         </script>-->
+   <script>
+       $(function () {
+           var admin =<%=this.primer()%>;
+            if(new String (admin).valueOf() ==new String("true").valueOf())
+            {   
+                $( ".primer" ).addClass( "nevidlivo" );
+                $(".lbAddAlbum").attr({href:"AddAlbum.aspx"});
+                $("#<%=lbAddAlbum.ClientID%>").text('Додади Албум');
+                $("#<%=lbKorisnici.ClientID%>").text('Корисници');
+                $(".lbKorisnici").attr({href:"Admin.aspx"});
+                $("#<%=lbIt.ClientID%>").attr({href:"Admin.aspx"});
+                $("li .primer").remove();
+            }else
+            {
+                $("#<%=lbIt.ClientID%>").attr({href:"HomePage.aspx"});
+            }
+            
+        });
+    </script>
     <script src="Scripts/js/bootstrap-datepicker.js"></script>
     <script src="Scripts/css/datepicker.css"></script>
-    
+    <style>
+        .nevidlivo 
+        {
+            display:none;
+            visibility:hidden;
+        }
+    </style>
     <link rel="stylesheet" href="Scripts/jquery-ui-1.11.4/jquery-ui.css">
         
     <script src="Scripts/jquery-ui-1.11.4/jquery-ui.js"></script>
@@ -49,22 +74,24 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <asp:LinkButton CssClass="navbar-brand" href="#" runat="server" Text="ИТ Проект"></asp:LinkButton>
+                    <asp:LinkButton CssClass="navbar-brand" href="#" ID="lbIt" runat="server" Text="ИТ Проект"></asp:LinkButton>
                 </div>
 
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active">
-                            <asp:LinkButton href="HomePage.aspx" runat="server" Text="Дома"></asp:LinkButton></li>
                         <li>
-                            <asp:LinkButton href="Album.aspx" runat="server" Text="Албум"></asp:LinkButton></li>
+                            <asp:LinkButton href="HomePage.aspx" ID="lbKorisnici" CssClass="lbKorisnici" runat="server" Text="Дома"></asp:LinkButton></li>
                         <li>
-                            <asp:LinkButton href="MyOffers.aspx" runat="server" Text="Мои Понуди"></asp:LinkButton></li>
+                            <asp:LinkButton href="Album.aspx" ID="lbAddAlbum" CssClass="lbAddAlbum" runat="server" Text="Албум"></asp:LinkButton></li>
+                        <li class="primer">
+                            <asp:LinkButton href="MyOffers.aspx" runat="server" CssClass="primer" Text="Мои Понуди"></asp:LinkButton></li>
+                        <li class="primer">
+                            <asp:LinkButton href="Transakcii.aspx" runat="server" CssClass="primer" Text="Трансакции"></asp:LinkButton></li>
                         <li>
-                            <asp:LinkButton href="#Stats" runat="server" Text="Статистики"></asp:LinkButton></li>
+                            <asp:LinkButton href="Statistiki.aspx" runat="server" Text="Статистики"></asp:LinkButton></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li>
+                        <li class="active">
                             <asp:LinkButton href="ProfilePage.aspx" runat="server" Text="Мои Информации"></asp:LinkButton></li>
                         <li>
                             <asp:LinkButton id="LogOut"  runat="server" Text="Одлогирај се" OnClick="LogOut_Click"></asp:LinkButton></li>

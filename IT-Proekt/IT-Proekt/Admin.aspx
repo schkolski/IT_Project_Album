@@ -43,7 +43,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <asp:LinkButton CssClass="navbar-brand" href="#" runat="server" Text="ИТ Проект"></asp:LinkButton>
+                    <asp:LinkButton CssClass="navbar-brand" href="Admin.aspx" runat="server" Text="ИТ Проект"></asp:LinkButton>
                 </div>
 
                 <div id="navbar" class="navbar-collapse collapse">
@@ -52,6 +52,9 @@
                             <asp:LinkButton href="Admin.aspx" runat="server" Text="Kорисници"></asp:LinkButton></li>
                         <li>
                             <asp:LinkButton href="AddAlbum.aspx" runat="server" Text="Додади Албум"></asp:LinkButton></li>
+                         <li>
+                            <asp:LinkButton href="Statistiki.aspx" runat="server" Text="Статистики"></asp:LinkButton></li>
+                        
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li>
@@ -64,13 +67,24 @@
             </div>
         </nav>
 
-        <div class="container col-sm-4 col-sm-offset-3 col-lg-4 col-lg-offset-3" style="align-items:center">
-            <div class="search">
+        <div class="container col-sm-5 col-sm-offset-3 col-lg-5 col-lg-offset-3" >
+            <div class="search" style="margin-left:12%">
                 <div class="col-xs-12">
                     <div class="input-group">
-                        <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Пребарај слики, албуми..."></asp:TextBox>
+                        <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Пребарај корисници..."></asp:TextBox>
                         <span class="input-group-btn">
-                            <asp:Button ID="btnSearch" runat="server" Text="Барај" CssClass="btn btn-default proba"></asp:Button>
+                            <asp:Button ID="btnSearch" runat="server" Text="Барај" CssClass="btn btn-default" style="position: absolute; clip: rect(0px 0px 0px 0px);"></asp:Button>
+                            <div class="bootstrap-filestyle input-group " style="width: auto;">
+                                <span class="group-span-filestyle " tabindex="0">
+                                    <label for="btnSearch" class="btn btn-primary">
+                                        <span class="icon-span-filestyle glyphicon glyphicon-search"></span>
+                                        <span class="buttonText">Барај</span>
+
+                                    </label>
+
+                                </span>
+                                <!-- Choose file - button  glyphicon glyphicon-forward-->
+                            </div>
                         </span>
                     </div>
                     <!-- /input-group -->
@@ -82,8 +96,8 @@
                         <ItemTemplate>
                         </ItemTemplate>
                     </asp:Repeater>
-                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" DataSourceID="SqlDataSource1" ForeColor="Black" GridLines="Vertical" Width="327px">
-                        <AlternatingRowStyle BackColor="Gainsboro" />
+                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataSourceID="SqlDataSource1" ForeColor="#333333" GridLines="None" Width="327px">
+                        <AlternatingRowStyle BackColor="White" />
                         <Columns>
                             <asp:BoundField DataField="username" SortExpression="username">
                                 <ItemStyle HorizontalAlign="Right" VerticalAlign="Middle" />
@@ -92,15 +106,16 @@
                                 <ItemStyle HorizontalAlign="Right" VerticalAlign="Middle" />
                             </asp:ButtonField>
                         </Columns>
-                        <EditRowStyle BackColor="#EEEEEE" ForeColor="Black" />
-                        <FooterStyle BackColor="#CCCCCC" />
-                        <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
-                        <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-                        <SelectedRowStyle BackColor="#8080FF" Font-Bold="True" ForeColor="White" />
-                        <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                        <SortedAscendingHeaderStyle BackColor="#808080" />
-                        <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                        <SortedDescendingHeaderStyle BackColor="#383838" />
+                        <EditRowStyle BackColor="#2461BF" />
+                        <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                        <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                        <RowStyle BackColor="#EFF3FB" />
+                        <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                        <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                        <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                        <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                        <SortedDescendingHeaderStyle BackColor="#4870BE" />
                     </asp:GridView>
                     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dbConnection %>" SelectCommand="SELECT [username] FROM [Korisnik]"></asp:SqlDataSource>
                 </div>

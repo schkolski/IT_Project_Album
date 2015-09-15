@@ -10,7 +10,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
     
-        <title>My Offers</title>
+        <title>Мои Понуди</title>
         <link href="Content/bootstrap.min.css" rel="stylesheet" />
         <link href="Content/homePage.css" rel="stylesheet" />
     </head> 
@@ -25,7 +25,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         </button>
-                        <asp:LinkButton CssClass="navbar-brand" runat="server" Text="ИТ Проект"></asp:LinkButton>
+                        <asp:LinkButton CssClass="navbar-brand" runat="server" href="HomePage.aspx" Text="ИТ Проект"></asp:LinkButton>
                     </div>
 
                     <div id="navbar" class="navbar-collapse collapse">
@@ -33,7 +33,8 @@
                             <li><asp:LinkButton href="HomePage.aspx" runat="server" Text="Дома"></asp:LinkButton></li>
                             <li><asp:LinkButton href="Album.aspx" runat="server" Text="Албум"></asp:LinkButton></li>
                             <li class="active"><asp:LinkButton href="MyOffers.aspx" runat="server" Text="Мои Понуди" ></asp:LinkButton></li>                                 
-                            <li><asp:LinkButton href="#Stats" runat="server" Text="Статистики"></asp:LinkButton></li>           
+                            <li><asp:LinkButton href="Transakcii.aspx" runat="server" Text="Транскации"></asp:LinkButton></li>                                                            
+                            <li><asp:LinkButton href="Statistiki.aspx" runat="server" Text="Статистики"></asp:LinkButton></li>           
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li><asp:LinkButton href="ProfilePage.aspx" runat="server" Text="Мои Информации"></asp:LinkButton></li>
@@ -44,95 +45,8 @@
             </nav>
 
             <div class="container">
-                <div id="searchContainer">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="input-group">
-                                <asp:TextBox id="txtSearch" runat="server" CssClass="form-control" placeholder="Пребарај слики, албуми..."></asp:TextBox>
-                                <span class="input-group-btn">
-                                <asp:Button ID="btnSearch" runat="server" Text="Барај" CssClass="btn btn-default"></asp:Button>
-                                </span> 
-                            </div><!-- /input-group -->
-                        </div>
-                        <div class="col-md-1 hidden-sm hidden-xs">
-                            <asp:CheckBox ID="chkbID" runat="server" Text=" ID"/>
-                        </div>
-                        <div class="col-md-1 hidden-sm hidden-xs">
-                            <asp:CheckBox ID="chkbName" runat="server" Text=" Име"/>
-                        </div>
-                        <div class="col-md-2 hidden-sm hidden-xs">
-                            <asp:CheckBox ID="chkbAlbum" runat="server" Text=" Албум"/>
-                        </div>
-                        <div class="col-md-3 col-lg-2 col-md-offset-5 col-lg-offset-6">
-                            <button ID="toggleAdvancedSearch" class="btn btn-link" type="button">Опции за пребарување</button>                      
-                        </div>                 
-                    </div>
-                </div>
-
-                <div id="advancedSearchContainer" class="container offer">
-                    <div class="row paddingTopBottom">
-                        <div class="col-xs-2">
-                            <asp:Label id="lblName" runat="server" >Име:</asp:Label>
-                        </div>
-                        <div class="col-xs-10">
-                            <asp:TextBox runat="server" ID="txbAdvancedSearchName"></asp:TextBox>
-                        </div>
-                    </div>
-                    <div class="row paddingTopBottom">
-                        <div class="col-xs-2">
-                            <asp:Label ID="lblUser" runat="server">Понудил:</asp:Label>
-                        </div>
-                        <div class="col-xs-10">
-                            <asp:TextBox runat="server" ID="txbAdvancedSearchUser"></asp:TextBox>
-                        </div>
-                    </div>
-                    <div class="row paddingTopBottom">
-                        <div class="col-xs-2">
-                            <asp:Label ID="lblAlbum" runat="server">Албум:</asp:Label>
-                        </div>
-                        <div class="col-xs-10">
-                            <asp:TextBox runat="server" ID="txbAdvancedSearchAlbum"></asp:TextBox>
-                        </div>
-                    </div>
-                    <div class="row paddingTopBottom">
-                        <div class="col-xs-2">
-                            <asp:Label ID="lblYear" runat="server">Година:</asp:Label>
-                        </div>
-                        <div class="col-xs-10">
-                            <asp:TextBox runat="server" ID="txbAdvancedSearchYear"></asp:TextBox>
-                        </div>
-                    </div>
-                    <div class="row paddingTopBottom">
-                        <div class="col-xs-2">
-                            <asp:Label ID="lblAdvancedSearchPrice" runat="server">Цена:</asp:Label>
-                        </div>
-                        <div class="col-xs-10">
-                            <asp:TextBox runat="server" ID="txbAdvancedSearchPrice"></asp:TextBox>
-                        </div>
-                    </div>
-                    <div class="row paddingTopBottom">
-                        <div class="col-xs-2">
-                            <asp:Label ID="lblAdvancedSearchOfferType" runat="server">Тип на понуда:</asp:Label>
-                        </div>
-                        <div class="col-xs-2">
-                            <asp:CheckBox runat="server" ID="chkAdvancedSearchBuy" Text="Buy"></asp:CheckBox>
-                        </div>
-                        <div class="col-xs-2">
-                            <asp:CheckBox runat="server" ID="chkAdvancedSearchExchange" Text="Exchange"></asp:CheckBox>
-                        </div>
-                        <div class="col-xs-2">
-                            <asp:CheckBox runat="server" ID="chkAdvancedSearchRequest" Text="Request"></asp:CheckBox>
-                        </div>
-                    </div>
-                    <div class="row paddingTopBottom">
-                        <div class="col-xs-6 col-sm-offset-2">
-                            <asp:Button ID="btnAdvancedSearch" runat="server" CssClass="btn btn-default" Text="Пребарај" />
-                        </div>
-                    </div>
-                   
-                </div>
-
-                <div id="newOfferButtonContainer" class="container">
+              
+                <div id="newOfferButtonContainer" class="container" style="padding-top:15px;">
                     <div class="col-xs-2 col-sm-offset-5">
                         <button class="btn btn-primary" type="button" id="btnNewOffer">Нова Понуда</button>
                     </div>

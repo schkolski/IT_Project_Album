@@ -11,6 +11,8 @@ namespace IT_Proekt
     public partial class ProfilePage : System.Web.UI.Page
     {
         private Database db;
+        
+        public ServiceReference1.WebService1 ab;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -20,7 +22,7 @@ namespace IT_Proekt
                     string username = Session["UserName"].ToString();
 
                     db = new Database();
-                    Korisnik k = db.getUserInfoByUsername(username);
+                   Korisnik k = db.getUserInfoByUsername(username);
                     if (k != null)
                     {
                         tbName.Text = k.Name;
@@ -29,6 +31,10 @@ namespace IT_Proekt
                         rbFemale.Checked = k.Sex == 0;
                         rbMale.Checked = k.Sex == 1;
                     }
+                    if (k.Type == 1) 
+                    {
+                       
+                    }
                 }
                 else
                 {
@@ -36,7 +42,14 @@ namespace IT_Proekt
                 }
             }
         }
-
+        public String primer() 
+        {
+            ab = new ServiceReference1.WebService1();
+            if (ab.isAdmin(Session["UserName"].ToString())) {
+                return "true";
+            }
+            return "false";
+        }
         protected void changePass_Click(object sender, EventArgs e)
         {
             db = new Database();
