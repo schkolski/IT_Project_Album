@@ -57,7 +57,7 @@
                                     </div>
                                 </div>
                                 <div class="row" style="padding-bottom: 10px">
-                                    <div class="col-xs-6" style="padding-left: 0px; padding-top: 8px">
+                                    <div class="col-xs-4" style="padding-left: 0px; padding-top: 8px">
                                         <p>
                                             <b>Замена за слика:
                                             <asp:Label ID="lblOfferPrice1" runat="server">10$</asp:Label>
@@ -65,7 +65,7 @@
                                         </p>
 
                                     </div>
-                                    <div class="col-xs-6">
+                                    <div class="col-xs-8">
                                         <asp:Button runat="server" CommandName="btnOfferBuy1" ID="btnOfferBuy1" CssClass="btn btn-success" Text="Потврди" />
                                     </div>
                                 </div>

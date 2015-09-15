@@ -50,3 +50,4 @@ C:\Users\Kristijan\Desktop\nov_album\v_sabota\IT_Project_Album\IT-Proekt\IT-Proe
 C:\Users\Kristijan\Desktop\nov_album\v_sabota\IT_Project_Album\IT-Proekt\IT-Proekt\obj\Debug\IT-Proekt.csprojResolveAssemblyReference.cache
 C:\Users\Kristijan\Desktop\nov_album\v_sabota\IT_Project_Album\IT-Proekt\IT-Proekt\obj\Debug\IT-Proekt.dll
 C:\Users\Kristijan\Desktop\nov_album\v_sabota\IT_Project_Album\IT-Proekt\IT-Proekt\obj\Debug\IT-Proekt.pdb
+C:\Users\Kristijan\Desktop\nov_album\v_sabota\IT_Project_Album\IT-Proekt\IT-Proekt\bin\AjaxControlToolkit.dll

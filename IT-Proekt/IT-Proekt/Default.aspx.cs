@@ -17,6 +17,7 @@ namespace IT_Proekt
         ArrayList korisnici = new ArrayList();
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (!Page.IsPostBack)
             {
 
@@ -54,10 +55,10 @@ namespace IT_Proekt
 
         protected void LogIn_Click(object sender, EventArgs e)
         {
+           // lblError.Visible = false;
             System.Diagnostics.Debug.WriteLine("Yes");
             baza = new Database();
             bool flag = baza.checkKorisnik(tbUsernamelog.Text, tbPasslog.Text);
-
             if (flag == true)
             {
                 Korisnik ab = baza.getUserInfoByUsername(tbUsernamelog.Text);
@@ -79,7 +80,7 @@ namespace IT_Proekt
             }
             else
             {
-                System.Diagnostics.Debug.WriteLine("ne e registriran");
+                lblError.Visible = true;
             }
 
         }
@@ -106,7 +107,7 @@ namespace IT_Proekt
                 }
                 else 
                 {
-                    lblError.Text = "Постоечко корисничко име";
+                   // lblError.Text = "Постоечко корисничко име";
                     
                 }
             }

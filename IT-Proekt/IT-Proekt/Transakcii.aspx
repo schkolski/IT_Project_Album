@@ -98,13 +98,18 @@
             </asp:UpdatePanel>
 
         </div>
-
         <footer class="footer">
-            <div class="container">
-                <p>Place sticky footer content here.</p>
+            <div class="row" style="padding-bottom:1%;padding-top:1%">
+                <div class="col-lg-8">
+                    All copyrights &copy; reserved 2015 It Project 
+                </div>
+                <div class="col-lg-4">
+                    <asp:Button runat="server" ID="kontakt" CssClass="btn-link" Text="Контакт"/>
+                    <asp:Button runat="server" ID="Button1" CssClass="btn-link" Text="За нас"/>
+                    <asp:Button runat="server" ID="Button2" CssClass="btn-link" Text="Маркетинг"/>
+                </div>
             </div>
         </footer>
-
 
     </form>
 </body>

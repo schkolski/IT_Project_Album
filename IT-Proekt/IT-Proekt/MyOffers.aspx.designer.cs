@@ -58,22 +58,22 @@ namespace IT_Proekt {
         protected global::System.Web.UI.WebControls.Label lblErrorInput;
         
         /// <summary>
-        /// txbNewOfferAlbum control.
+        /// ddAlbumName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbNewOfferAlbum;
+        protected global::System.Web.UI.WebControls.DropDownList ddAlbumName;
         
         /// <summary>
-        /// txbNewOfferID control.
+        /// ddAlbumYear control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbNewOfferID;
+        protected global::System.Web.UI.WebControls.DropDownList ddAlbumYear;
         
         /// <summary>
         /// imgNewOfferPreview control.
@@ -94,15 +94,6 @@ namespace IT_Proekt {
         protected global::System.Web.UI.WebControls.CheckBox chkNewOfferExchange;
         
         /// <summary>
-        /// txbNewOfferNumber control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbNewOfferNumber;
-        
-        /// <summary>
         /// btnImagePreview control.
         /// </summary>
         /// <remarks>
@@ -112,13 +103,13 @@ namespace IT_Proekt {
         protected global::System.Web.UI.WebControls.Button btnImagePreview;
         
         /// <summary>
-        /// txbNewOfferAlbumYear control.
+        /// ddPictureNumber control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbNewOfferAlbumYear;
+        protected global::System.Web.UI.WebControls.DropDownList ddPictureNumber;
         
         /// <summary>
         /// btnNewOfferClear control.
@@ -164,5 +155,32 @@ namespace IT_Proekt {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater repeaterMyOffers;
+        
+        /// <summary>
+        /// kontakt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button kontakt;
+        
+        /// <summary>
+        /// Button1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button1;
+        
+        /// <summary>
+        /// Button2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button2;
     }
 }

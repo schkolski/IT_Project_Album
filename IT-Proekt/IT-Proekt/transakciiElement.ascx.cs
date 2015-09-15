@@ -16,7 +16,7 @@ namespace IT_Proekt
             lblOfferName1.Text = name1 + " " + AlbumYear.ToString() + " - " + imgID_1.ToString();
             lblOfferDescription1.Text = description1;
             lblOfferDatum.Text = Date.ToShortDateString();
-            lblOfferPrice1.Text = price1.ToString();
+            lblOfferPrice1.Text = imgID_2.ToString();
             lblUserName1.Text = user1;
             lblUserEmail1.Text = email1;
             imgOfferPreview1.ImageUrl = imgUrl_1;

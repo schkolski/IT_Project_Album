@@ -21,8 +21,10 @@ namespace IT_Proekt
             List<int> Brojki = db.getAvailableExchangePictures(Session["UserName"].ToString(), thisPonuda.Name, thisPonuda.AlbumID);
             if (Brojki.Count > 0)
             {
-                ddZamena.DataSource = Brojki;
-                ddZamena.DataBind();
+                ddZamena.Items.Add("<<Избери>>");
+                foreach(int temp in Brojki){
+                    ddZamena.Items.Add(temp + "");
+                }
             }
             else
             {

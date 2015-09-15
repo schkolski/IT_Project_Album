@@ -53,7 +53,7 @@
                                 <div class="col-xs-10">
                                     <asp:Button runat="server" ID="btnOfferBuy" CommandName="btnOfferBuy" CssClass="btn btn-success" Text="Купи" OnClick="btnOfferBuy_Click"/>
                                     <asp:Button runat="server" ID="exchange" CommandName="exchange" CssClass="btn btn-success" Text="Замени" OnClick="exchange_Click" />
-                                    <asp:DropDownList runat="server" ID="ddZamena"  Visible="false" OnSelectedIndexChanged="ddZamena_SelectedIndexChanged"  AutoPostBack="true" ></asp:DropDownList>
+                                    <asp:DropDownList runat="server" ID="ddZamena"  Visible="false" OnSelectedIndexChanged="ddZamena_SelectedIndexChanged"  AutoPostBack="true" CssClass="btn btn-default dropdown-toggle"></asp:DropDownList>
                                 </div>
                             </div>
                         </div>

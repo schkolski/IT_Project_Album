@@ -99,6 +99,41 @@ namespace IT_Proekt
             }
             return albums;
         }
+        public List<int> getAllAlbumIDsFromPoseduvaByUsername(string username) 
+        {
+            SqlConnection con = getConnection();
+            string result = "OK";
+            List<int> albumIDs = null;
+            try
+            {
+                con.Open();
+                string query = "SELECT distinct(album_id) FROM Poseduva WHERE username=@username and quantity>0";
+                SqlCommand command = new SqlCommand(query, con);
+                command.Prepare();
+                command.Parameters.AddWithValue("@username", username);
+
+                SqlDataReader r = command.ExecuteReader();
+
+                albumIDs = new List<int>();
+                while (r.Read())
+                {
+                    albumIDs.Add(r.GetInt32(0));
+                }
+                return albumIDs;
+
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Log("getAllAlbumIDsFromPoseduvaByUsername", result);
+            }
+            return null;
+        }
         public List<Album> getAllAlbumsNames()
         {
             SqlConnection con = getConnection();
@@ -1287,6 +1322,36 @@ namespace IT_Proekt
             }
             return true;
         }
+        public bool changeType(string username)
+        {
+            SqlConnection con = getConnection();
+            string result = "OK";
+            try
+            {
+                con.Open();
+                string query = "UPDATE Korisnik " +
+                               "SET type=(type+1)%2 WHERE username=@username";
+
+                SqlCommand command = new SqlCommand(query, con);
+                command.Prepare();
+                command.Parameters.AddWithValue("@username", username);
+
+                command.ExecuteNonQuery();
+
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+                return false;
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Log("changePassword", result);
+            }
+            return true;
+        }
         public bool changePassword(string username, string oldPassword, string newPassword)
         {
             if (!checkKorisnik(username, oldPassword))
@@ -2048,9 +2113,40 @@ namespace IT_Proekt
             {
                 con.Close();
                 // Log the result
-                Log("removeAllSlikaByAlbumId", result);
+                Log("getAllUser", result);
             }
             return korisnici;
+        }
+
+        public DataSet getAllUsers()
+        {
+            SqlConnection con = getConnection();
+            string result = "OK";
+            try
+            {
+                con.Open();
+
+                string query = "SELECT username, type FROM Korisnik ";
+
+                SqlCommand command = new SqlCommand(query, con);
+                command.Prepare();
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+                DataSet data = new DataSet();
+                dataAdapter.Fill(data);
+
+                return data;
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+            }
+            finally
+            {
+                con.Close();
+                // Log the result
+                Log("getAllUsers :D", result);
+            }
+            return null;
         }
 
         public DataTable getNajmnoguBrojPonudiVoDen()
@@ -2357,6 +2453,37 @@ namespace IT_Proekt
                 Log("getUserNajmnoguPotroshil", result);
             }
             return k;
+        }
+        public int getPictureNumbers(String name, int Year) 
+        {
+            SqlConnection con = getConnection();
+            String result = "OK";
+            try
+            {
+                con.Open();
+                String query="Select broj_na_sliki from Album Where name = @name and year_published=@year";
+                SqlCommand cmd = new SqlCommand(query,con);
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@name",name);
+                cmd.Parameters.AddWithValue("@year",Year);
+                
+                SqlDataReader reader = cmd.ExecuteReader();
+                if(reader.Read())
+                {
+                    return Int32.Parse(reader["broj_na_sliki"].ToString());
+                }
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+                return -1;
+            }
+            finally
+            {
+                con.Close();
+                Log("getPictureNumbers ", result);
+            }
+            return -1;
         }
     }
 }

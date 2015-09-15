@@ -81,20 +81,7 @@
         </nav>
 
         <div class="container">
-            <div id="searchContainer">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="input-group">
-                            <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Пребарај слики, албуми..."></asp:TextBox>
-                            <span class="input-group-btn">
-                                <asp:Button ID="btnSearch" runat="server" Text="Барај" CssClass="btn btn-default"></asp:Button>
-                            </span>
-                        </div>
-                        <!-- /input-group -->
-                    </div>
-                </div>
-            </div>
-
+            
             <asp:ScriptManager runat="server" ID="scriptManager"></asp:ScriptManager>
             <asp:UpdatePanel ID="primer1" runat="server">
                 <ContentTemplate>
@@ -108,12 +95,17 @@
         </div>
 
         <footer class="footer">
-            <div class="container">
-                <p>Place sticky footer content here.</p>
+            <div class="row" style="padding-bottom:1%;padding-top:1%">
+                <div class="col-lg-8">
+                    All copyrights &copy; reserved 2015 It Project 
+                </div>
+                <div class="col-lg-4">
+                    <asp:Button runat="server" ID="kontakt" CssClass="btn-link" Text="Контакт"/>
+                    <asp:Button runat="server" ID="Button1" CssClass="btn-link" Text="За нас"/>
+                    <asp:Button runat="server" ID="Button2" CssClass="btn-link" Text="Маркетинг"/>
+                </div>
             </div>
         </footer>
-
-
     </form>
 </body>
 

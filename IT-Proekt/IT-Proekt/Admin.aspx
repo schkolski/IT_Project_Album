@@ -73,7 +73,7 @@
                     <div class="input-group">
                         <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Пребарај корисници..."></asp:TextBox>
                         <span class="input-group-btn">
-                            <asp:Button ID="btnSearch" runat="server" Text="Барај" CssClass="btn btn-default" style="position: absolute; clip: rect(0px 0px 0px 0px);"></asp:Button>
+                            <asp:Button ID="btnSearch" runat="server" Text="Барај" CssClass="btn btn-default" style="position: absolute; clip: rect(0px 0px 0px 0px);" OnClick="btnSearch_Click"></asp:Button>
                             <div class="bootstrap-filestyle input-group " style="width: auto;">
                                 <span class="group-span-filestyle " tabindex="0">
                                     <label for="btnSearch" class="btn btn-primary">
@@ -96,14 +96,17 @@
                         <ItemTemplate>
                         </ItemTemplate>
                     </asp:Repeater>
-                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataSourceID="SqlDataSource1" ForeColor="#333333" GridLines="None" Width="327px">
+                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Width="327px" OnRowCommand="GridView1_RowCommand" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
                         <AlternatingRowStyle BackColor="White" />
                         <Columns>
-                            <asp:BoundField DataField="username" SortExpression="username">
-                                <ItemStyle HorizontalAlign="Right" VerticalAlign="Middle" />
+                            <asp:BoundField DataField="username" SortExpression="username" HeaderText="Корисници">
+                                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                             </asp:BoundField>
-                            <asp:ButtonField ButtonType="Button" Text="Промени">
-                                <ItemStyle HorizontalAlign="Right" VerticalAlign="Middle" />
+                            <asp:BoundField DataField="type" SortExpression="type" HeaderText="Тип">
+                                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                            </asp:BoundField>
+                            <asp:ButtonField ButtonType="Button" Text="Промени" CommandName="Select">
+                                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle"/>
                             </asp:ButtonField>
                         </Columns>
                         <EditRowStyle BackColor="#2461BF" />
@@ -122,12 +125,22 @@
             </div>
         </div>
 
-        <footer class="footer">
-            <div class="container">
-                <p>Place sticky footer content here.</p>
+
+    <footer class="footer">
+            <div class="row" style="padding-bottom:1%;padding-top:1%">
+                <div class="col-lg-8">
+                    All copyrights &copy; reserved 2015 It Project 
+                </div>
+                <div class="col-lg-4">
+                    <asp:Button runat="server" ID="kontakt" CssClass="btn-link" Text="Контакт"/>
+                    <asp:Button runat="server" ID="Button1" CssClass="btn-link" Text="За нас"/>
+                    <asp:Button runat="server" ID="Button2" CssClass="btn-link" Text="Маркетинг"/>
+                </div>
             </div>
         </footer>
+
     </form>
+
 </body>
 </html>
 

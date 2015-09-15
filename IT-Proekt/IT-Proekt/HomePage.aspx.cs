@@ -32,6 +32,11 @@ namespace IT_Proekt
 
             if (offers == null) return;
 
+            if (offers.Count == 0)
+            {
+                Response.Write("<div class='alert alert-warning'>" +
+    "<strong>Внимание!</strong> Оваа порака се испишува само во случај кога нема понуди кои што вас би ве интересирале<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a> </div>");
+            }
             foreach (Ponuda o in offers)
             {
                 offer offerElem = (offer)LoadControl("offer.ascx");

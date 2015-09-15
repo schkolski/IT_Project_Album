@@ -66,17 +66,17 @@
                     </ContentTemplate>
                 </asp:UpdatePanel>
 
-                <div id="newOfferContainer" class="container offer">  <!-- Функционира само над 768px -->
+                <div id="newOfferContainer" class="container offer" style="width:1000px;">  <!-- Функционира само над 768px -->
                     <asp:UpdatePanel runat="server">
                         <ContentTemplate>                        
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="row">
                                         <div class="col-sm-6 ">
-                                            <asp:TextBox ID="txbNewOfferAlbum" runat="server" placeholder="Внеси име на албум..." width="70%"></asp:TextBox>
+                                            <asp:DropDownList ID="ddAlbumName" CommandName="ddAlbumName" CssClass="btn btn-default dropdown-toggle" AutoPostBack="true" runat="server" width="70%" OnSelectedIndexChanged="ddAlbumName_SelectedIndexChanged"></asp:DropDownList>
                                         </div>   
                                         <div class="col-sm-6">
-                                            <asp:TextBox ID="txbNewOfferID" runat="server" placeholder="Внеси ID на слика..." width="70%"></asp:TextBox>
+                                            <asp:DropDownList ID="ddAlbumYear" CommandName="ddAlbumYear" CssClass="btn btn-default dropdown-toggle" AutoPostBack="true" runat="server" width="70%" OnSelectedIndexChanged="ddAlbumYear_SelectedIndexChanged"></asp:DropDownList>
                                         </div>
                                     </div>   
                             
@@ -88,20 +88,12 @@
                                             <div class="row">
                                                 <h4>Опции:</h4>
                                             </div>
-                                            <div class="row">
+                                            <div class="row" style="padding-top:50%">
                                                 <div class="col-sm-8" style="padding-left:0px">
                                                     <p>Замена</p>
                                                 </div>
                                                 <div class="col-sm-4">
                                                     <asp:CheckBox runat="server" ID="chkNewOfferExchange" Checked="false" />
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-8" style="padding-left:0px">
-                                                    <p>Број на слики</p>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <asp:TextBox runat="server" ID="txbNewOfferNumber" Width="30px">1</asp:TextBox>
                                                 </div>
                                             </div>
                                         </div>      
@@ -112,13 +104,13 @@
                                         </div>
                                     </div>  
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <div class="row">
                                         <div class="col-sm-9">
-                                            <asp:TextBox id="txbNewOfferAlbumYear" runat="server" placeholder="Внеси година..." Width="40%"></asp:TextBox>
+                                            <asp:DropDownList ID="ddPictureNumber" runat="server" Width="40%" CssClass="btn btn-default dropdown-toggle"></asp:DropDownList>
                                         </div>
                                         <div class="col-sm-3">
-                                            <asp:Button ID="btnNewOfferClear" runat="server" CssClass="btn btn-danger" Text="Clear" OnClick="btnOfferClear_Click" />
+                                            <asp:Button ID="btnNewOfferClear" runat="server" CssClass="btn btn-danger" Text="Избриши" OnClick="btnOfferClear_Click" />
                                         </div>
                                     </div>
                                     <div class="row">
@@ -134,13 +126,19 @@
                                         <div class="col-sm-7">
                                             <asp:TextBox runat="server" ID="txbNewOfferPrice" style="width:50px;"></asp:TextBox>
                                         </div>
-                                        <div class="col-sm-3 " >
+                                        <div class="col-sm-3 " style ="padding-top:20%">
                                             <asp:Button runat="server" id="btnNewOfferSubmit" CssClass="btn btn-success" Text="Потврди" OnClick="btnNewOfferSubmit_Click"/>
                                         </div>    
                                     </div>
                                 </div>
                             </div>           
                         </ContentTemplate>
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger  ControlID="ddAlbumName" EventName="SelectedIndexChanged"/>
+                            <asp:AsyncPostBackTrigger ControlID="ddAlbumYear" EventName="SelectedIndexChanged"/>
+                            
+
+                        </Triggers>
                     </asp:UpdatePanel>
                 </div>
                 
@@ -161,10 +159,17 @@
            </div>
 
             <footer class="footer">
-              <div class="container">
-                <p>Place sticky footer content here.</p>
-              </div>
-            </footer>
+            <div class="row" style="padding-bottom:1%;padding-top:1%">
+                <div class="col-lg-8">
+                    All copyrights &copy; reserved 2015 It Project 
+                </div>
+                <div class="col-lg-4">
+                    <asp:Button runat="server" ID="kontakt" CssClass="btn-link" Text="Контакт"/>
+                    <asp:Button runat="server" ID="Button1" CssClass="btn-link" Text="За нас"/>
+                    <asp:Button runat="server" ID="Button2" CssClass="btn-link" Text="Маркетинг"/>
+                </div>
+            </div>
+        </footer>
 
 
         </form>

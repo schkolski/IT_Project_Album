@@ -15,6 +15,8 @@ namespace IT_Proekt
 {
     public partial class MyOffers : System.Web.UI.Page
     {
+        Database db;
+        ServiceReference1.WebService1 ab;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["UserName"] == null)
@@ -24,6 +26,18 @@ namespace IT_Proekt
             else
             {
                 fillMyOffers(Session["UserName"].ToString()); // dinamichno dodaj offers
+            }
+            if (!Page.IsPostBack)
+            {
+                db = new Database();
+                string username = Session["UserName"].ToString();
+                List<int> albuIDs = db.getAllAlbumIDsFromPoseduvaByUsername(username);
+                ddAlbumName.Items.Add("--Избери");
+                foreach (int albumID in albuIDs)
+                {
+                    Album a = db.getAlbumByID(albumID);
+                    ddAlbumName.Items.Add(a.Name);
+                }
             }
         }
 
@@ -93,18 +107,18 @@ namespace IT_Proekt
             if (validateOffer())
             {
                 Database db = new Database();
-                Album album = db.getAlbumByNameAndYear(txbNewOfferAlbum.Text.Trim(),
-                    Int32.Parse(txbNewOfferAlbumYear.Text.Trim()));
+                Album album = db.getAlbumByNameAndYear(ddAlbumName.SelectedItem.Text.Trim(),
+                    Int32.Parse(ddAlbumYear.SelectedItem.Text.Trim()));
                 string offerDesc = txbNewOfferDescription.Text.Trim();
                 int price = -1;
                 Int32.TryParse(txbNewOfferPrice.Text.Trim(), out price);
-                string name = txbNewOfferAlbum.Text;
+                string name = ddAlbumName.SelectedItem.Text;
                 int albumid = album.ID;
-                int brslika = Int32.Parse(txbNewOfferID.Text.Trim());
+                int brslika = Int32.Parse(ddPictureNumber.SelectedItem.Text.Trim());
                 int exchange = chkNewOfferExchange.Checked ? 1 : 0;
                 String username = Session["UserName"].ToString();
                 DateTime datum = DateTime.Now;
-                int quantity = Int32.Parse(txbNewOfferNumber.Text.Trim());
+                int quantity = 1;
                 bool executeQuery = db.addOffer(offerDesc, price, name, albumid,
                     brslika, exchange, username, datum, quantity);
 
@@ -140,11 +154,11 @@ namespace IT_Proekt
 
         private void clearNewOffer()
         {
-            txbNewOfferAlbum.Text = "";
-            txbNewOfferID.Text = "";
-            txbNewOfferAlbumYear.Text = "";
+
+            ddAlbumName.SelectedIndex = 0;
+            ddAlbumYear.Items.Clear();
+            ddPictureNumber.Items.Clear();
             chkNewOfferExchange.Checked = false;
-            txbNewOfferNumber.Text = "1";
             txbNewOfferDescription.Text = "";
             txbNewOfferPrice.Text = "0";
         }
@@ -161,11 +175,11 @@ namespace IT_Proekt
             // *hasDescription
             // *hasPrice or cheched Exchange
             // *hasQuantity >= 1
-            string albumName = txbNewOfferAlbum.Text.Trim();
+            string albumName = ddAlbumName.SelectedItem.Text.Trim();
             int albumYear = -1;
-            Int32.TryParse(txbNewOfferAlbumYear.Text.Trim(), out albumYear);
+            Int32.TryParse(ddAlbumYear.SelectedItem.Text.Trim(), out albumYear);
             int pictureID = -1;
-            Int32.TryParse(txbNewOfferID.Text.Trim(), out pictureID);
+            Int32.TryParse(ddPictureNumber.SelectedItem.Text.Trim(), out pictureID);
 
             System.Diagnostics.Debug.WriteLine(
                 String.Format("AlbumName:{0} AlbumYear:{1} PictureID:{2}",
@@ -201,17 +215,17 @@ namespace IT_Proekt
         }
         private bool validateDescription() { return (txbNewOfferDescription.Text.Trim()).Length > 0; }
         private bool validatePrice() { return (txbNewOfferPrice.Text.Trim()).Length > 0; }
-        private bool validateQuantity() { return Int32.Parse((txbNewOfferNumber.Text.Trim())) > 0; }
+        private bool validateQuantity() { return 1 > 0; }
 
         private bool isInputEmpty()
         {
-            bool albumName = txbNewOfferAlbum.Text.Equals("");
-            bool albumYear = txbNewOfferAlbumYear.Text.Equals("");
-            bool ID = txbNewOfferID.Text.Equals("");
-            bool brSliki = txbNewOfferNumber.Text.Equals("");
+            bool albumName = ddAlbumName.SelectedItem.Text.Equals("");
+            bool albumYear = ddAlbumYear.SelectedItem.Text.Equals("");
+            bool ID = ddPictureNumber.SelectedItem.Text.Equals("");
+
             bool price = txbNewOfferPrice.Text.Equals("");
 
-            if (albumName || albumYear || ID || brSliki || price)
+            if (albumName || albumYear || ID || price)
             {
                 return true;
             }
@@ -220,46 +234,6 @@ namespace IT_Proekt
 
         private void emptyInputErrorMessage()
         {
-            if (txbNewOfferAlbum.Text.Equals(""))
-            {
-                lblErrorInput.Text = "Внесовте погрешни податоци.";
-                txbNewOfferAlbum.BackColor = Color.Red;
-            }
-            else
-            {
-                txbNewOfferAlbum.BackColor = Color.White;
-            }
-
-            if (txbNewOfferAlbumYear.Text.Equals(""))
-            {
-                lblErrorInput.Text = "Внесовте погрешни податоци.";
-                txbNewOfferAlbumYear.BackColor = Color.Red;
-            }
-            else
-            {
-                txbNewOfferAlbumYear.BackColor = Color.White;
-            }
-
-            if (txbNewOfferID.Text.Equals(""))
-            {
-                lblErrorInput.Text = "Внесовте погрешни податоци.";
-                txbNewOfferID.BackColor = Color.Red;
-            }
-            else
-            {
-                txbNewOfferID.BackColor = Color.White;
-            }
-
-            if (txbNewOfferNumber.Text.Equals(""))
-            {
-                lblErrorInput.Text = "Внесовте погрешни податоци.";
-                txbNewOfferNumber.BackColor = Color.Red;
-            }
-            else
-            {
-                txbNewOfferNumber.BackColor = Color.White;
-            }
-
             if (txbNewOfferPrice.Text.Equals(""))
             {
                 lblErrorInput.Text = "Внесовте погрешни податоци.";
@@ -285,10 +259,10 @@ namespace IT_Proekt
         {
             // TODO: Better validation
             int albumYear = -1;
-            Int32.TryParse(txbNewOfferAlbumYear.Text.Trim(), out albumYear);
-            int albumID = getAlbumID(txbNewOfferAlbum.Text.Trim(), albumYear);
+            Int32.TryParse(ddAlbumYear.SelectedItem.Text.Trim(), out albumYear);
+            int albumID = getAlbumID(ddAlbumName.SelectedItem.Text.Trim(), albumYear);
             int pictureID = -1;
-            Int32.TryParse(txbNewOfferID.Text.Trim(), out pictureID);
+            Int32.TryParse(ddPictureNumber.SelectedItem.Text.Trim(), out pictureID);
 
             imgNewOfferPreview.ImageUrl = getImageUrl(albumID, pictureID);
         }
@@ -304,10 +278,52 @@ namespace IT_Proekt
         {
             Database db = new Database();
             Slika s = db.getPicture(albumID, pictureID);
-            
-            if(s != null)
+
+            if (s != null)
                 return s.Url;
             return "";
+        }
+
+        protected void ddAlbumName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ddAlbumYear.Items.Clear();
+            ab = new ServiceReference1.WebService1();
+            System.Diagnostics.Debug.WriteLine("ovde ke vlezish");
+            if (ddAlbumName.SelectedIndex != -1)
+            {
+                ddAlbumYear.Items.Add("<<--Изберете-->>");
+                foreach (String s in ab.getAlbumYearByName(ddAlbumName.SelectedItem.Text))
+                {
+                    ddAlbumYear.Items.Add(s);
+                }
+            }
+        }
+
+        protected void ddAlbumYear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ddPictureNumber.Items.Clear();
+            if (ddAlbumYear.SelectedIndex != 0)
+            {
+                db = new Database();
+                int x = db.getPictureNumbers(ddAlbumName.SelectedItem.Text, Int32.Parse(ddAlbumYear.SelectedItem.Text));
+                int albumYear = Int32.Parse(ddAlbumYear.SelectedItem.Text);
+                string albumName = ddAlbumName.SelectedItem.Text;
+                string username = Session["UserName"].ToString();
+                int albumID = -1;
+                Album a = db.getAlbumByNameAndYear(albumName, albumYear);
+                if (a != null)
+                    albumID = a.ID;
+                ddPictureNumber.Items.Add("--Избери");
+                for (int i = 1; i <= x; i++)
+                {
+                    int q = db.getQuantity(username, albumID, i);
+
+                    if (q < 1)
+                        continue;
+
+                    ddPictureNumber.Items.Add(i + "");
+                }
+            }
         }
 
     }
